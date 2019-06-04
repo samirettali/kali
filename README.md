@@ -1,4 +1,4 @@
-# Kali Linux provisioning with Ansible
+# Kali Linux vm for CTFs
 
-This is the Playbook (it's a WIP) that I use to build a Kali Linux machine for
-CTFs.
+This is my Kali Linux setup for CTFs.
+It uses Vagrant to build the vm and Ansible to install the tools.
