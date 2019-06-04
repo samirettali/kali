@@ -38,6 +38,8 @@
         - python3-pip
 
         # CTF software
+        - gdb
+        - radare2
         - dirbuster
         - audacity
         - exiftool
@@ -49,9 +51,54 @@
         - hydra
         - aircrack-ng
         - nikto
-        - wordlists 
+        - wordlists
         - burpsuite
         - nmap
+        - binwalk
+
+    # Configure services
+    - name: Enable apache
+      become: yes
+      systemd:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Enable postgresql
+      become: yes
+      systemd:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Initialize msfdb
+      become: yes
+      shell: "{{ item }}"
+      with_items:
+        - "msfdb init"
+        - "touch /usr/share/metasploit-framework/.initialized"
+      args:
+        creates: "/usr/share/metasploit-framework/.initialized"
+        warn: false
+
+    - name: Python2 pynvim module
+      shell: pip2 install pynvim
+
+    - name: Python3 pynvim module
+      shell: pip3 install pynvim
+
+    - name: Python3 neovim module
+      shell: pip3 install neovim
+
+    - name: Set zsh shell
+      become: yes
+      user:
+          name: vagrant
+          shell: /bin/zsh
+
+    - name: Install dotfiles
+      shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
+      warn: false
 
     # CTF repositories
     - name: Create Resources directory
@@ -77,7 +124,7 @@
         path: /home/vagrant/Tools
         state: directory
 
-    - name: Clone tools
+    - name: Clone tools repositories
       command: "{{ item }}"
       args:
         chdir: /home/vagrant/Tools
@@ -116,6 +163,7 @@
         - git clone https://github.com/flozz/p0wny-shell
         - git clone https://github.com/pentestmonkey/php-reverse-shell
 
+    # Install CTF tools
     - name: Install PEDA
       command: "{{ item }}"
       args:
@@ -124,46 +172,13 @@
           - git clone https://github.com/longld/peda.git
           - echo "source ~/Tools/peda/peda.py" >> /home/vagrant/.gdbinit
 
-    # Configure services
-    - name: Enable apache
-      become: yes
-      systemd:
-        name: apache2
-        state: started
-        enabled: yes
-
-    - name: Enable postgresql
-      become: yes
-      systemd:
-        name: postgresql
-        state: started
-        enabled: yes
-
-    - name: Initialize msfdb
-      become: yes
-      shell: "{{ item }}"
-      with_items:
-        - "msfdb init"
-        - "touch /usr/share/metasploit-framework/.initialized"
+    - name: Install Stegsolve
+      - command:  "{{ item }}"
       args:
-        creates: "/usr/share/metasploit-framework/.initialized"
-        warn: false
-    
-    - name: Install dotfiles
-      shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
-      warn: false
+        chdir: /home/vagrant/.local/bin
+      with_items:
+        - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
+        - chmod +x stegsolve.jar
 
-    - name: Set zsh shell
-      become: yes
-      user:
-          name: vagrant
-          shell: /bin/zsh
-
-    - name: Python2 pynvim module
-      shell: pip2 install pynvim
-
-    - name: Python3 pynvim module
-      shell: pip3 install pynvim
-
-    - name: Python3 neovim module
-      shell: pip3 install neovim
+    - name: Install pwntools
+      shell: pip install pwntools
