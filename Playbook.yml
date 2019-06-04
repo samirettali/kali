@@ -143,3 +143,12 @@
       args:
         creates: "/usr/share/metasploit-framework/.initialized"
         warn: false
+    
+    - name: Install dotfiles
+      shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
+
+    - name: Set zsh shell
+      become: yes
+      user:
+          name: vagrant
+          shell: /bin/zsh
