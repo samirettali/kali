@@ -1,0 +1,74 @@
+---
+- name: Kali Linux CTF provisioning
+  hosts: 127.0.0.1
+  tasks:
+    - name: Update repositories
+	  become: true
+	  apt:
+		update_cache: yes
+
+    - name: Update all packages to the latest version
+        apt:
+		  upgrade: dist
+
+    - name: Install packages
+	  become: true
+	  apt:
+		name: "{{ packages }}"
+	  vars:
+		packages:
+		- foo
+		- zsh
+		- git
+        - curl
+        - wget
+        - ncdu
+        - tmux
+        - neovim
+        - yarn          # Needed for a neovim plugin
+        - fzf
+        - ranger
+        - cloc
+        - htop
+
+		- audacity
+		- exiftool
+		- sonic-visualizer
+
+	# CTF repositories
+	- name: Clone ctf-katana
+      shell: git clone https://github.com/JohnHammond/ctf-katana
+
+	- name: Clone ctf-tools
+	  shell: git clone https://github.com/zardus/ctf-tools
+
+	- name: Clone awesome-ctf
+      shell: git clone https://github.com/apsdehal/awesome-ctf
+
+	- name: Clone stego-toolkit
+      shell: git clone https://github.com/DominicBreuker/stego-toolkit
+
+	# CTF Tools
+    - name: Creates directory
+      file:
+        path: Tools
+        state: directory
+
+	- name: Clone Commix
+      command: "{{ item }}"
+      args:
+        chdir: Tools/
+      with_items:
+		# Cracking
+        - git clone https://github.com/rebootuser/Hashmash
+
+		# Enumeration
+      	- git clone https://github.com/rebootuser/LinEnum
+		- git clone https://github.com/mzet-/linux-exploit-suggester
+		- git clone https://github.com/jondonas/linux-exploit-suggester-2
+
+		# Exploitation
+	    - git clone https://github.com/commixproject/commix Tools/commix
+
+		# File exfiltration
+		- git clone https://github.com/Arno0x/DNSExfiltrator
