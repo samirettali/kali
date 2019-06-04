@@ -3,24 +3,24 @@
   hosts: all
   tasks:
     - name: Update repositories
-	  become: yes
-	  apt:
-		update_cache: yes
+      become: yes
+      apt:
+        update_cache: yes
 
-    - name: Update all packages to the latest version
-        apt:
-		  upgrade: dist
+    - name: Upgrade packages
+      become: yes
+      apt:
+        upgrade: dist
 
     - name: Install packages
-	  become: true
-	  apt:
-		name: "{{ packages }}"
-	  vars:
-		packages:
+      become: yes
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
         # Base install
-		- foo
-		- zsh
-		- git
+        - zsh
+        - git
         - curl
         - wget
         - ncdu
@@ -31,12 +31,14 @@
         - ranger
         - cloc
         - htop
+        - apache2
+        - tree
 
         # CTF software
         - dirbuster
-		- audacity
-		- exiftool
-		- sonic-visualizer
+        - audacity
+        - exiftool
+        - sonic-visualiser
         - sqlmap
         - wireshark
         - metasploit-framework
@@ -46,51 +48,51 @@
         - nikto
         - wordlists 
 
-	# CTF repositories
+    # CTF repositories
     - name: Create Resources directory
       file:
-        path: Resources
+        path: /home/vagrant/Resources
         state: directory
 
-	- name: Clone CTF repositories
+    - name: Clone CTF repositories
       command: "{{ item }}"
       args:
-        chdir: Resources/
+        chdir: /home/vagrant/Resources
       with_items:
-	    - git clone https://github.com/zardus/ctf-tools
+        - git clone https://github.com/zardus/ctf-tools
         - git clone https://github.com/apsdehal/awesome-ctf
         - git clone https://github.com/JohnHammond/ctf-katana
         - git clone https://github.com/DominicBreuker/stego-toolkit
         - git clone https://github.com/enaqx/awesome-pentest
         - git clone https://github.com/jivoi/pentest
 
-	# CTF Tools
+    # CTF Tools
     - name: Create Tools directory
       file:
-        path: Tools
+        path: /home/vagrant/Tools
         state: directory
 
-	- name: Clone tools
+    - name: Clone tools
       command: "{{ item }}"
       args:
-        chdir: Tools/
+        chdir: /home/vagrant/Tools
       with_items:
-		# Cracking
+        # Cracking
         - git clone https://github.com/rebootuser/Hashmash
 
-		# Enumeration
-      	- git clone https://github.com/rebootuser/LinEnum
-		- git clone https://github.com/mzet-/linux-exploit-suggester
-		- git clone https://github.com/jondonas/linux-exploit-suggester-2
+        # Enumeration
+        - git clone https://github.com/rebootuser/LinEnum
+        - git clone https://github.com/mzet-/linux-exploit-suggester
+        - git clone https://github.com/jondonas/linux-exploit-suggester-2
 
-		# Exploitation
-	    - git clone https://github.com/commixproject/commix
+        # Exploitation
+        - git clone https://github.com/commixproject/commix
 
         # Post exploitation
         - git clone https://github.com/mossberg/poet
 
-		# File exfiltration
-		- git clone https://github.com/Arno0x/DNSExfiltrator
+        # File exfiltration
+        - git clone https://github.com/Arno0x/DNSExfiltrator
 
         # Git
         - git clone https://github.com/dxa4481/truffleHog
@@ -111,28 +113,31 @@
 
     - name: Install PEDA
       command: "{{ item }}"
+      args:
+        chdir: /home/vagrant/Tools
       with_items:
-          - git clone https://github.com/longld/peda.git ~/Tools/peda
-          - echo "source ~/Tools/peda/peda.py" >> ~/.gdbinit
+          - git clone https://github.com/longld/peda.git
+          - echo "source ~/Tools/peda/peda.py" >> /home/vagrant/.gdbinit
 
     # Configure services
-    - name: Apache2
-	  become: yes
-      service:
+    - name: Enable apache
+      become: yes
+      systemd:
         name: apache2
         state: started
+        enabled: yes
 
-    - name: Postgresql
-	  become: yes
-      service:
+    - name: Enable postgresql
+      become: yes
+      systemd:
         name: postgresql
         state: started
+        enabled: yes
 
     - name: Initialize msfdb
-	  become: yes
+      become: yes
       shell: "{{ item }}"
       with_items:
-        - "systemctl enable postgresql"
         - "msfdb init"
         - "touch /usr/share/metasploit-framework/.initialized"
       args:
