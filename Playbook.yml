@@ -47,6 +47,8 @@
         - aircrack-ng
         - nikto
         - wordlists 
+        - burpsuite
+        - nmap
 
     # CTF repositories
     - name: Create Resources directory
