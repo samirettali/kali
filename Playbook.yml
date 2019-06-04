@@ -148,6 +148,7 @@
     
     - name: Install dotfiles
       shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
+      warn: false
 
     - name: Set zsh shell
       become: yes
