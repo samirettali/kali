@@ -33,6 +33,9 @@
         - htop
         - apache2
         - tree
+        - xclip
+        - python-pip
+        - python3-pip
 
         # CTF software
         - dirbuster
@@ -155,3 +158,12 @@
       user:
           name: vagrant
           shell: /bin/zsh
+
+    - name: Python2 pynvim module
+      shell: pip2 install pynvim
+
+    - name: Python3 pynvim module
+      shell: pip3 install pynvim
+
+    - name: Python3 neovim module
+      shell: pip3 install neovim
