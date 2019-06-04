@@ -1,9 +1,9 @@
 ---
 - name: Kali Linux CTF provisioning
-  hosts: 127.0.0.1
+  hosts: all
   tasks:
     - name: Update repositories
-	  become: true
+	  become: yes
 	  apt:
 		update_cache: yes
 
@@ -17,6 +17,7 @@
 		name: "{{ packages }}"
 	  vars:
 		packages:
+        # Base install
 		- foo
 		- zsh
 		- git
@@ -25,36 +26,51 @@
         - ncdu
         - tmux
         - neovim
-        - yarn          # Needed for a neovim plugin
+        - yarn
         - fzf
         - ranger
         - cloc
         - htop
 
+        # CTF software
+        - dirbuster
 		- audacity
 		- exiftool
 		- sonic-visualizer
+        - sqlmap
+        - wireshark
+        - metasploit-framework
+        - john
+        - hydra
+        - aircrack-ng
+        - nikto
+        - wordlists 
 
 	# CTF repositories
-	- name: Clone ctf-katana
-      shell: git clone https://github.com/JohnHammond/ctf-katana
+    - name: Create Resources directory
+      file:
+        path: Resources
+        state: directory
 
-	- name: Clone ctf-tools
-	  shell: git clone https://github.com/zardus/ctf-tools
-
-	- name: Clone awesome-ctf
-      shell: git clone https://github.com/apsdehal/awesome-ctf
-
-	- name: Clone stego-toolkit
-      shell: git clone https://github.com/DominicBreuker/stego-toolkit
+	- name: Clone CTF repositories
+      command: "{{ item }}"
+      args:
+        chdir: Resources/
+      with_items:
+	    - git clone https://github.com/zardus/ctf-tools
+        - git clone https://github.com/apsdehal/awesome-ctf
+        - git clone https://github.com/JohnHammond/ctf-katana
+        - git clone https://github.com/DominicBreuker/stego-toolkit
+        - git clone https://github.com/enaqx/awesome-pentest
+        - git clone https://github.com/jivoi/pentest
 
 	# CTF Tools
-    - name: Creates directory
+    - name: Create Tools directory
       file:
         path: Tools
         state: directory
 
-	- name: Clone Commix
+	- name: Clone tools
       command: "{{ item }}"
       args:
         chdir: Tools/
@@ -68,7 +84,57 @@
 		- git clone https://github.com/jondonas/linux-exploit-suggester-2
 
 		# Exploitation
-	    - git clone https://github.com/commixproject/commix Tools/commix
+	    - git clone https://github.com/commixproject/commix
+
+        # Post exploitation
+        - git clone https://github.com/mossberg/poet
 
 		# File exfiltration
 		- git clone https://github.com/Arno0x/DNSExfiltrator
+
+        # Git
+        - git clone https://github.com/dxa4481/truffleHog
+        - git clone https://github.com/michenriksen/gitrob
+
+        # Process monitoring
+        - git clone https://github.com/DominicBreuker/pspy
+
+        # RAT
+        - git clone https://github.com/n1nj4sec/pupy
+
+        # Information gathering
+        - git clone https://github.com/s0md3v/Striker
+
+        # PHP revershe shells
+        - git clone https://github.com/flozz/p0wny-shell
+        - git clone https://github.com/pentestmonkey/php-reverse-shell
+
+    - name: Install PEDA
+      command: "{{ item }}"
+      with_items:
+          - git clone https://github.com/longld/peda.git ~/Tools/peda
+          - echo "source ~/Tools/peda/peda.py" >> ~/.gdbinit
+
+    # Configure services
+    - name: Apache2
+	  become: yes
+      service:
+        name: apache2
+        state: started
+
+    - name: Postgresql
+	  become: yes
+      service:
+        name: postgresql
+        state: started
+
+    - name: Initialize msfdb
+	  become: yes
+      shell: "{{ item }}"
+      with_items:
+        - "systemctl enable postgresql"
+        - "msfdb init"
+        - "touch /usr/share/metasploit-framework/.initialized"
+      args:
+        creates: "/usr/share/metasploit-framework/.initialized"
+        warn: false
