@@ -27,6 +27,7 @@
         - tmux
         - neovim
         - yarn
+        - ack
         - fzf
         - ranger
         - cloc
@@ -55,6 +56,8 @@
         - burpsuite
         - nmap
         - binwalk
+        - exploitdb
+        - volatility
 
     # Configure services
     - name: Enable apache
@@ -100,6 +103,20 @@
       shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
       warn: false
 
+    # Wordlists repositories
+    - name: Create wordlists directory
+      file:
+        path: /home/vagrant/Wordlists
+        state: directory
+
+    - name: Clone wordlists repositories
+      command: "{{ item }}"
+      args:
+        chdir: /home/vagrant/Wordlists
+      with_items:
+        - git clone https://github.com/1N3/IntruderPayload
+        - git clone https://github.com/danielmiessler/SecLists
+
     # CTF repositories
     - name: Create Resources directory
       file:
@@ -117,6 +134,7 @@
         - git clone https://github.com/DominicBreuker/stego-toolkit
         - git clone https://github.com/enaqx/awesome-pentest
         - git clone https://github.com/jivoi/pentest
+        - git clone https://github.com/lanjelot/ctfs
 
     # CTF Tools
     - name: Create Tools directory
@@ -142,6 +160,7 @@
 
         # Post exploitation
         - git clone https://github.com/mossberg/poet
+        - git clone https://github.com/1N3/PrivEsc
 
         # File exfiltration
         - git clone https://github.com/Arno0x/DNSExfiltrator

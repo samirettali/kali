@@ -21,7 +21,7 @@ Vagrant.configure("2") do |config|
     # Set the video memory to 128Mb:
     vb.customize ["modifyvm", :id, "--vram", "128"]
 
-    # Enable 3D acceleration:
+    # Disable 3D acceleration:
     vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
 
     # Disable audio
