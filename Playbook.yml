@@ -101,7 +101,7 @@
 
     - name: Install dotfiles
       shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
-      warn: false
+      # warn: false
 
     # Wordlists repositories
     - name: Create wordlists directory
@@ -135,6 +135,7 @@
         - git clone https://github.com/enaqx/awesome-pentest
         - git clone https://github.com/jivoi/pentest
         - git clone https://github.com/lanjelot/ctfs
+        - git clone https://github.com/trimstray/the-book-of-secret-knowledge
 
     # CTF Tools
     - name: Create Tools directory
@@ -192,12 +193,12 @@
           - echo "source ~/Tools/peda/peda.py" >> /home/vagrant/.gdbinit
 
     - name: Install Stegsolve
-      - command:  "{{ item }}"
+      command: "{{ item }}"
       args:
         chdir: /home/vagrant/.local/bin
       with_items:
-        - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
-        - chmod +x stegsolve.jar
+        - "wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar"
+        - "chmod +x stegsolve.jar"
 
     - name: Install pwntools
       shell: pip install pwntools
