@@ -109,13 +109,14 @@
         path: /home/vagrant/Wordlists
         state: directory
 
-    - name: Clone wordlists repositories
+    - name: Download wordlists
       command: "{{ item }}"
       args:
         chdir: /home/vagrant/Wordlists
       with_items:
         - git clone https://github.com/1N3/IntruderPayload
         - git clone https://github.com/danielmiessler/SecLists
+        - wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
     # CTF repositories
     - name: Create Resources directory
@@ -197,8 +198,8 @@
       args:
         chdir: /home/vagrant/.local/bin
       with_items:
-        - "wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar"
-        - "chmod +x stegsolve.jar"
+        - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
+        - chmod +x stegsolve.jar
 
     - name: Install pwntools
       shell: pip install pwntools
