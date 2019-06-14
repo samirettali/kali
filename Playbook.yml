@@ -203,3 +203,6 @@
 
     - name: Install pwntools
       shell: pip install pwntools
+
+    - name: Install stegcracker
+      shell: pip3 install stegcracker
