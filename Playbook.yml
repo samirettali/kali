@@ -39,25 +39,49 @@
         - python3-pip
 
         # CTF software
+        # Reversing
         - gdb
         - radare2
+
+        # Fuzzing
         - dirbuster
+        - wfuzz
+
+        # Audio
         - audacity
-        - exiftool
         - sonic-visualiser
-        - sqlmap
+
+        # Forensics
+        - binwalk
+        - exiftool
+        - volatility
+
+        # Networking
         - wireshark
-        - metasploit-framework
+
+        # Bruteforce
+        - crunch
         - john
         - hydra
-        - aircrack-ng
-        - nikto
         - wordlists
-        - burpsuite
+
+        # Scanners
         - nmap
-        - binwalk
+
+        # Vulnerability assesment
+        - nikto
+        - sqlmap
+
+        # Information gathering
+        - whois
+        
+        # Exploiting
         - exploitdb
-        - volatility
+        - metasploit-framework
+
+        # Miscellaneous
+        - burpsuite
+        - findmyhash
 
     # Configure services
     - name: Enable apache
