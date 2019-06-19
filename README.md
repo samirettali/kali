@@ -29,3 +29,4 @@ These are the online tools that I use:
 * [Sploitus](https://sploitus.com)
 * [HashKiller](https://hashkiller.co.uk)
 * [CrackStation](https://crackstation.net)
+* [Quipquip](https://quipqiup.com/)
