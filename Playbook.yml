@@ -37,6 +37,7 @@
         - xclip
         - python-pip
         - python3-pip
+        - openvpn
 
         # CTF software
         # Reversing
@@ -54,6 +55,7 @@
         # Forensics
         - binwalk
         - exiftool
+        - libguestfs-tools
         - volatility
 
         # Networking
@@ -64,6 +66,7 @@
         - john
         - hydra
         - wordlists
+        - bkhive
 
         # Scanners
         - nmap
@@ -74,6 +77,7 @@
 
         # Information gathering
         - whois
+        - dnsutils
         
         # Exploiting
         - exploitdb
@@ -82,6 +86,11 @@
         # Miscellaneous
         - burpsuite
         - findmyhash
+        - smbclient
+        - smbmap
+        - cifs-utils
+        - mitmf
+        - hexedit
 
     # Configure services
     - name: Enable apache
@@ -140,6 +149,7 @@
       with_items:
         - git clone https://github.com/1N3/IntruderPayload
         - git clone https://github.com/danielmiessler/SecLists
+        - git clone https://github.com/dustyfresh/dictionaries
         - wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
     # CTF repositories
@@ -180,6 +190,7 @@
         - git clone https://github.com/rebootuser/LinEnum
         - git clone https://github.com/mzet-/linux-exploit-suggester
         - git clone https://github.com/jondonas/linux-exploit-suggester-2
+        - git clone https://github.com/sleventyeleven/linuxprivchecker
 
         # Exploitation
         - git clone https://github.com/commixproject/commix
@@ -207,6 +218,12 @@
         # PHP revershe shells
         - git clone https://github.com/flozz/p0wny-shell
         - git clone https://github.com/pentestmonkey/php-reverse-shell
+        
+        # DNS
+        - git clone https://github.com/Crypt0s/FakeDns
+
+        # Discovery
+        - git clone https://github.com/maurosoria/dirsearch
 
     # Install CTF tools
     - name: Install PEDA
@@ -225,8 +242,25 @@
         - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
         - chmod +x stegsolve.jar
 
+    - name: Install shellpop
+      become: yes
+      shell: "{{ item }}"
+      with_items:
+        - "apt install python-argcomplete -y"
+        - "git clone https://github.com/0x00-0x00/ShellPop"
+        - "pip2 install -r ShellPop/requirements.txt"
+        - "python2 ShellPop/setup.py install"
+        - "rm -rf ShellPop"
+
+      args:
+        creates: "/usr/share/metasploit-framework/.initialized"
+        warn: false
+
     - name: Install pwntools
-      shell: pip install pwntools
+      shell: pip2 install pwntools
 
     - name: Install stegcracker
       shell: pip3 install stegcracker
+
+    - name: Install magic-wormhole
+      shell: pip3 install magic-wormhole
