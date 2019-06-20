@@ -59,7 +59,11 @@
         - volatility
 
         # Networking
+        - hping3
+        - mitmf
         - wireshark
+        - aircrack
+        - fern-wifi-cracker
 
         # Bruteforce
         - crunch
@@ -83,13 +87,14 @@
         - exploitdb
         - metasploit-framework
 
+        # Samba
+        - cifs-utils
+        - smbclient
+        - smbmap
+
         # Miscellaneous
         - burpsuite
         - findmyhash
-        - smbclient
-        - smbmap
-        - cifs-utils
-        - mitmf
         - hexedit
 
     # Configure services
@@ -225,6 +230,10 @@
         # Discovery
         - git clone https://github.com/maurosoria/dirsearch
 
+        # Wireless
+        - git clone https://github.com/FluxionNetwork/fluxion
+        - git clone https://github.com/derv82/wifite2
+
     # Install CTF tools
     - name: Install PEDA
       command: "{{ item }}"
@@ -256,11 +265,20 @@
         creates: "/usr/share/metasploit-framework/.initialized"
         warn: false
 
+    # CTF pip tools
     - name: Install pwntools
       shell: pip2 install pwntools
+
+    - name: Install scapy
+      shell: pip2 install scapy
 
     - name: Install stegcracker
       shell: pip3 install stegcracker
 
     - name: Install magic-wormhole
       shell: pip3 install magic-wormhole
+
+    # Misc pip tools
+    - name: Install magic-wormhole
+      shell: pip3 install magic-wormhole
+
