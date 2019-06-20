@@ -39,18 +39,21 @@
         - python3-pip
         - openvpn
 
-        # CTF software
-        # Reversing
-        - gdb
-        - radare2
-
-        # Fuzzing
-        - dirbuster
-        - wfuzz
-
+        # CTF and penetration testing software
         # Audio
         - audacity
         - sonic-visualiser
+
+        # Bruteforce
+        - bkhive
+        - crunch
+        - hydra
+        - john
+        - wordlists
+
+        # Exploiting
+        - exploitdb
+        - metasploit-framework
 
         # Forensics
         - binwalk
@@ -58,44 +61,43 @@
         - libguestfs-tools
         - volatility
 
-        # Networking
-        - hping3
-        - mitmf
-        - wireshark
-        - aircrack
-        - fern-wifi-cracker
-
-        # Bruteforce
-        - crunch
-        - john
-        - hydra
-        - wordlists
-        - bkhive
-
-        # Scanners
-        - nmap
-
-        # Vulnerability assesment
-        - nikto
-        - sqlmap
+        # Fuzzing
+        - dirbuster
+        - wfuzz
 
         # Information gathering
-        - whois
         - dnsutils
-        
-        # Exploiting
-        - exploitdb
-        - metasploit-framework
+        - whois
+
+        # Miscellaneous
+        - burpsuite
+        - findmyhash
+        - hexedit
+
+        # Networking
+        - aircrack
+        - fern-wifi-cracker
+        - hping3
+        - mitmf
+        - nmap
+        - wireshark
+
+        # Reversing
+        - gdb
+        - radare2
 
         # Samba
         - cifs-utils
         - smbclient
         - smbmap
 
-        # Miscellaneous
-        - burpsuite
-        - findmyhash
-        - hexedit
+        # Vulnerability assesment
+        - nikto
+        - sqlmap
+
+        # Web
+        - knockpy
+        - sublist3r
 
     # Configure services
     - name: Enable apache
@@ -233,6 +235,9 @@
         # Wireless
         - git clone https://github.com/FluxionNetwork/fluxion
         - git clone https://github.com/derv82/wifite2
+
+        # Web
+        - git clone https://github.com/maaaaz/webscreenshot
 
     # Install CTF tools
     - name: Install PEDA
