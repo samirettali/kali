@@ -85,6 +85,7 @@
         # Reversing
         - gdb
         - radare2
+        - strace
 
         # Samba
         - cifs-utils
