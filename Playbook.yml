@@ -44,6 +44,9 @@
         - audacity
         - sonic-visualiser
 
+        # Binary exploitation
+        - checksec
+
         # Bruteforce
         - bkhive
         - crunch
@@ -58,11 +61,12 @@
         # Forensics
         - binwalk
         - exiftool
-        - libguestfs-tools
+        # - libguestfs-tools
         - volatility
 
         # Fuzzing
         - dirbuster
+        - gobuster
         - wfuzz
 
         # Information gathering
@@ -75,10 +79,12 @@
         - hexedit
 
         # Networking
-        - aircrack
+        - aircrack-ng
         - fern-wifi-cracker
         - hping3
         - mitmf
+        - netcat
+        - ncat
         - nmap
         - wireshark
 
@@ -99,6 +105,7 @@
         # Web
         - knockpy
         - sublist3r
+        - whatweb
 
     # Configure services
     - name: Enable apache
@@ -142,7 +149,8 @@
 
     - name: Install dotfiles
       shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
-      # warn: false
+      args:
+        warn: false
 
     # Wordlists repositories
     - name: Create wordlists directory
@@ -151,12 +159,13 @@
         state: directory
 
     - name: Download wordlists
-      command: "{{ item }}"
+      shell: "{{ item }}"
       args:
         chdir: /home/vagrant/Wordlists
       with_items:
-        - git clone https://github.com/1N3/IntruderPayload
-        - git clone https://github.com/danielmiessler/SecLists
+        - git clone https://github.com/1N3/IntruderPayloads
+        - ./IntruderPayloads/install.sh
+        - git clone https://github.com/jeanphorn/wordlist/
         - git clone https://github.com/dustyfresh/dictionaries
         - wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
@@ -167,7 +176,7 @@
         state: directory
 
     - name: Clone CTF repositories
-      command: "{{ item }}"
+      shell: "{{ item }}"
       args:
         chdir: /home/vagrant/Resources
       with_items:
@@ -187,7 +196,7 @@
         state: directory
 
     - name: Clone tools repositories
-      command: "{{ item }}"
+      shell: "{{ item }}"
       args:
         chdir: /home/vagrant/Tools
       with_items:
@@ -199,6 +208,9 @@
         - git clone https://github.com/mzet-/linux-exploit-suggester
         - git clone https://github.com/jondonas/linux-exploit-suggester-2
         - git clone https://github.com/sleventyeleven/linuxprivchecker
+        
+        # Recognition   
+        - git clone https://github.com/nahamsec/lazyrecon
 
         # Exploitation
         - git clone https://github.com/commixproject/commix
@@ -239,10 +251,11 @@
 
         # Web
         - git clone https://github.com/maaaaz/webscreenshot
+        - git clone https://github.com/michenriksen/aquatone
 
     # Install CTF tools
     - name: Install PEDA
-      command: "{{ item }}"
+      shell: "{{ item }}"
       args:
         chdir: /home/vagrant/Tools
       with_items:
@@ -250,7 +263,7 @@
           - echo "source ~/Tools/peda/peda.py" >> /home/vagrant/.gdbinit
 
     - name: Install Stegsolve
-      command: "{{ item }}"
+      shell: "{{ item }}"
       args:
         chdir: /home/vagrant/.local/bin
       with_items:
@@ -261,11 +274,11 @@
       become: yes
       shell: "{{ item }}"
       with_items:
-        - "apt install python-argcomplete -y"
-        - "git clone https://github.com/0x00-0x00/ShellPop"
-        - "pip2 install -r ShellPop/requirements.txt"
-        - "python2 ShellPop/setup.py install"
-        - "rm -rf ShellPop"
+        - apt install python-argcomplete -y
+        - git clone https://github.com/0x00-0x00/ShellPop
+        - pip2 install -r ShellPop/requirements.txt
+        - python2 ShellPop/setup.py install
+        - rm -rf ShellPop
 
       args:
         creates: "/usr/share/metasploit-framework/.initialized"
@@ -281,10 +294,30 @@
     - name: Install stegcracker
       shell: pip3 install stegcracker
 
-    - name: Install magic-wormhole
-      shell: pip3 install magic-wormhole
-
     # Misc pip tools
     - name: Install magic-wormhole
       shell: pip3 install magic-wormhole
 
+    # FZF
+    - name: Install fzf
+      shell: "{{ item }}"
+      with_items:
+          - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+          - ~/.fzf/install
+
+    # Vim plugins
+    - name: Download vim plugins
+      shell: nvim +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +exit +exit +exit
+
+    # Change XDG directories
+    - name: Change XDG directories
+      shell: "{{ item }}"
+      with_items:
+        - xdg-user-dirs-update --set DESKTOP $HOME
+        - xdg-user-dirs-update --set DOCUMENTS $HOME
+        - xdg-user-dirs-update --set DOWNLOAD $HOME
+        - xdg-user-dirs-update --set MUSIC $HOME
+        - xdg-user-dirs-update --set PICTURES $HOME
+        - xdg-user-dirs-update --set PUBLICSHARE $HOME
+        - xdg-user-dirs-update --set TEMPLATES $HOME
+        - xdg-user-dirs-update --set VIDEOS $HOME
