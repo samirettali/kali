@@ -8,9 +8,9 @@ configure the software and the tools.
 It is based on the Light version of the Kali image.
 
 To download and build the virtual machine you just have to run the command
-```vagrant up```
+```vagrant up``` inside this repository.
 
-The browser that I use is Google Chrome, and these are the extensions:
+I use Google Chrome, with these extensions:
 
 * [Web Developer](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): Toolbar with various web tools
 * [d3coder](https://chrome.google.com/webstore/detail/d3coder/gncnbkghencmkfgeepfaonmegemakcol?hl=en-US): Various encoding/decoding and conversions
