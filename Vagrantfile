@@ -18,6 +18,9 @@ Vagrant.configure("2") do |config|
     # Customize the amount of cpus on the VM:
     vb.cpus = 4
 
+    # Set graphics card type:
+    vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxsvga"]
+
     # Set the video memory to 128Mb:
     vb.customize ["modifyvm", :id, "--vram", "128"]
 
