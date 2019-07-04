@@ -107,6 +107,9 @@
         - sublist3r
         - whatweb
 
+        # Dependencies
+        - libzip-dev            # for radare decompiler plugin
+
     # Configure services
     - name: Enable apache
       become: yes
@@ -144,8 +147,8 @@
     - name: Set zsh shell
       become: yes
       user:
-          name: vagrant
-          shell: /bin/zsh
+        name: vagrant
+        shell: /bin/zsh
 
     - name: Install dotfiles
       shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
@@ -254,13 +257,13 @@
         - git clone https://github.com/michenriksen/aquatone
 
     # Install CTF tools
-    - name: Install PEDA
+    - name: Install pwndbg
       shell: "{{ item }}"
       args:
         chdir: /home/vagrant/Tools
       with_items:
-          - git clone https://github.com/longld/peda.git
-          - echo "source ~/Tools/peda/peda.py" >> /home/vagrant/.gdbinit
+          - git clone https://github.com/pwndbg/pwndbg
+		  - ./pwndbg/setup.sh
 
     - name: Install Stegsolve
       shell: "{{ item }}"
@@ -321,3 +324,10 @@
         - xdg-user-dirs-update --set PUBLICSHARE $HOME
         - xdg-user-dirs-update --set TEMPLATES $HOME
         - xdg-user-dirs-update --set VIDEOS $HOME
+
+    # Install radare plugins 
+    - name: Install radare plugins
+      shell: "{{ item }}"
+      with_items:
+          - r2pm init
+          - r2pm install r2dec
