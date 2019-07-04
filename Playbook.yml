@@ -256,6 +256,9 @@
         - git clone https://github.com/maaaaz/webscreenshot
         - git clone https://github.com/michenriksen/aquatone
 
+        # Data exfiltration 
+        - git clone https://github.com/sensepost/DET
+
     # Install CTF tools
     - name: Install pwndbg
       shell: "{{ item }}"
