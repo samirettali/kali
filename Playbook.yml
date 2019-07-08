@@ -300,13 +300,8 @@
         - git clone https://github.com/sensepost/DET
 
     # Install CTF tools
-    - name: Install pwndbg
-      shell: "{{ item }}"
-      args:
-        chdir: /home/vagrant/Tools
-      with_items:
-          - git clone https://github.com/pwndbg/pwndbg
-		  - ./pwndbg/setup.sh
+    - name: Install GEF
+      shell: wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
     - name: Install Stegsolve
       shell: "{{ item }}"
