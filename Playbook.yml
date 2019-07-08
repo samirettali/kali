@@ -39,6 +39,13 @@
         - python3-pip
         - openvpn
 
+        # Docker
+        - apt-transport-https
+        - ca-certificates
+        - gnupg-agent
+        - software-properties-common
+
+
         # CTF and penetration testing software
         # Audio
         - audacity
@@ -80,6 +87,7 @@
 
         # Networking
         - aircrack-ng
+        - dsniff
         - fern-wifi-cracker
         - hping3
         - mitmf
@@ -109,6 +117,38 @@
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
+
+    - name: Add Docker's GPG key
+      become: yes
+      shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+
+    - name: Add Docker's repository
+      become: yes
+      shell: echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
+
+    - name: Update repositories
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      become: yes
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - docker-ce
+
+    - name: Enable Docker
+      become: yes
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user do Docker group
+      become: yes
+      shell: usermod -a -G docker vagrant
 
     # Configure services
     - name: Enable apache
