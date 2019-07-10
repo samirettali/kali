@@ -33,6 +33,8 @@
         - cloc
         - htop
         - apache2
+        - php
+        - libapache2-mod-php
         - tree
         - xclip
         - python-pip
@@ -68,6 +70,7 @@
         # Forensics
         - binwalk
         - exiftool
+        - foremost
         # - libguestfs-tools
         - volatility
 
@@ -105,6 +108,9 @@
         - cifs-utils
         - smbclient
         - smbmap
+
+        # Steganography
+        - steghide
 
         # Vulnerability assesment
         - nikto
@@ -251,6 +257,7 @@
         - git clone https://github.com/mzet-/linux-exploit-suggester
         - git clone https://github.com/jondonas/linux-exploit-suggester-2
         - git clone https://github.com/sleventyeleven/linuxprivchecker
+        - git clone https://github.com/0x646e78/linux-credential-harvester
         
         # Recognition   
         - git clone https://github.com/nahamsec/lazyrecon
