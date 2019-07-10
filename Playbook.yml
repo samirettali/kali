@@ -257,6 +257,7 @@
         - git clone https://github.com/mzet-/linux-exploit-suggester
         - git clone https://github.com/jondonas/linux-exploit-suggester-2
         - git clone https://github.com/sleventyeleven/linuxprivchecker
+        - git clone https://github.com/pentestmonkey/unix-privesc-check
         - git clone https://github.com/0x646e78/linux-credential-harvester
         
         # Recognition   
@@ -294,6 +295,7 @@
 
         # Discovery
         - git clone https://github.com/maurosoria/dirsearch
+        - git clone https://github.com/s0md3v/Arjun
 
         # Wireless
         - git clone https://github.com/FluxionNetwork/fluxion
