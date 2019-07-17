@@ -98,6 +98,7 @@
         - ncat
         - nmap
         - wireshark
+        - tshark
 
         # Reversing
         - gdb
@@ -111,6 +112,7 @@
 
         # Steganography
         - steghide
+        - zbar-tools
 
         # Vulnerability assesment
         - nikto
@@ -307,6 +309,9 @@
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
+
+        # Misc
+        - git clone https://github.com/andrew-d/static-binaries
 
     # Install CTF tools
     - name: Install GEF
