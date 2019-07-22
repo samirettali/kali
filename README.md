@@ -5,10 +5,10 @@ This is my Kali Linux setup for CTFs.
 It uses Vagrant to create the virtual machine and Ansible to install and
 configure the software and the tools.
 
-It is based on the Light version of the Kali image.
+It is based on the light version of Kali Linux .
 
 To download and build the virtual machine you just have to run the command
-```vagrant up``` inside this repository.
+`vagrant up` inside this repository.
 
 I use Google Chrome, with these extensions:
 
@@ -22,7 +22,7 @@ with](https://chrome.google.com/webstore/detail/builtwith/hleikeoncmpohnmdkkagcb
 * [User-Agent Switcher for Chrome](https://chrome.google.com/webstore/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg): Switch between user agents
 * [Wappalizer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg): Analyze web applications
 
-There are the equivalent for Mozilla Firefox:
+These are the equivalent for Mozilla Firefox:
 * [Web Developer](https://addons.mozilla.org/it/firefox/addon/web-developer/): Toolbar with various web tools
 * [Built with](https://addons.mozilla.org/it/firefox/addon/builtwith/?src=search): Website profiler
 * [Decoder](https://addons.mozilla.org/it/firefox/addon/decoder/?src=search): Various encoding/decoding and conversions
@@ -37,6 +37,7 @@ These are the online tools that I use:
 * [Beeceptor](https://beeceptor.com/)
 * [CyberChef](https://gchq.github.io/CyberChef)
 * [Cipher tools](http://rumkin.com/tools/cipher)
+* [dcode.fr](https://www.dcode.fr/tools-list)
 * [regex101](https://regex101.com)
 * [tio.run](https://tio.run)
 * [curlbuilder](https://curlbuilder.com)
@@ -46,4 +47,9 @@ These are the online tools that I use:
 * [CrackStation](https://crackstation.net)
 * [Quipquip](https://quipqiup.com)
 * [ShellStorm](http://shell-storm.org/shellcode/)
+* [Webhook](https://webhook.site)
+
+Useful resources:
+* [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
+* [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
