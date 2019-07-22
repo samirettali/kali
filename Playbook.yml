@@ -40,6 +40,7 @@
         - python-pip
         - python3-pip
         - openvpn
+        - imagemagick
 
         # Docker
         - apt-transport-https
@@ -111,6 +112,7 @@
         - smbmap
 
         # Steganography
+        - pngcheck
         - steghide
         - zbar-tools
 
@@ -146,6 +148,7 @@
       vars:
         packages:
         - docker-ce
+        - docker-compose
 
     - name: Enable Docker
       become: yes
@@ -239,6 +242,7 @@
         - git clone https://github.com/jivoi/pentest
         - git clone https://github.com/lanjelot/ctfs
         - git clone https://github.com/trimstray/the-book-of-secret-knowledge
+        - git clone https://github.com/zed-0xff/zsteg
 
     # CTF Tools
     - name: Create Tools directory
@@ -261,6 +265,8 @@
         - git clone https://github.com/sleventyeleven/linuxprivchecker
         - git clone https://github.com/pentestmonkey/unix-privesc-check
         - git clone https://github.com/0x646e78/linux-credential-harvester
+        - git clone https://github.com/WazeHell/PE-Linux
+        - wget https://highon.coffee/downloads/linux-local-enum.sh
         
         # Recognition   
         - git clone https://github.com/nahamsec/lazyrecon
@@ -324,6 +330,17 @@
       with_items:
         - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
         - chmod +x stegsolve.jar
+
+    - name: Install stegoVeritas
+      become: yes
+      shell: "{{ item }}"
+      with_items:
+        - pip3 install stegoveritas
+        - stegoveritas_install_deps
+
+    - name: Install zsteg
+      become: yes
+      shell: gem install --user zsteg
 
     - name: Install shellpop
       become: yes
