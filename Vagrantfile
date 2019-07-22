@@ -1,8 +1,7 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "offensive-security/kali-linux-light"
-  config.vm.network "public_network"
-  config.ssh.forward_x11 = true
+  config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
 
   config.vm.provider "virtualbox" do |vb|
 
@@ -34,7 +33,6 @@ Vagrant.configure("2") do |config|
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
     vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
   end
-
 
   config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "Playbook.yml"
