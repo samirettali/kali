@@ -63,6 +63,7 @@
         - hydra
         - john
         - wordlists
+        - fcrackzip
 
         # Exploiting
         - exploitdb
@@ -221,6 +222,7 @@
         - ./IntruderPayloads/install.sh
         - git clone https://github.com/jeanphorn/wordlist/
         - git clone https://github.com/dustyfresh/dictionaries
+        - git clone https://github.com/dwyl/english-words
         - wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
 
     # CTF repositories
@@ -257,6 +259,7 @@
       with_items:
         # Cracking
         - git clone https://github.com/rebootuser/Hashmash
+        - git clone https://github.com/bwall/HashPump
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
@@ -304,6 +307,7 @@
         # Discovery
         - git clone https://github.com/maurosoria/dirsearch
         - git clone https://github.com/s0md3v/Arjun
+        - git clone https://github.com/subfinder/subfinder
 
         # Wireless
         - git clone https://github.com/FluxionNetwork/fluxion
@@ -318,6 +322,7 @@
 
         # Misc
         - git clone https://github.com/andrew-d/static-binaries
+        - git clone https://github.com/mpowa705/Simple-Backdoor
 
     # Install CTF tools
     - name: Install GEF
@@ -400,3 +405,6 @@
       with_items:
           - r2pm init
           - r2pm install r2dec
+
+    - name: Install ffuf
+      shell: go get github.com/ffuf/ffuf
