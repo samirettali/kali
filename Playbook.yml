@@ -92,6 +92,7 @@
 
         # Networking
         - aircrack-ng
+        - dnschef
         - dsniff
         - fern-wifi-cracker
         - hping3
@@ -322,6 +323,7 @@
 
         # Misc
         - git clone https://github.com/andrew-d/static-binaries
+        - git clone https://github.com/j3ssie/Osmedeus
         - git clone https://github.com/mpowa705/Simple-Backdoor
 
     # Install CTF tools
