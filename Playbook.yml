@@ -301,6 +301,7 @@
         # PHP revershe shells
         - git clone https://github.com/flozz/p0wny-shell
         - git clone https://github.com/pentestmonkey/php-reverse-shell
+        - git clone https://github.com/epinna/weevely3
         
         # DNS
         - git clone https://github.com/Crypt0s/FakeDns
