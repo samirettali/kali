@@ -315,6 +315,9 @@
         - git clone https://github.com/FluxionNetwork/fluxion
         - git clone https://github.com/derv82/wifite2
 
+        # OSINT
+        - git clone https://github.com/martinvigo/email2phonenumber
+
         # Web
         - git clone https://github.com/maaaaz/webscreenshot
         - git clone https://github.com/michenriksen/aquatone
