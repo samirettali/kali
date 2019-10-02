@@ -2,6 +2,10 @@
 - name: Kali Linux CTF provisioning
   hosts: all
   tasks:
+    - name: Wait for any possibly running unattended upgrade to finish
+      become: yes
+      raw: systemd-run --property="After=apt-daily.service apt-daily-upgrade.service" --wait /bin/true
+
     - name: Update repositories
       become: yes
       apt:
@@ -19,28 +23,31 @@
       vars:
         packages:
         # Base install
-        - zsh
-        - git
-        - curl
-        - wget
-        - ncdu
-        - tmux
-        - neovim
-        - yarn
         - ack
-        - fzf
-        - ranger
-        - cloc
-        - htop
         - apache2
-        - php
+        - cloc
+        - curl
+        - dhex
+        - fd-find
+        - fzf
+        - git
+        - golang
+        - htop
+        - imagemagick
         - libapache2-mod-php
-        - tree
-        - xclip
+        - ncdu
+        - neovim
+        - openvpn
+        - php
         - python-pip
         - python3-pip
-        - openvpn
-        - imagemagick
+        - ranger
+        - tmux
+        - tree
+        - wget
+        - xclip
+        - yarn
+        - zsh
 
         # Docker
         - apt-transport-https
@@ -50,6 +57,7 @@
 
 
         # CTF and penetration testing software
+
         # Audio
         - audacity
         - sonic-visualiser
@@ -60,10 +68,10 @@
         # Bruteforce
         - bkhive
         - crunch
+        - fcrackzip
         - hydra
         - john
         - wordlists
-        - fcrackzip
 
         # Exploiting
         - exploitdb
@@ -73,7 +81,8 @@
         - binwalk
         - exiftool
         - foremost
-        # - libguestfs-tools
+        - libguestfs-tools
+        - qsstv
         - volatility
 
         # Fuzzing
@@ -83,11 +92,11 @@
 
         # Information gathering
         - dnsutils
+        - eyewitness
         - whois
 
         # Miscellaneous
         - burpsuite
-        - findmyhash
         - hexedit
 
         # Networking
@@ -96,12 +105,12 @@
         - dsniff
         - fern-wifi-cracker
         - hping3
-        - mitmf
-        - netcat
+        # - mitmf
         - ncat
+        - netcat
         - nmap
-        - wireshark
         - tshark
+        - wireshark
 
         # Reversing
         - gdb
@@ -151,6 +160,10 @@
         packages:
         - docker-ce
         - docker-compose
+
+    - name: Remove orphan packages
+      apt:
+       autoremove: yes
 
     - name: Enable Docker
       become: yes
@@ -204,7 +217,7 @@
         shell: /bin/zsh
 
     - name: Install dotfiles
-      shell: curl -Lks https://bit.do/samirdotfiles | /bin/bash
+      shell: curl https://gist.githubusercontent.com/samirettali/9f190ac180aecba1872867acc1e9c83b/raw/install.sh | /bin/bash
       args:
         warn: false
 
@@ -224,7 +237,11 @@
         - git clone https://github.com/jeanphorn/wordlist/
         - git clone https://github.com/dustyfresh/dictionaries
         - git clone https://github.com/dwyl/english-words
-        - wget https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+
+    - name: Download rockyou
+      get_url:
+        url: https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
+        dest: /home/vagrant/Wordlists/rockyou.txt
 
     # CTF repositories
     - name: Create Resources directory
@@ -245,13 +262,17 @@
         - git clone https://github.com/jivoi/pentest
         - git clone https://github.com/lanjelot/ctfs
         - git clone https://github.com/trimstray/the-book-of-secret-knowledge
-        - git clone https://github.com/zed-0xff/zsteg
 
     # CTF Tools
     - name: Create Tools directory
       file:
         path: /home/vagrant/Tools
         state: directory
+
+    - name: Download linux-local-enum
+      get_url:
+        url: https://highon.coffee/downloads/linux-local-enum.sh
+        dest: /home/vagrant/Tools/linux-local-enum.txt
 
     - name: Clone tools repositories
       shell: "{{ item }}"
@@ -270,7 +291,6 @@
         - git clone https://github.com/pentestmonkey/unix-privesc-check
         - git clone https://github.com/0x646e78/linux-credential-harvester
         - git clone https://github.com/WazeHell/PE-Linux
-        - wget https://highon.coffee/downloads/linux-local-enum.sh
         
         # Recognition   
         - git clone https://github.com/nahamsec/lazyrecon
@@ -334,13 +354,15 @@
     - name: Install GEF
       shell: wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
-    - name: Install Stegsolve
-      shell: "{{ item }}"
-      args:
-        chdir: /home/vagrant/.local/bin
-      with_items:
-        - wget http://www.caesum.com/handbook/Stegsolve.jar -O stegsolve.jar
-        - chmod +x stegsolve.jar
+    - name: Create .bin directory
+      file:
+        path: /home/vagrant/.bin
+        state: directory
+
+    - name: Download Stegsolve
+      get_url:
+        url: http://www.caesum.com/handbook/Stegsolve.jar
+        dest: /home/vagrant/.bin/stegsolve.jar
 
     - name: Install stegoVeritas
       become: yes
@@ -350,7 +372,6 @@
         - stegoveritas_install_deps
 
     - name: Install zsteg
-      become: yes
       shell: gem install --user zsteg
 
     - name: Install shellpop
