@@ -175,6 +175,8 @@
           - ./configure
           - make
           - make install
+          - cd ..
+          - rm -rf bitwise*
 
     - name: Remove orphan packages
       apt:
