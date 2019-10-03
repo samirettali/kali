@@ -138,6 +138,10 @@
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
+        - build-essential       # bitwise
+        - libncurses5-dev       # bitwise
+        - libreadline-dev       # bitwise
+        - libcunit1-dev         # bitwise
 
     - name: Add Docker's GPG key
       become: yes
@@ -160,6 +164,17 @@
         packages:
         - docker-ce
         - docker-compose
+
+    - name: Install bitwise
+      shell: "{{ item }}"
+      become: yes
+      with_items:
+          - https://github.com/mellowcandle/bitwise/releases/latest
+          - tar xfz bitwise*.tar.gz
+          - cd bitwise*
+          - ./configure
+          - make
+          - make install
 
     - name: Remove orphan packages
       apt:
@@ -282,6 +297,7 @@
         # Cracking
         - git clone https://github.com/rebootuser/Hashmash
         - git clone https://github.com/bwall/HashPump
+        - git clone https://github.com/Talanor/findmyhash
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
