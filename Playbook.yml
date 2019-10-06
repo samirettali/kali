@@ -28,6 +28,7 @@
         - cloc
         - curl
         - dhex
+        - entr
         - fd-find
         - fzf
         - git
