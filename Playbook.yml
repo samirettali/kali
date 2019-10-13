@@ -301,6 +301,7 @@
         - git clone https://github.com/rebootuser/Hashmash
         - git clone https://github.com/bwall/HashPump
         - git clone https://github.com/Talanor/findmyhash
+        - git clone https://github.com/Ganapati/RsaCtfTool
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
@@ -360,6 +361,7 @@
         # Web
         - git clone https://github.com/maaaaz/webscreenshot
         - git clone https://github.com/michenriksen/aquatone
+        - git clone https://github.com/ticarpi/jwt_tool
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
@@ -409,7 +411,7 @@
 
     # CTF pip tools
     - name: Install pwntools
-      shell: pip2 install pwntools
+      shell: pip3 install pwntools
 
     - name: Install scapy
       shell: pip2 install scapy
