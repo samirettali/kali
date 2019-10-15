@@ -410,16 +410,6 @@
         - python2 ShellPop/setup.py install
         - rm -rf ShellPop
 
-    - name: Install recon tools
-      become: yes
-      shell: "{{ item }}"
-      chdir: /tmp
-      with_items:
-
-      args:
-        creates: "/usr/share/metasploit-framework/.initialized"
-        warn: false
-
     # CTF pip tools
     - name: Install pwntools
       shell: pip3 install pwntools
