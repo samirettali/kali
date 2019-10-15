@@ -25,6 +25,7 @@
         # Base install
         - ack
         - apache2
+        - chromium
         - cloc
         - curl
         - dhex
@@ -278,8 +279,10 @@
         - git clone https://github.com/DominicBreuker/stego-toolkit
         - git clone https://github.com/enaqx/awesome-pentest
         - git clone https://github.com/jivoi/pentest
+        - git clone https://github.com/vitalysim/Awesome-Hacking-Resources
         - git clone https://github.com/lanjelot/ctfs
         - git clone https://github.com/trimstray/the-book-of-secret-knowledge
+        - git clone https://github.com/EdOverflow/can-i-take-over-xyz
 
     # CTF Tools
     - name: Create Tools directory
@@ -362,6 +365,8 @@
         - git clone https://github.com/maaaaz/webscreenshot
         - git clone https://github.com/michenriksen/aquatone
         - git clone https://github.com/ticarpi/jwt_tool
+        - git clone https://github.com/GerbenJavado/LinkFinder
+        - git clone https://github.com/blechschmidt/massdns
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
@@ -404,6 +409,12 @@
         - pip2 install -r ShellPop/requirements.txt
         - python2 ShellPop/setup.py install
         - rm -rf ShellPop
+
+    - name: Install recon tools
+      become: yes
+      shell: "{{ item }}"
+      chdir: /tmp
+      with_items:
 
       args:
         creates: "/usr/share/metasploit-framework/.initialized"
@@ -455,4 +466,61 @@
           - r2pm install r2dec
 
     - name: Install ffuf
-      shell: go get github.com/ffuf/ffuf
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/ffuf/ffuf
+        - sudo cp $HOME/go/bin/ffuf /bin
+
+    - name: Install aquatone
+      shell: "{{ item }}"
+      with_items:
+        - git clone https://github.com/michenriksen/aquatone
+        - cd aquatone
+        - ./build.sh
+        - cd build
+        - unzip aquatone_linux_amd64_*.zip
+        - sudo cp aquatone /bin
+
+    - name: Install httprobe
+      shell: "{{ item }}"
+      with_items:
+        - go get -u github.com/tomnomnom/httprobe
+        - sudo cp $HOME/go/bin/httprobe /bin
+
+
+    - name: Install subjack
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/haccer/subjack
+        - sudo cp $HOME/go/bin/subjack /bin
+
+    - name: Install waybackurls
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/tomnomnom/waybackurls
+        - sudo cp $HOME/go/bin/waybackurls /bin
+
+    - name: Install bat
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/astaxie/bat
+        - sudo cp $HOME/go/bin/bat /bin
+
+    - name: Install meg
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/tomnomnom/meg
+        - sudo cp $HOME/go/bin/meg /bin
+
+    - name: Install getjs
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/003random/getJS
+        - sudo cp $HOME/go/bin/getJS /bin
+
+    - name: Install findomain
+      shell: "{{ item }}"
+      with_items:
+        - wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
+        - chmod +x findomain-linux
+        - sudo mv findomain-linux /bin
