@@ -57,7 +57,6 @@
         - gnupg-agent
         - software-properties-common
 
-
         # CTF and penetration testing software
 
         # Audio
@@ -107,7 +106,6 @@
         - dsniff
         - fern-wifi-cracker
         - hping3
-        # - mitmf
         - ncat
         - netcat
         - nmap
@@ -129,8 +127,11 @@
         - steghide
         - zbar-tools
 
-        # Vulnerability assesment
+        # Vulnerability analysis
+        - golismero
+        - lynis
         - nikto
+        - sparta
         - sqlmap
 
         # Web
