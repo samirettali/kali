@@ -1,21 +1,24 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "offensive-security/kali-linux-light"
+  config.vm.box = "kalilinux/rolling"
   config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
+  config.vm.network "forwarded_port", guest: 1337, host: 1337
+  config.vm.network "forwarded_port", guest: 1338, host: 1338
+  config.vm.network "forwarded_port", guest: 1339, host: 1339
 
   config.vm.provider "virtualbox" do |vb|
 
     # Change the virtual machine name
-    vb.name = "Kali CTF"
+    vb.name = "Kali"
 
     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
 
     # Customize the amount of memory on the VM:
-    vb.memory = "4096"
+    vb.memory = "8192"
 
     # Customize the amount of cpus on the VM:
-    vb.cpus = 4
+    vb.cpus = 8
 
     # Set graphics card type:
     vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxsvga"]
@@ -23,11 +26,8 @@ Vagrant.configure("2") do |config|
     # Set the video memory to 128Mb:
     vb.customize ["modifyvm", :id, "--vram", "128"]
 
-    # Disable 3D acceleration:
-    vb.customize ["modifyvm", :id, "--accelerate3d", "off"]
-
-    # Disable audio
-    vb.customize ["modifyvm", :id, "--audio", "none"]
+    # Enable 3D acceleration:
+    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
 
     # Integration with desktop
     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "ansible_local" do |ansible|
-      ansible.playbook = "Playbook.yml"
+    ansible.playbook = "Playbook.yml"
   end
 
 end
