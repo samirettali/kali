@@ -106,9 +106,11 @@
         - dsniff
         - fern-wifi-cracker
         - hping3
+        - legion
         - ncat
         - netcat
         - nmap
+        - sparta
         - tshark
         - wireshark
 
@@ -131,7 +133,6 @@
         - golismero
         - lynis
         - nikto
-        - sparta
         - sqlmap
 
         # Web
@@ -315,6 +316,7 @@
         - git clone https://github.com/pentestmonkey/unix-privesc-check
         - git clone https://github.com/0x646e78/linux-credential-harvester
         - git clone https://github.com/WazeHell/PE-Linux
+        - git clone https://github.com/carlospolop/linux-privilege-escalation-awsome-script
         
         # Recognition   
         - git clone https://github.com/nahamsec/lazyrecon
