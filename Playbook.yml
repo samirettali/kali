@@ -381,6 +381,9 @@
         - git clone https://github.com/j3ssie/Osmedeus
         - git clone https://github.com/mpowa705/Simple-Backdoor
 
+         # Windows
+        - git clone https://github.com/SecureAuthCorp/impacket
+
     # Install CTF tools
     - name: Install GEF
       shell: wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
