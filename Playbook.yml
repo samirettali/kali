@@ -139,6 +139,7 @@
         - knockpy
         - sublist3r
         - whatweb
+        - amass
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
@@ -307,6 +308,7 @@
         - git clone https://github.com/bwall/HashPump
         - git clone https://github.com/Talanor/findmyhash
         - git clone https://github.com/Ganapati/RsaCtfTool
+        - git clone https://github.com/Sjord/jwtcrack
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
