@@ -118,6 +118,7 @@
         - gdb
         - radare2
         - strace
+        - ltrace
 
         # Samba
         - cifs-utils
