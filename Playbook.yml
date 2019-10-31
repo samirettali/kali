@@ -381,6 +381,7 @@
         - git clone https://github.com/andrew-d/static-binaries
         - git clone https://github.com/j3ssie/Osmedeus
         - git clone https://github.com/mpowa705/Simple-Backdoor
+        - git clone https://github.com/lockedbyte/cryptovenom
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
