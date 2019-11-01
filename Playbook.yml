@@ -119,6 +119,7 @@
         - radare2
         - strace
         - ltrace
+        - dex2jar
 
         # Samba
         - cifs-utils
