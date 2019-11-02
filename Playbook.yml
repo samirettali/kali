@@ -384,6 +384,7 @@
         - git clone https://github.com/j3ssie/Osmedeus
         - git clone https://github.com/mpowa705/Simple-Backdoor
         - git clone https://github.com/lockedbyte/cryptovenom
+        - git clone https://github.com/Ebryx/GitDump
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
