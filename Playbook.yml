@@ -311,6 +311,7 @@
         - git clone https://github.com/Talanor/findmyhash
         - git clone https://github.com/Ganapati/RsaCtfTool
         - git clone https://github.com/Sjord/jwtcrack
+        - git clone https://github.com/psypanda/hashID
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
