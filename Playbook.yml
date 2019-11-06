@@ -68,6 +68,7 @@
 
         # Bruteforce
         - bkhive
+        - crackmapexec
         - crunch
         - fcrackzip
         - hydra
