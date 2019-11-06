@@ -469,12 +469,6 @@
           - r2pm init
           - r2pm install r2dec
 
-    - name: Install ffuf
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/ffuf/ffuf
-        - sudo cp $HOME/go/bin/ffuf /bin
-
     - name: Install aquatone
       shell: "{{ item }}"
       with_items:
@@ -484,6 +478,24 @@
         - cd build
         - unzip aquatone_linux_amd64_*.zip
         - sudo cp aquatone /bin
+
+    - name: Install findomain
+      shell: "{{ item }}"
+      with_items:
+        - wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
+        - chmod +x findomain-linux
+        - sudo mv findomain-linux /bin
+
+    # Windows tools
+    - name: Install evil-winrm
+      shell: gem install --user evil-winrm
+
+    # Go tools
+    - name: Install ffuf
+      shell: "{{ item }}"
+      with_items:
+        - go get github.com/ffuf/ffuf
+        - sudo cp $HOME/go/bin/ffuf /bin
 
     - name: Install httprobe
       shell: "{{ item }}"
@@ -521,10 +533,3 @@
       with_items:
         - go get github.com/003random/getJS
         - sudo cp $HOME/go/bin/getJS /bin
-
-    - name: Install findomain
-      shell: "{{ item }}"
-      with_items:
-        - wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
-        - chmod +x findomain-linux
-        - sudo mv findomain-linux /bin
