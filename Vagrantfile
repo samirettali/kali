@@ -5,6 +5,8 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 1337, host: 1337
   config.vm.network "forwarded_port", guest: 1338, host: 1338
   config.vm.network "forwarded_port", guest: 1339, host: 1339
+  config.ssh.forward_agent = true
+  config.ssh.forward_x11 = true
 
   config.vm.provider "virtualbox" do |vb|
 
