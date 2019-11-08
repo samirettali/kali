@@ -372,7 +372,6 @@
 
         # Web
         - git clone https://github.com/maaaaz/webscreenshot
-        - git clone https://github.com/michenriksen/aquatone
         - git clone https://github.com/ticarpi/jwt_tool
         - git clone https://github.com/GerbenJavado/LinkFinder
         - git clone https://github.com/blechschmidt/massdns
