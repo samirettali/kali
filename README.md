@@ -50,7 +50,8 @@ Useful resources:
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
 
-I also have a Windows 10 VM with the following tools:
+# Windows 10 VM tools
+
 ### Misc
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 * [hashcalc](https://www.slavasoft.com/hashcalc/)
