@@ -503,7 +503,6 @@
         - go get -u github.com/tomnomnom/httprobe
         - sudo cp $HOME/go/bin/httprobe /bin
 
-
     - name: Install subjack
       shell: "{{ item }}"
       with_items:
