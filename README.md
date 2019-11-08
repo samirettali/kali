@@ -1,11 +1,8 @@
 # My Kali setup for CTFs
-
 This is my Kali Linux setup for CTFs.
 
 It uses Vagrant to create the virtual machine and Ansible to install and
 configure the software and the tools.
-
-It is based on the light version of Kali Linux .
 
 To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository.
@@ -13,24 +10,23 @@ To download and build the virtual machine you just have to run the command
 I use Google Chrome, with these extensions:
 
 * [Web Developer](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): Toolbar with various web tools
-* [Built
-with](https://chrome.google.com/webstore/detail/builtwith/hleikeoncmpohnmdkkagcbppgdecoiak): Website profiler
 * [d3coder](https://chrome.google.com/webstore/detail/d3coder/gncnbkghencmkfgeepfaonmegemakcol?hl=en-US): Various encoding/decoding and conversions
 * [EditThisCookie](https://chrome.google.com/webstore/detail/editthiscookie/fngmhnnpilhplaeedifhccceomclgfbg): Cookie editing
 * [EXIF Viewer](https://chrome.google.com/webstore/detail/exif-viewer/mmbhfeiddhndihdjeganjggkmjapkffm): Examine EXIF data
 * [SwitchyOmega](https://chrome.google.com/webstore/detail/proxy-switchyomega/padekgcemlokbadohgkifijomclgjgif): Switch between various proxies
 * [User-Agent Switcher for Chrome](https://chrome.google.com/webstore/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg): Switch between user agents
 * [Wappalizer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg): Analyze web applications
+* [Enhanced Image Viewer](https://chrome.google.com/webstore/detail/enhanced-image-viewer/gefiaaeadjbmhjndnhedfccdjjlgjhho)
 
 These are the equivalent for Mozilla Firefox:
 * [Web Developer](https://addons.mozilla.org/it/firefox/addon/web-developer/): Toolbar with various web tools
-* [Built with](https://addons.mozilla.org/it/firefox/addon/builtwith/?src=search): Website profiler
 * [Decoder](https://addons.mozilla.org/it/firefox/addon/decoder/?src=search): Various encoding/decoding and conversions
 * [Cookie Manager](https://addons.mozilla.org/it/firefox/addon/a-cookie-manager/?src=search): Cookie editing
 * [EXIF Viewer](https://addons.mozilla.org/it/firefox/addon/exif-viewer/): Examine EXIF data
 * [SwitchyOmega](https://addons.mozilla.org/it/firefox/addon/switchyomega/?src=search): Switch between various proxies
 * [User Agent Switcher](https://addons.mozilla.org/it/firefox/addon/uaswitcher/?src=search): Switch between user agents
 * [Wappalizer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg): Analyze web applications
+* [Enhanced Image Viewer](https://chrome.google.com/webstore/detail/enhanced-image-viewer/gefiaaeadjbmhjndnhedfccdjjlgjhho)
 
 These are the online tools that I use:
 
@@ -53,3 +49,30 @@ Useful resources:
 * [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
+
+I also have a Windows 10 VM with the following tools:
+### Misc
+* [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+* [hashcalc](https://www.slavasoft.com/hashcalc/)
+* [HxD](https://mh-nexus.de/en/hxd/)
+* [OpenVPN](https://openvpn.net/)
+* [7zip](https://www.7-zip.org/)
+* [Cygwin](https://www.cygwin.com/)
+* [VS Code](https://code.visualstudio.com/)
+
+### Process analysis
+* [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
+* [nodeJS](https://nodejs.org/)
+* [Process hacker](https://processhacker.sourceforge.io/)
+
+### Network
+* [Fiddler](https://www.telerik.com/fiddler)
+* [Burp suite](https://portswigger.net/burp)
+* [Wireshark](https://www.wireshark.org/)
+
+### Reversing
+* [Ghidra](https://ghidra-sre.org/)
+* [dnSpy](https://github.com/0xd4d/dnSpy)
+* [PPEE (Professional PE explorer)](https://www.mzrst.com/)
+* [x64dbg](https://x64dbg.com/)
+* [IDA](https://www.hex-rays.com/products/ida/support/download_freeware.shtml)
