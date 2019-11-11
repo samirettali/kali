@@ -60,6 +60,7 @@ Useful resources:
 * [7zip](https://www.7-zip.org/)
 * [Cygwin](https://www.cygwin.com/)
 * [VS Code](https://code.visualstudio.com/)
+* [Visual Studio](https://visualstudio.microsoft.com/i)
 
 ### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
