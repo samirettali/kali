@@ -60,10 +60,6 @@
 
         # CTF and penetration testing software
 
-        # Audio
-        - audacity
-        - sonic-visualiser
-
         # Binary exploitation
         - checksec
 
@@ -81,12 +77,17 @@
         - metasploit-framework
 
         # Forensics
+        - audacity
+        - sonic-visualiser
         - binwalk
         - exiftool
         - foremost
         - libguestfs-tools
         - qsstv
         - volatility
+        - pngcheck
+        - steghide
+        - zbar-tools
 
         # Fuzzing
         - dirbuster
@@ -95,11 +96,18 @@
 
         # Information gathering
         - dnsutils
-        - eyewitness
         - whois
 
-        # Miscellaneous
+        # Web tools
+        - eyewitness
         - burpsuite
+        - sqlmap
+        - knockpy
+        - sublist3r
+        - whatweb
+        - amass
+
+        # Miscellaneous
         - hexedit
 
         # Networking
@@ -108,11 +116,9 @@
         - dsniff
         - fern-wifi-cracker
         - hping3
-        - legion
         - ncat
         - netcat
         - nmap
-        - sparta
         - tshark
         - wireshark
 
@@ -128,22 +134,10 @@
         - smbclient
         - smbmap
 
-        # Steganography
-        - pngcheck
-        - steghide
-        - zbar-tools
-
         # Vulnerability analysis
         - golismero
         - lynis
         - nikto
-        - sqlmap
-
-        # Web
-        - knockpy
-        - sublist3r
-        - whatweb
-        - amass
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
@@ -152,6 +146,7 @@
         - libreadline-dev       # bitwise
         - libcunit1-dev         # bitwise
 
+    # Docker installation
     - name: Add Docker's GPG key
       become: yes
       shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
@@ -174,23 +169,6 @@
         - docker-ce
         - docker-compose
 
-    - name: Install bitwise
-      shell: "{{ item }}"
-      become: yes
-      with_items:
-          - https://github.com/mellowcandle/bitwise/releases/latest
-          - tar xfz bitwise*.tar.gz
-          - cd bitwise*
-          - ./configure
-          - make
-          - make install
-          - cd ..
-          - rm -rf bitwise*
-
-    - name: Remove orphan packages
-      apt:
-       autoremove: yes
-
     - name: Enable Docker
       become: yes
       systemd:
@@ -202,7 +180,11 @@
       become: yes
       shell: usermod -a -G docker vagrant
 
-    # Configure services
+    - name: Remove orphan packages
+      apt:
+       autoremove: yes
+
+    # Configure services for metasploit
     - name: Enable apache
       become: yes
       systemd:
@@ -227,14 +209,11 @@
         creates: "/usr/share/metasploit-framework/.initialized"
         warn: false
 
-    - name: Python2 pynvim module
-      shell: pip2 install pynvim
-
-    - name: Python3 pynvim module
-      shell: pip3 install pynvim
-
-    - name: Python3 neovim module
-      shell: pip3 install neovim
+    - pip: Installing pip modules for neovim
+        name:
+          - pynvim
+          - neovim
+        executable: pip3
 
     - name: Set zsh shell
       become: yes
@@ -487,6 +466,12 @@
         - sudo mv findomain-linux /bin
 
     # Windows tools
+    - name: Install Windows tools
+      shell: "{{ item }}"
+      with_items:
+        - pip3 install aclpwn
+        - gem install --user evil-winrm
+
     - name: Install evil-winrm
       shell: gem install --user evil-winrm
 
@@ -532,3 +517,18 @@
       with_items:
         - go get github.com/003random/getJS
         - sudo cp $HOME/go/bin/getJS /bin
+
+    # Custom software
+    - name: Install bitwise
+      shell: "{{ item }}"
+      become: yes
+      with_items:
+          - https://github.com/mellowcandle/bitwise/releases/latest
+          - tar xfz bitwise*.tar.gz
+          - cd bitwise*
+          - ./configure
+          - make
+          - make install
+          - cd ..
+          - rm -rf bitwise*
+
