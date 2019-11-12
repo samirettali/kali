@@ -342,6 +342,7 @@
         - git clone https://github.com/maurosoria/dirsearch
         - git clone https://github.com/s0md3v/Arjun
         - git clone https://github.com/subfinder/subfinder
+        - git clone https://github.com/GerbenJavado/LinkFinder
 
         # Wireless
         - git clone https://github.com/FluxionNetwork/fluxion
