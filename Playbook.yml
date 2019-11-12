@@ -238,10 +238,17 @@
         chdir: /home/vagrant/Wordlists
       with_items:
         - git clone https://github.com/1N3/IntruderPayloads
-        - ./IntruderPayloads/install.sh
-        - git clone https://github.com/jeanphorn/wordlist/
+        - git clone https://github.com/danielmiessler/RobotsDisallowed.git
+        - git clone https://github.com/danielmiessler/SecLists.git
         - git clone https://github.com/dustyfresh/dictionaries
         - git clone https://github.com/dwyl/english-words
+        - git clone https://github.com/foospidy/payloads.git
+        - git clone https://github.com/fuzzdb-project/fuzzdb.git
+        - git clone https://github.com/jeanphorn/wordlist/
+        - git clone https://github.com/minimaxir/big-list-of-naughty-strings.git
+        - git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
+        - git clone https://github.com/xmendez/wfuzz.git
+
 
     - name: Download rockyou
       get_url:
@@ -293,6 +300,7 @@
         - git clone https://github.com/Ganapati/RsaCtfTool
         - git clone https://github.com/Sjord/jwtcrack
         - git clone https://github.com/psypanda/hashID
+        - git clone https://github.com/Boran/lusas
 
         # Enumeration
         - git clone https://github.com/rebootuser/LinEnum
