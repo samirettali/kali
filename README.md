@@ -25,8 +25,8 @@ These are the equivalent for Mozilla Firefox:
 * [EXIF Viewer](https://addons.mozilla.org/it/firefox/addon/exif-viewer/): Examine EXIF data
 * [SwitchyOmega](https://addons.mozilla.org/it/firefox/addon/switchyomega/?src=search): Switch between various proxies
 * [User Agent Switcher](https://addons.mozilla.org/it/firefox/addon/uaswitcher/?src=search): Switch between user agents
-* [Wappalizer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg): Analyze web applications
-* [Enhanced Image Viewer](https://chrome.google.com/webstore/detail/enhanced-image-viewer/gefiaaeadjbmhjndnhedfccdjjlgjhho)
+* [Wappalizer](https://addons.mozilla.org/it/firefox/addon/wappalyzer/): Analyze web applications
+* [Enhanced Image Viewer](https://addons.mozilla.org/it/firefox/addon/sblask-enhanced-image-viewer/)
 
 These are the online tools that I use:
 
