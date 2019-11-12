@@ -53,6 +53,8 @@ Useful resources:
 # Windows 10 VM tools
 
 ### Misc
+* [Chrome](https://www.google.com/intl/chrome/)
+* [Firefox](https://www.mozilla.org/firefox)
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 * [hashcalc](https://www.slavasoft.com/hashcalc/)
 * [HxD](https://mh-nexus.de/en/hxd/)
