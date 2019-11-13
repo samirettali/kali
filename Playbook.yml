@@ -210,7 +210,7 @@
         creates: "/usr/share/metasploit-framework/.initialized"
         warn: false
 
-    - pip: Installing pip modules for neovim
+    - pip:
         name:
           - pynvim
           - neovim
