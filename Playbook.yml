@@ -379,6 +379,7 @@
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
+        - git clone https://github.com/samratashok/nishang
 
     # Install CTF tools
     - name: Install GEF
