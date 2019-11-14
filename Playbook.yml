@@ -421,6 +421,7 @@
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
         - git clone https://github.com/samratashok/nishang
+        - git clone https://github.com/Dhayalanb/windows-php-reverse-shell
 
     # FZF
     # - name: Install fzf
