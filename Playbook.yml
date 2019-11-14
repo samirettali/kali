@@ -426,6 +426,7 @@
     - gem:
         state: present
         name: "{{ item }}"
+        user_install: yes
       with_items:
         - aquatone
         - evil-winrm
