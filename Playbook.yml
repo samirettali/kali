@@ -461,7 +461,7 @@
 
     - name: Install findomain
       get_url:
-        url: wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
+        url: https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
         dest: /home/{{ username.stdout }}/.bin/findomain
 
     - name: Download Stegsolve
@@ -478,19 +478,6 @@
         - pip2 install -r ShellPop/requirements.txt
         - python2 ShellPop/setup.py install
         - rm -rf ShellPop
-
-    - name: Install bitwise
-      shell: "{{ item }}"
-      become: yes
-      with_items:
-          - https://github.com/mellowcandle/bitwise/releases/latest
-          - tar xfz bitwise*.tar.gz
-          - cd bitwise*
-          - ./configure
-          - make
-          - make install
-          - cd ..
-          - rm -rf bitwise*
 
     - name: Standalone commands
       shell: "{{ item }}"
