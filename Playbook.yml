@@ -45,6 +45,7 @@
         - python-pip
         - python3-pip
         - ranger
+        - ruby
         - tmux
         - tree
         - wget
