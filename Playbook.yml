@@ -39,6 +39,8 @@
         - libapache2-mod-php
         - ncdu
         - neovim
+        - nodejs
+        - npm
         - openvpn
         - pastebinit
         - php
