@@ -215,7 +215,7 @@
     - name: Set zsh shell
       become: yes
       user:
-        name: {{ username.stdout }}
+        name: "{{ username.stdout }}"
         shell: /bin/zsh
 
     - name: Change XDG directories
