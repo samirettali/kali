@@ -4,10 +4,10 @@
 
   vars_prompt:
     - name: hostname
-      prompt: "Hostname for this machine:"
+      prompt: "Hostname for this machine"
 
     - name: password
-      prompt: "Root password for this machine:"
+      prompt: "Root password for this machine"
       private: yes
       encrypt: "sha512_crypt"
       confirm: yes
