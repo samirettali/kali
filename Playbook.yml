@@ -241,11 +241,11 @@
         path: "{{ item }}"
         state: directory
         mode: 0755
-        with_items:
-          - /home/{{ username.stdout }}/Wordlists
-          - /home/{{ username.stdout }}/Resources
-          - /home/{{ username.stdout }}/Tools
-          - /home/{{ username.stdout }}/.bin
+      with_items:
+        - /home/{{ username.stdout }}/Wordlists
+        - /home/{{ username.stdout }}/Resources
+        - /home/{{ username.stdout }}/Tools
+        - /home/{{ username.stdout }}/.bin
 
     - name: Clone wordlists repositores
       shell: "{{ item }}"
