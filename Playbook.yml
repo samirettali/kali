@@ -337,6 +337,7 @@
         # Post exploitation
         - git clone https://github.com/mossberg/poet
         - git clone https://github.com/1N3/PrivEsc
+        - git clone https://github.com/0x00-0x00/ShellPop
 
         # File exfiltration
         - git clone https://github.com/Arno0x/DNSExfiltrator
@@ -462,16 +463,6 @@
       get_url:
         url: http://www.caesum.com/handbook/Stegsolve.jar
         dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
-
-    - name: Install shellpop
-      become: yes
-      shell: "{{ item }}"
-      with_items:
-        - apt install python-argcomplete -y
-        - git clone https://github.com/0x00-0x00/ShellPop
-        - pip2 install --user -r ShellPop/requirements.txt
-        - python2 ShellPop/setup.py install
-        - rm -rf ShellPop
 
     - name: Standalone commands
       shell: "{{ item }}"
