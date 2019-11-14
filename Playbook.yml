@@ -6,6 +6,12 @@
     - name: hostname
       prompt: "Hostname for this machine"
 
+    - name: user_password
+      prompt: "User password for this machine"
+      private: yes
+      encrypt: "sha512_crypt"
+      confirm: yes
+
     - name: password
       prompt: "Root password for this machine"
       private: yes
@@ -13,6 +19,18 @@
       confirm: yes
 
   tasks:
+    - name: Get current username
+      local_action: command whoami
+      register: username
+
+    - debug: var=username
+
+    - name: Change user password
+      become: yes
+      user:
+        name: {{ username.stdout }}
+        password: "{{ user_password }}"
+
     - name: Change root password
       become: yes
       user:
@@ -176,12 +194,6 @@
         - libncurses5-dev       # bitwise
         - libreadline-dev       # bitwise
         - libcunit1-dev         # bitwise
-
-    - name: Get current username
-      local_action: command whoami
-      register: username
-
-    - debug: var=username
 
     # Docker installation
     - name: Add Docker's GPG key
