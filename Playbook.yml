@@ -28,7 +28,7 @@
     - name: Change user password
       become: yes
       user:
-        name: {{ username.stdout }}
+        name: "{{ username.stdout }}"
         password: "{{ user_password }}"
 
     - name: Change root password
@@ -38,12 +38,14 @@
         password: "{{ password }}"
 
     - name: Disable automatic repositories update
+      become: yes
       replace:
         path: /etc/apt/apt.conf.d/20auto-upgrades
         regexp: 'APT::Periodic::Update-Package-Lists "1";'
         replace: 'APT::Periodic::Update-Package-Lists "0";/'
 
     - name: Disable automatic software update
+      become: yes
       replace:
         path: /etc/apt/apt.conf.d/20auto-upgrades
         regexp: 'APT::Periodic::Unattended-Upgrade "1";'
