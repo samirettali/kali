@@ -58,8 +58,6 @@
         - gnupg-agent
         - software-properties-common
 
-        # CTF and penetration testing software
-
         # Binary exploitation
         - checksec
 
@@ -89,10 +87,11 @@
         - steghide
         - zbar-tools
 
-        # Fuzzing
+        # Fuzzing and discovery
         - dirbuster
         - gobuster
         - wfuzz
+        - sublist3r
 
         # Information gathering
         - dnsutils
@@ -103,7 +102,6 @@
         - burpsuite
         - sqlmap
         - knockpy
-        - sublist3r
         - whatweb
         - amass
 
@@ -147,6 +145,12 @@
         - libreadline-dev       # bitwise
         - libcunit1-dev         # bitwise
 
+    - name: Get current username
+      local_action: command whoami
+      register: username
+
+    - debug: var=username
+
     # Docker installation
     - name: Add Docker's GPG key
       become: yes
@@ -179,11 +183,7 @@
 
     - name: Add user do Docker group
       become: yes
-      shell: usermod -a -G docker vagrant
-
-    - name: Remove orphan packages
-      apt:
-       autoremove: yes
+      shell: usermod -a -G docker {{ username.stdout }}
 
     # Configure services for metasploit
     - name: Enable apache
@@ -210,33 +210,46 @@
         creates: "/usr/share/metasploit-framework/.initialized"
         warn: false
 
-    - pip:
-        name:
-          - pynvim
-          - neovim
-        executable: pip3
-
+    # Linux stuff
     - name: Set zsh shell
       become: yes
       user:
-        name: vagrant
+        name: {{ username.stdout }}
         shell: /bin/zsh
 
+    - name: Change XDG directories
+      shell: "{{ item }}"
+      with_items:
+        - xdg-user-dirs-update --set DESKTOP $HOME
+        - xdg-user-dirs-update --set DOCUMENTS $HOME
+        - xdg-user-dirs-update --set DOWNLOAD $HOME
+        - xdg-user-dirs-update --set MUSIC $HOME
+        - xdg-user-dirs-update --set PICTURES $HOME
+        - xdg-user-dirs-update --set PUBLICSHARE $HOME
+        - xdg-user-dirs-update --set TEMPLATES $HOME
+        - xdg-user-dirs-update --set VIDEOS $HOME
+
     - name: Install dotfiles
-      shell: curl https://gist.githubusercontent.com/samirettali/9f190ac180aecba1872867acc1e9c83b/raw/install.sh | /bin/bash
+      shell: curl -s https://gist.githubusercontent.com/samirettali/9f190ac180aecba1872867acc1e9c83b/raw/install.sh | /bin/bash
       args:
         warn: false
 
-    # Wordlists repositories
-    - name: Create wordlists directory
+    # Folders creation
+    - name: Create directories
       file:
-        path: /home/vagrant/Wordlists
-        state: directory
+          path: "{{ item }}"
+          state: directory
+          mode: 0755
+          with_items:
+            - /home/{{ username.stdout }}/Wordlists
+            - /home/{{ username.stdout }}/Resources
+            - /home/{{ username.stdout }}/Tools
+            - /home/{{ username.stdout }}/.bin
 
-    - name: Download wordlists
+    - name: Clone wordlists repositores
       shell: "{{ item }}"
       args:
-        chdir: /home/vagrant/Wordlists
+        chdir: /home/{{ username.stdout }}/Wordlists
       with_items:
         - git clone https://github.com/1N3/IntruderPayloads
         - git clone https://github.com/danielmiessler/RobotsDisallowed.git
@@ -250,22 +263,15 @@
         - git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
         - git clone https://github.com/xmendez/wfuzz.git
 
-
     - name: Download rockyou
       get_url:
         url: https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
-        dest: /home/vagrant/Wordlists/rockyou.txt
+        dest: /home/{{ username.stdout }}/Wordlists/rockyou.txt
 
-    # CTF repositories
-    - name: Create Resources directory
-      file:
-        path: /home/vagrant/Resources
-        state: directory
-
-    - name: Clone CTF repositories
+    - name: Clone resources repositories
       shell: "{{ item }}"
       args:
-        chdir: /home/vagrant/Resources
+        chdir: /home/{{ username.stdout }}/Resources
       with_items:
         - git clone https://github.com/zardus/ctf-tools
         - git clone https://github.com/apsdehal/awesome-ctf
@@ -278,21 +284,10 @@
         - git clone https://github.com/trimstray/the-book-of-secret-knowledge
         - git clone https://github.com/EdOverflow/can-i-take-over-xyz
 
-    # CTF Tools
-    - name: Create Tools directory
-      file:
-        path: /home/vagrant/Tools
-        state: directory
-
-    - name: Download linux-local-enum
-      get_url:
-        url: https://highon.coffee/downloads/linux-local-enum.sh
-        dest: /home/vagrant/Tools/linux-local-enum.txt
-
     - name: Clone tools repositories
       shell: "{{ item }}"
       args:
-        chdir: /home/vagrant/Tools
+        chdir: /home/{{ username.stdout }}/Tools
       with_items:
         # Cracking
         - git clone https://github.com/rebootuser/Hashmash
@@ -380,79 +375,53 @@
         - git clone https://github.com/SecureAuthCorp/impacket
         - git clone https://github.com/samratashok/nishang
 
-    # Install CTF tools
-    - name: Install GEF
-      shell: wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
-
-    - name: Create .bin directory
-      file:
-        path: /home/vagrant/.bin
-        state: directory
-
-    - name: Download Stegsolve
-      get_url:
-        url: http://www.caesum.com/handbook/Stegsolve.jar
-        dest: /home/vagrant/.bin/stegsolve.jar
-
-    - name: Install stegoVeritas
-      become: yes
-      shell: "{{ item }}"
-      with_items:
-        - pip3 install stegoveritas
-        - stegoveritas_install_deps
-
-    - name: Install zsteg
-      shell: gem install --user zsteg
-
-    - name: Install shellpop
-      become: yes
-      shell: "{{ item }}"
-      with_items:
-        - apt install python-argcomplete -y
-        - git clone https://github.com/0x00-0x00/ShellPop
-        - pip2 install -r ShellPop/requirements.txt
-        - python2 ShellPop/setup.py install
-        - rm -rf ShellPop
-
-    # CTF pip tools
-    - name: Install pwntools
-      shell: pip3 install pwntools
-
-    - name: Install scapy
-      shell: pip2 install scapy
-
-    - name: Install stegcracker
-      shell: pip3 install stegcracker
-
-    # Misc pip tools
-    - name: Install magic-wormhole
-      shell: pip3 install magic-wormhole
-
     # FZF
-    - name: Install fzf
-      shell: "{{ item }}"
-      with_items:
-          - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-          - ~/.fzf/install
+    # - name: Install fzf
+    #   shell: "{{ item }}"
+    #   with_items:
+    #       - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    #       - ~/.fzf/install
 
     # Vim plugins
     - name: Download vim plugins
       shell: nvim +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +exit +exit +exit
 
-    # Change XDG directories
-    - name: Change XDG directories
+    # Install additional software from other package managers
+    - pip:
+        name:
+          - pynvim
+          - neovim
+          - stegcracker
+          - magic-wormhole
+          - aclpwn
+          - stegoveritas
+        executable: pip3
+
+    - pip:
+        name:
+          - pwntools
+          - scapy
+        executable: pip2
+
+    - gem:
+      name: "{{ item }}"
+      with_items:
+        - evil-winrm
+        - zsteg
+
+    # Install custom software
+    - name: Build GO tools
       shell: "{{ item }}"
       with_items:
-        - xdg-user-dirs-update --set DESKTOP $HOME
-        - xdg-user-dirs-update --set DOCUMENTS $HOME
-        - xdg-user-dirs-update --set DOWNLOAD $HOME
-        - xdg-user-dirs-update --set MUSIC $HOME
-        - xdg-user-dirs-update --set PICTURES $HOME
-        - xdg-user-dirs-update --set PUBLICSHARE $HOME
-        - xdg-user-dirs-update --set TEMPLATES $HOME
-        - xdg-user-dirs-update --set VIDEOS $HOME
+        - go get -u github.com/tomnomnom/httprobe
+        - go get github.com/003random/getJS
+        - go get github.com/astaxie/bat
+        - go get github.com/ffuf/ffuf
+        - go get github.com/haccer/subjack
+        - go get github.com/tomnomnom/meg
+        - go get github.com/tomnomnom/waybackurls
+        - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
 
-    # Install radare plugins 
     - name: Install radare plugins
       shell: "{{ item }}"
       with_items:
@@ -467,69 +436,29 @@
         - ./build.sh
         - cd build
         - unzip aquatone_linux_amd64_*.zip
-        - sudo cp aquatone /bin
+        - cp aquatone /home/{{ username.stdout }}/.bin
 
     - name: Install findomain
       shell: "{{ item }}"
-      with_items:
-        - wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
-        - chmod +x findomain-linux
-        - sudo mv findomain-linux /bin
+      get_url:
+        url: wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
+        dest: /home/{{ username.stdout }}/.bin/findomain
 
-    # Windows tools
-    - name: Install Windows tools
+    - name: Download Stegsolve
+      get_url:
+        url: http://www.caesum.com/handbook/Stegsolve.jar
+        dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
+
+    - name: Install shellpop
+      become: yes
       shell: "{{ item }}"
       with_items:
-        - pip3 install aclpwn
-        - gem install --user evil-winrm
+        - apt install python-argcomplete -y
+        - git clone https://github.com/0x00-0x00/ShellPop
+        - pip2 install -r ShellPop/requirements.txt
+        - python2 ShellPop/setup.py install
+        - rm -rf ShellPop
 
-    - name: Install evil-winrm
-      shell: gem install --user evil-winrm
-
-    # Go tools
-    - name: Install ffuf
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/ffuf/ffuf
-        - sudo cp $HOME/go/bin/ffuf /bin
-
-    - name: Install httprobe
-      shell: "{{ item }}"
-      with_items:
-        - go get -u github.com/tomnomnom/httprobe
-        - sudo cp $HOME/go/bin/httprobe /bin
-
-    - name: Install subjack
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/haccer/subjack
-        - sudo cp $HOME/go/bin/subjack /bin
-
-    - name: Install waybackurls
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/tomnomnom/waybackurls
-        - sudo cp $HOME/go/bin/waybackurls /bin
-
-    - name: Install bat
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/astaxie/bat
-        - sudo cp $HOME/go/bin/bat /bin
-
-    - name: Install meg
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/tomnomnom/meg
-        - sudo cp $HOME/go/bin/meg /bin
-
-    - name: Install getjs
-      shell: "{{ item }}"
-      with_items:
-        - go get github.com/003random/getJS
-        - sudo cp $HOME/go/bin/getJS /bin
-
-    # Custom software
     - name: Install bitwise
       shell: "{{ item }}"
       become: yes
@@ -543,3 +472,8 @@
           - cd ..
           - rm -rf bitwise*
 
+    - name: Standalone commands
+      shell: "{{ item }}"
+      with_items:
+        - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
+        - stegoveritas_install_deps
