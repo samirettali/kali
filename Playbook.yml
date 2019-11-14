@@ -427,6 +427,7 @@
         state: present
         name: "{{ item }}"
       with_items:
+        - aquatone
         - evil-winrm
         - zsteg
 
@@ -448,16 +449,6 @@
       with_items:
           - r2pm init
           - r2pm install r2dec
-
-    - name: Install aquatone
-      shell: "{{ item }}"
-      with_items:
-        - git clone https://github.com/michenriksen/aquatone
-        - cd aquatone
-        - ./build.sh
-        - cd build
-        - unzip aquatone_linux_amd64_*.zip
-        - cp aquatone /home/{{ username.stdout }}/.bin
 
     - name: Install findomain
       get_url:
