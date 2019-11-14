@@ -440,7 +440,6 @@
         - cp aquatone /home/{{ username.stdout }}/.bin
 
     - name: Install findomain
-      shell: "{{ item }}"
       get_url:
         url: wget https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
         dest: /home/{{ username.stdout }}/.bin/findomain
