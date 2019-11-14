@@ -182,7 +182,7 @@
         state: started
         enabled: yes
 
-    - name: Add user do Docker group
+    - name: Add user to Docker group
       become: yes
       shell: usermod -a -G docker {{ username.stdout }}
 
