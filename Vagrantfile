@@ -2,9 +2,17 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "kalilinux/rolling"
   config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
+  # SMB ports
+  config.vm.network "forwarded_port", guest: 135, host: 135
+  config.vm.network "forwarded_port", guest: 139, host: 139
+  config.vm.network "forwarded_port", guest: 445, host: 445
+  # Reverse connection ports
   config.vm.network "forwarded_port", guest: 1337, host: 1337
   config.vm.network "forwarded_port", guest: 1338, host: 1338
   config.vm.network "forwarded_port", guest: 1339, host: 1339
+  config.vm.network "forwarded_port", guest: 9000, host: 9000
+  config.vm.network "forwarded_port", guest: 9001, host: 9001
+  config.vm.network "forwarded_port", guest: 9002, host: 9002
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
