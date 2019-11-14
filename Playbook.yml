@@ -1,7 +1,24 @@
 ---
 - name: Kali Linux CTF provisioning
   hosts: all
+
+  vars_prompt:
+    - name: hostname
+      prompt: "Hostname for this machine:"
+
+    - name: password
+      prompt: "Root password for this machine:"
+      private: yes
+      encrypt: "sha512_crypt"
+      confirm: yes
+
   tasks:
+    - name: Change root password
+      become: yes
+      user:
+        name: root
+        password: "{{ password }}"
+
     - name: Wait for any possibly running unattended upgrade to finish
       become: yes
       raw: systemd-run --property="After=apt-daily.service apt-daily-upgrade.service" --wait /bin/true
