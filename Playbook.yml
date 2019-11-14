@@ -415,12 +415,14 @@
           - magic-wormhole
           - aclpwn
           - stegoveritas
+        extra_args: --user
         executable: pip3
 
     - pip:
         name:
           - pwntools
           - scapy
+        extra_args: --user
         executable: pip2
 
     - gem:
@@ -467,7 +469,7 @@
       with_items:
         - apt install python-argcomplete -y
         - git clone https://github.com/0x00-0x00/ShellPop
-        - pip2 install -r ShellPop/requirements.txt
+        - pip2 install --user -r ShellPop/requirements.txt
         - python2 ShellPop/setup.py install
         - rm -rf ShellPop
 
