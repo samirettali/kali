@@ -405,8 +405,8 @@
         executable: pip2
 
     - gem:
-      state: present
-      name: "{{ item }}"
+        state: present
+        name: "{{ item }}"
       with_items:
         - evil-winrm
         - zsteg
