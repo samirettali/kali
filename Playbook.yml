@@ -19,6 +19,18 @@
         name: root
         password: "{{ password }}"
 
+    - name: Disable automatic repositories update
+      replace:
+        path: /etc/apt/apt.conf.d/20auto-upgrades
+        regexp: 'APT::Periodic::Update-Package-Lists "1";'
+        replace: 'APT::Periodic::Update-Package-Lists "0";/'
+
+    - name: Disable automatic software update
+      replace:
+        path: /etc/apt/apt.conf.d/20auto-upgrades
+        regexp: 'APT::Periodic::Unattended-Upgrade "1";'
+        replace: 'APT::Periodic::Unattended-Upgrade "0";'
+
     - name: Wait for any possibly running unattended upgrade to finish
       become: yes
       raw: systemd-run --property="After=apt-daily.service apt-daily-upgrade.service" --wait /bin/true
@@ -468,4 +480,4 @@
       shell: "{{ item }}"
       with_items:
         - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
-        - stegoveritas_install_deps
+        # - stegoveritas_install_deps
