@@ -451,6 +451,7 @@
         name:
           - pwntools
           - scapy
+          - google_images_download
         extra_args: --user
         executable: pip2
 
