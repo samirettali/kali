@@ -74,6 +74,7 @@
         # Base install
         - ack
         - apache2
+        - arping
         - chromium
         - cloc
         - curl
