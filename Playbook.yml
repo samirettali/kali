@@ -3,20 +3,20 @@
   hosts: all
 
   vars_prompt:
-    - name: hostname
-      prompt: "Hostname for this machine"
+    # - name: hostname
+    #   prompt: "Hostname for this machine"
 
-    - name: user_password
-      prompt: "User password for this machine"
-      private: yes
-      encrypt: "sha512_crypt"
-      confirm: yes
+    # - name: user_password
+    #   prompt: "User password for this machine"
+    #   private: yes
+    #   encrypt: "sha512_crypt"
+    #   confirm: yes
 
-    - name: password
-      prompt: "Root password for this machine"
-      private: yes
-      encrypt: "sha512_crypt"
-      confirm: yes
+    # - name: password
+    #   prompt: "Root password for this machine"
+    #   private: yes
+    #   encrypt: "sha512_crypt"
+    #   confirm: yes
 
   tasks:
     - name: Get current username
@@ -25,17 +25,17 @@
 
     - debug: var=username
 
-    - name: Change user password
-      become: yes
-      user:
-        name: "{{ username.stdout }}"
-        password: "{{ user_password }}"
+    # - name: Change user password
+    #   become: yes
+    #   user:
+    #     name: "{{ username.stdout }}"
+    #     password: "{{ user_password }}"
 
-    - name: Change root password
-      become: yes
-      user:
-        name: root
-        password: "{{ password }}"
+    # - name: Change root password
+    #   become: yes
+    #   user:
+    #     name: root
+    #     password: "{{ password }}"
 
     - name: Disable automatic repositories update
       become: yes
