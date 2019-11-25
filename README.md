@@ -63,18 +63,22 @@ Useful resources:
 * [Visual Studio](https://visualstudio.microsoft.com/i)
 * [hashcalc](https://www.slavasoft.com/hashcalc/)
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+* [Malzilla](http://malzilla.sourceforge.net/)
 
 ### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
 * [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 * [Process hacker](https://processhacker.sourceforge.io/)
 * [nodeJS](https://nodejs.org/)
+* [API monitor](https://www.rohitab.com/apimonitor)
 
 ### Network
 * [Burp suite](https://portswigger.net/burp)
 * [Fiddler](https://www.telerik.com/fiddler)
 * [Network monitor](https://www.microsoft.com/en-us/download/details.aspx?id=4865)
 * [Wireshark](https://www.wireshark.org/)
+* [DNS query sniffer](https://www.nirsoft.net/utils/dns_query_sniffer.html)
+* [TCP log viewer](https://www.nirsoft.net/utils/tcp_log_view.html)
 
 ### Reversing
 * [Ghidra](https://ghidra-sre.org/)
@@ -84,3 +88,7 @@ Useful resources:
 * [dnSpy](https://github.com/0xd4d/dnSpy)
 * [scdbg](http://sandsprite.com/blogs/index.php?uid=7&pid=152)
 * [x64dbg](https://x64dbg.com/)
+* [CMD watcher](https://www.kahusecurity.com/tools.html)
+* [Dependency walker](http://www.dependencywalker.com/)
+* [PEStudio](https://www.winitor.com/get.html)
+* [Resource hacker](http://www.angusj.com/resourcehacker/)
