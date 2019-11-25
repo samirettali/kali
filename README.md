@@ -53,30 +53,32 @@ Useful resources:
 # Windows 10 VM tools
 
 ### Misc
+* [7zip](https://www.7-zip.org/)
 * [Chrome](https://www.google.com/intl/chrome/)
+* [Cygwin](https://www.cygwin.com/)
 * [Firefox](https://www.mozilla.org/firefox)
-* [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
-* [hashcalc](https://www.slavasoft.com/hashcalc/)
 * [HxD](https://mh-nexus.de/en/hxd/)
 * [OpenVPN](https://openvpn.net/)
-* [7zip](https://www.7-zip.org/)
-* [Cygwin](https://www.cygwin.com/)
 * [VS Code](https://code.visualstudio.com/)
 * [Visual Studio](https://visualstudio.microsoft.com/i)
+* [hashcalc](https://www.slavasoft.com/hashcalc/)
+* [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 
 ### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
-* [nodeJS](https://nodejs.org/)
 * [Process hacker](https://processhacker.sourceforge.io/)
+* [nodeJS](https://nodejs.org/)
 
 ### Network
-* [Fiddler](https://www.telerik.com/fiddler)
 * [Burp suite](https://portswigger.net/burp)
+* [Fiddler](https://www.telerik.com/fiddler)
+* [Network monitor](https://www.microsoft.com/en-us/download/details.aspx?id=4865)
 * [Wireshark](https://www.wireshark.org/)
 
 ### Reversing
 * [Ghidra](https://ghidra-sre.org/)
-* [dnSpy](https://github.com/0xd4d/dnSpy)
-* [PPEE (Professional PE explorer)](https://www.mzrst.com/)
-* [x64dbg](https://x64dbg.com/)
 * [IDA](https://www.hex-rays.com/products/ida/support/download_freeware.shtml)
+* [PE-Bear](https://hshrzd.wordpress.com/pe-bear/)
+* [PPEE (Professional PE explorer)](https://www.mzrst.com/)
+* [dnSpy](https://github.com/0xd4d/dnSpy)
+* [x64dbg](https://x64dbg.com/)
