@@ -66,6 +66,7 @@ Useful resources:
 
 ### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
+* [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 * [Process hacker](https://processhacker.sourceforge.io/)
 * [nodeJS](https://nodejs.org/)
 
@@ -81,4 +82,5 @@ Useful resources:
 * [PE-Bear](https://hshrzd.wordpress.com/pe-bear/)
 * [PPEE (Professional PE explorer)](https://www.mzrst.com/)
 * [dnSpy](https://github.com/0xd4d/dnSpy)
+* [scdbg](http://sandsprite.com/blogs/index.php?uid=7&pid=152)
 * [x64dbg](https://x64dbg.com/)
