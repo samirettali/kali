@@ -480,6 +480,7 @@
         - go get github.com/tomnomnom/meg
         - go get github.com/tomnomnom/waybackurls
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
+        - rm -rf /home/{{ username.stdout }}/go
 
     - name: Install radare plugins
       shell: "{{ item }}"
