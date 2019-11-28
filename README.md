@@ -1,12 +1,48 @@
 # My Kali setup for CTFs
 This is my Kali Linux setup for CTFs.
 
-It uses Vagrant to create the virtual machine and Ansible to install and
-configure the software and the tools.
+It uses Vagrant to create the virtual machine on Virtualbox and Ansible to
+install and configure the software and the tools.
 
+In the `Vagrantfile` there are the settings for the VM, I've assigned 8 cores
+, 8 gigabytes of RAM and I forwarded some ports. 
+
+You can read the `Playbook.yml` file that contains all the tools that will be
+installed. Some of them are from the official repositories, some are compiled
+from Go sources, and the others are from online Git repositories
+
+At the end of the setup there will be three folders in the home called `Tools`,
+`Wordlists` and `Resources`.
+
+## Requirements
+
+* [Vagrant](https://www.vagrantup.com)
+* [Virtualbox](https://www.virtualbox.org)
+* [XQuartz](https://www.xquartz.org): required on Mac OS to run graphical tools
+in a SSH session
+
+#### Ubuntu or Debian based:
+```
+$ sudo apt install vagrant virtualbox
+```
+
+#### Mac OS:
+```
+$ brew cask install vagrant virtualbox xquartz
+```
+Or download the packages from the websites.
+
+---
+
+## Usage
 To download and build the virtual machine you just have to run the command
-`vagrant up` inside this repository.
+`vagrant up` inside this repository. After the automated setup
+process you just run `vagrant ssh` to connect to the virtual machine and you can
+use 
 
+---
+
+#### Browser extensions
 I use Google Chrome, with these extensions:
 
 * [Web Developer](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): Toolbar with various web tools
@@ -28,31 +64,69 @@ These are the equivalent for Mozilla Firefox:
 * [Wappalizer](https://addons.mozilla.org/it/firefox/addon/wappalyzer/): Analyze web applications
 * [Enhanced Image Viewer](https://addons.mozilla.org/it/firefox/addon/sblask-enhanced-image-viewer/)
 
-These are the online tools that I use:
+## Online tools
 
-* [Beeceptor](https://beeceptor.com/)
-* [CyberChef](https://gchq.github.io/CyberChef)
+#### Cryptography
+* [Boxentrix](https://www.boxentriq.com/code-breaking)
 * [Cipher tools](http://rumkin.com/tools/cipher)
-* [dcode.fr](https://www.dcode.fr/tools-list)
-* [regex101](https://regex101.com)
-* [tio.run](https://tio.run)
-* [curlbuilder](https://curlbuilder.com)
 * [Cryptii](https://cryptii.com)
-* [Sploitus](https://sploitus.com)
-* [HashKiller](https://hashkiller.co.uk)
-* [CrackStation](https://crackstation.net)
-* [Quipquip](https://quipqiup.com)
-* [ShellStorm](http://shell-storm.org/shellcode/)
-* [Webhook](https://webhook.site)
+* [Integer factorization](jjalpertron.com.ar/ECM.HTM)
+* [dcode.fr](https://www.dcode.fr/tools-list)
+* [factordb.com](http://factordb.com)
+* [regex101](https://regex101.com)
 
-Useful resources:
+#### Execute code
+* [tio.run](https://tio.run)
+* [.NETFiddle](https://dotnetfiddle.net)
+
+#### Command tools
+* [crontab.guru](https://crontab.guru)
+* [curl-to-Go](https://mholt.github.io/curl-to-go)
+* [curlbuilder](https://curlbuilder.com)
+
+#### Exploits
+* [Sploitus](https://sploitus.com)
+* [cve-mitre](https://cve.mitre.org)
+* [exploit-db](https://www.exploit-db.com)
+
+#### Cracking
+* [CrackStation](https://crackstation.net)
+* [HashKiller](https://hashkiller.co.uk)
+* [OnlineHashCrack](https://www.onlinehashcrack.com)
+* [Quipquip](https://quipqiup.com)
+
+#### Endpoint creation
+* [Beeceptor](https://beeceptor.com)
+* [Hookbin](https://hookbin.com)
+* [Webhook](https://webhook.site)
+* [dnsbin](http://dnsbin.zhack.ca)
+* [pinbin](http://pingb.in)
+
+#### Web stuff
+* [CachedView](https://cachedview.com)
+* [Unicode steganography ](https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder)
+* [guballa](https://www.guballa.de/substitution-solver)
+* [jwt.io](https://jwt.io)
+
+#### CTF related
+* [CTF Search](https://ctf.courgettes.club)
+* [IPPSEC](https://ippsec.rocks)
+
+#### Misc
+* [CyberChef](https://gchq.github.io/CyberChef)
+* [ShellStorm](http://shell-storm.org/shellcode)
+* [Virustotal](https://www.virustotal.com/gui/home)
+
+#### Resources:
 * [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
 
-# Windows 10 VM tools
+# Windows tools
+These are the tools that I use on my Windows 10 VM (it's separate from this
+project, it's just for having a reference)
 
-### Misc
+#### Misc
 * [7zip](https://www.7-zip.org/)
 * [Chrome](https://www.google.com/intl/chrome/)
 * [Cygwin](https://www.cygwin.com/)
@@ -65,14 +139,14 @@ Useful resources:
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 * [Malzilla](http://malzilla.sourceforge.net/)
 
-### Process analysis
+#### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
 * [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 * [Process hacker](https://processhacker.sourceforge.io/)
 * [nodeJS](https://nodejs.org/)
 * [API monitor](https://www.rohitab.com/apimonitor)
 
-### Network
+#### Network
 * [Burp suite](https://portswigger.net/burp)
 * [Fiddler](https://www.telerik.com/fiddler)
 * [Network monitor](https://www.microsoft.com/en-us/download/details.aspx?id=4865)
@@ -80,7 +154,7 @@ Useful resources:
 * [DNS query sniffer](https://www.nirsoft.net/utils/dns_query_sniffer.html)
 * [TCP log viewer](https://www.nirsoft.net/utils/tcp_log_view.html)
 
-### Reversing
+#### Reversing
 * [Ghidra](https://ghidra-sre.org/)
 * [IDA](https://www.hex-rays.com/products/ida/support/download_freeware.shtml)
 * [PE-Bear](https://hshrzd.wordpress.com/pe-bear/)
