@@ -410,6 +410,7 @@
         - git clone https://github.com/blechschmidt/massdns
         - git clone https://github.com/andresriancho/w3af.git
         - git clone https://github.com/arthaud/git-dumper
+        - git clone https://github.com/mhaskar/RCEScanner
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
