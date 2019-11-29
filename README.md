@@ -139,6 +139,9 @@ project, it's just for having a reference)
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 * [Malzilla](http://malzilla.sourceforge.net/)
 
+#### Forensics
+* [Regshot](https://sourceforge.net/projects/regshot/)
+
 #### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
 * [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
@@ -166,3 +169,6 @@ project, it's just for having a reference)
 * [Dependency walker](http://www.dependencywalker.com/)
 * [PEStudio](https://www.winitor.com/get.html)
 * [Resource hacker](http://www.angusj.com/resourcehacker/)
+* [BinText](https://www.aldeid.com/wiki/BinText)
+* [SSView](https://www.mitec.cz/ssv.html)
+* [CFF Explorer](https://ntcore.com/?page_id=388)
