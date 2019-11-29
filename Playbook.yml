@@ -449,6 +449,10 @@
           - magic-wormhole
           - aclpwn
           - stegoveritas
+          - keystone-engine
+          - unicorn
+          - capstone
+          - ropper
         extra_args: --user
         executable: pip3
 
