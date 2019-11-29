@@ -37,19 +37,19 @@
     #     name: root
     #     password: "{{ password }}"
 
-    - name: Disable automatic repositories update
-      become: yes
-      replace:
-        path: /etc/apt/apt.conf.d/20auto-upgrades
-        regexp: 'APT::Periodic::Update-Package-Lists "1";'
-        replace: 'APT::Periodic::Update-Package-Lists "0";'
+    # - name: Disable automatic repositories update
+    #   become: yes
+    #   replace:
+    #     path: /etc/apt/apt.conf.d/20auto-upgrades
+    #     regexp: 'APT::Periodic::Update-Package-Lists "1";'
+    #     replace: 'APT::Periodic::Update-Package-Lists "0";'
 
-    - name: Disable automatic software update
-      become: yes
-      replace:
-        path: /etc/apt/apt.conf.d/20auto-upgrades
-        regexp: 'APT::Periodic::Unattended-Upgrade "1";'
-        replace: 'APT::Periodic::Unattended-Upgrade "0";'
+    # - name: Disable automatic software update
+    #   become: yes
+    #   replace:
+    #     path: /etc/apt/apt.conf.d/20auto-upgrades
+    #     regexp: 'APT::Periodic::Unattended-Upgrade "1";'
+    #     replace: 'APT::Periodic::Unattended-Upgrade "0";'
 
     - name: Wait for any possibly running unattended upgrade to finish
       become: yes
@@ -422,6 +422,7 @@
         - git clone https://github.com/lockedbyte/cryptovenom
         - git clone https://github.com/Ebryx/GitDump
         - git clone https://github.com/whid-injector/WHID
+        - git clone https://github.com/samirettali/ctf-scripts
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
