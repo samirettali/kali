@@ -98,6 +98,7 @@ These are the equivalent for Mozilla Firefox:
 #### Endpoint creation
 * [Beeceptor](https://beeceptor.com)
 * [Hookbin](https://hookbin.com)
+* [Requestbin](https://requestbin.com/)
 * [Webhook](https://webhook.site)
 * [dnsbin](http://dnsbin.zhack.ca)
 * [pinbin](http://pingb.in)
