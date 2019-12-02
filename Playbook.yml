@@ -164,6 +164,7 @@
 
         # Networking
         - aircrack-ng
+        - arping
         - dnschef
         - dsniff
         - fern-wifi-cracker
