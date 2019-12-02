@@ -171,6 +171,7 @@
         - ncat
         - netcat
         - nmap
+        - sbd
         - tor
         - tshark
         - wireshark
