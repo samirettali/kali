@@ -73,7 +73,10 @@ These are the equivalent for Mozilla Firefox:
 * [Integer factorization](jjalpertron.com.ar/ECM.HTM)
 * [dcode.fr](https://www.dcode.fr/tools-list)
 * [factordb.com](http://factordb.com)
+
+#### Regexes
 * [regex101](https://regex101.com)
+* [Debuggex](https://www.debuggex.com)
 
 #### Execute code
 * [tio.run](https://tio.run)
