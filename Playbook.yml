@@ -157,6 +157,7 @@
         - knockpy
         - whatweb
         - amass
+        - httprint
 
         # Miscellaneous
         - hexedit
@@ -471,7 +472,6 @@
         name: "{{ item }}"
         user_install: yes
       with_items:
-        - aquatone
         - evil-winrm
         - zsteg
 
@@ -480,6 +480,7 @@
       shell: "{{ item }}"
       with_items:
         - go get -u github.com/tomnomnom/httprobe
+        - go get github.com/michenriksen/aquatone
         - go get github.com/003random/getJS
         - go get github.com/astaxie/bat
         - go get github.com/ffuf/ffuf
