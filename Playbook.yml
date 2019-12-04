@@ -160,8 +160,10 @@
         - httprint
 
         # Miscellaneous
-        - hexedit
         - gridsite-clients      # url encoding/decoding
+        - hexedit
+        - jq
+        - rlwrap
 
         # Networking
         - aircrack-ng
