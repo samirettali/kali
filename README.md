@@ -122,8 +122,9 @@ These are the equivalent for Mozilla Firefox:
 * [Virustotal](https://www.virustotal.com/gui/home)
 
 #### Resources:
-* [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
+* [GTFOBins](https://gtfobins.github.io/)
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
+* [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
 
 # Windows tools
