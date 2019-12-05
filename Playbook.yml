@@ -352,14 +352,15 @@
         - git clone https://github.com/Boran/lusas
 
         # Enumeration
-        - git clone https://github.com/rebootuser/LinEnum
-        - git clone https://github.com/mzet-/linux-exploit-suggester
-        - git clone https://github.com/jondonas/linux-exploit-suggester-2
-        - git clone https://github.com/sleventyeleven/linuxprivchecker
-        - git clone https://github.com/pentestmonkey/unix-privesc-check
         - git clone https://github.com/0x646e78/linux-credential-harvester
+        - git clone https://github.com/PowerShellMafia/PowerSploit
         - git clone https://github.com/WazeHell/PE-Linux
         - git clone https://github.com/carlospolop/linux-privilege-escalation-awsome-script
+        - git clone https://github.com/jondonas/linux-exploit-suggester-2
+        - git clone https://github.com/mzet-/linux-exploit-suggester
+        - git clone https://github.com/pentestmonkey/unix-privesc-check
+        - git clone https://github.com/rebootuser/LinEnum
+        - git clone https://github.com/sleventyeleven/linuxprivchecker
         
         # Recognition   
         - git clone https://github.com/nahamsec/lazyrecon
