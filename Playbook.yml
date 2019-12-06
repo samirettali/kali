@@ -313,6 +313,7 @@
         - git clone https://github.com/fuzzdb-project/fuzzdb.git
         - git clone https://github.com/jeanphorn/wordlist/
         - git clone https://github.com/minimaxir/big-list-of-naughty-strings.git
+        - git clone https://github.com/napolux/paroleitaliane
         - git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
         - git clone https://github.com/xmendez/wfuzz.git
 
