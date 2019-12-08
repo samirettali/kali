@@ -354,6 +354,7 @@
 
         # Enumeration
         - git clone https://github.com/0x646e78/linux-credential-harvester
+        - git clone https://github.com/AonCyberLabs/Windows-Exploit-Suggester
         - git clone https://github.com/PowerShellMafia/PowerSploit
         - git clone https://github.com/WazeHell/PE-Linux
         - git clone https://github.com/carlospolop/linux-privilege-escalation-awsome-script
