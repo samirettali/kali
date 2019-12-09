@@ -125,6 +125,7 @@ These are the equivalent for Mozilla Firefox:
 
 #### Resources:
 * [GTFOBins](https://gtfobins.github.io/)
+* [LOLBAS](https://lolbas-project.github.io/)
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
 * [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
 * [Reverse shells cheatsheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
