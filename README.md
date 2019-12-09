@@ -37,8 +37,10 @@ Or download the packages from the websites.
 ## Usage
 To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository. After the automated setup
-process you just run `vagrant ssh` to connect to the virtual machine and you can
-use 
+process you just run `vagrant ssh` to connect to the virtual machine.
+
+If the provisioning fails because of Kali automatic upgrade process, just wait a
+bit and run `vagrant provision` to restart it.
 
 ---
 
