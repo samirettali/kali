@@ -419,6 +419,7 @@
         - git clone https://github.com/andresriancho/w3af.git
         - git clone https://github.com/arthaud/git-dumper
         - git clone https://github.com/mhaskar/RCEScanner
+        - git clone https://github.com/D35m0nd142/LFISuite
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
