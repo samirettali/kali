@@ -420,6 +420,7 @@
         - git clone https://github.com/arthaud/git-dumper
         - git clone https://github.com/mhaskar/RCEScanner
         - git clone https://github.com/D35m0nd142/LFISuite
+        - git clone https://github.com/J3wker/anti-CSRF_Token-Bruteforce
 
         # Data exfiltration 
         - git clone https://github.com/sensepost/DET
