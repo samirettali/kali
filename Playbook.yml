@@ -346,7 +346,7 @@
         # Cracking
         - git clone https://github.com/rebootuser/Hashmash
         - git clone https://github.com/bwall/HashPump
-        - git clone https://github.com/Talanor/findmyhash
+        - git clone https://github.com/frdmn/findmyhash
         - git clone https://github.com/Ganapati/RsaCtfTool
         - git clone https://github.com/Sjord/jwtcrack
         - git clone https://github.com/psypanda/hashID
