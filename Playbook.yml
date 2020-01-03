@@ -496,6 +496,7 @@
         - go get github.com/haccer/subjack
         - go get github.com/tomnomnom/meg
         - go get github.com/tomnomnom/waybackurls
+        - go get github.com/hakluke/hakrawler
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
         - rm -rf /home/{{ username.stdout }}/go
 
