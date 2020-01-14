@@ -435,6 +435,7 @@
         - git clone https://github.com/dxa4481/truffleHog
         - git clone https://github.com/whid-injector/WHID
         - git clone https://github.com/samirettali/ctf-scripts
+        - git clone https://github.com/samirettali/web-recon
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
