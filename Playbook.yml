@@ -202,6 +202,7 @@
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
+        - python-dnspython
 
     # Docker installation
     - name: Add Docker's GPG key
@@ -322,6 +323,7 @@
           - unicorn
           - capstone
           - ropper
+          - https://github.com/guelfoweb/knock/archive/knock4.zip
         extra_args: --user
         executable: pip3
 
@@ -521,4 +523,3 @@
         - git clone https://github.com/SecureAuthCorp/impacket
         - git clone https://github.com/samratashok/nishang
         - git clone https://github.com/Dhayalanb/windows-php-reverse-shell
-
