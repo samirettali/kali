@@ -65,6 +65,10 @@
       apt:
         upgrade: dist
 
+    - name: Fix for exim4
+      become: yes
+      shell: echo 'kali' > /etc/mailname
+
     - name: Install packages
       become: yes
       apt:
@@ -154,7 +158,6 @@
         - eyewitness
         - burpsuite
         - sqlmap
-        # - knockpy
         - whatweb
         - amass
         - httprint
@@ -199,10 +202,6 @@
 
         # Dependencies
         - libzip-dev            # for radare decompiler plugin
-        - build-essential       # bitwise
-        - libncurses5-dev       # bitwise
-        - libreadline-dev       # bitwise
-        - libcunit1-dev         # bitwise
 
     # Docker installation
     - name: Add Docker's GPG key
@@ -298,6 +297,87 @@
         - /home/{{ username.stdout }}/Resources
         - /home/{{ username.stdout }}/Tools
         - /home/{{ username.stdout }}/.bin
+
+    # FZF
+    # - name: Install fzf
+    #   shell: "{{ item }}"
+    #   with_items:
+    #       - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+    #       - ~/.fzf/install
+
+    # Vim plugins
+    # - name: Download vim plugins
+    #   shell: nvim +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +exit +exit +exit
+
+    # Install additional software from other package managers
+    - pip:
+        name:
+          - pynvim
+          - neovim
+          - stegcracker
+          - magic-wormhole
+          - aclpwn
+          - stegoveritas
+          - keystone-engine
+          - unicorn
+          - capstone
+          - ropper
+        extra_args: --user
+        executable: pip3
+
+    - pip:
+        name:
+          - pwntools
+          - scapy
+          - google_images_download
+        extra_args: --user
+        executable: pip2
+
+    - gem:
+        state: present
+        name: "{{ item }}"
+        user_install: yes
+      with_items:
+        - evil-winrm
+        - zsteg
+
+    # Install custom software
+    - name: Build GO tools
+      shell: "{{ item }}"
+      with_items:
+        - go get -u github.com/tomnomnom/httprobe
+        - go get github.com/michenriksen/aquatone
+        - go get github.com/003random/getJS
+        - go get github.com/astaxie/bat
+        - go get github.com/ffuf/ffuf
+        - go get github.com/haccer/subjack
+        - go get github.com/tomnomnom/meg
+        - go get github.com/tomnomnom/waybackurls
+        - go get github.com/hakluke/hakrawler
+        - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
+        - rm -rf /home/{{ username.stdout }}/go
+
+    - name: Install radare plugins
+      shell: "{{ item }}"
+      with_items:
+          - r2pm init
+          - r2pm install r2dec
+
+    - name: Install findomain
+      get_url:
+        url: https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
+        dest: /home/{{ username.stdout }}/.bin/findomain
+
+    - name: Download Stegsolve
+      get_url:
+        url: http://www.caesum.com/handbook/Stegsolve.jar
+        dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
+
+    - name: Standalone commands
+      shell: "{{ item }}"
+      with_items:
+        - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
+        # - stegoveritas_install_deps
 
     - name: Clone wordlists repositores
       shell: "{{ item }}"
@@ -442,83 +522,3 @@
         - git clone https://github.com/samratashok/nishang
         - git clone https://github.com/Dhayalanb/windows-php-reverse-shell
 
-    # FZF
-    # - name: Install fzf
-    #   shell: "{{ item }}"
-    #   with_items:
-    #       - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    #       - ~/.fzf/install
-
-    # Vim plugins
-    - name: Download vim plugins
-      shell: nvim +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +exit +exit +exit
-
-    # Install additional software from other package managers
-    - pip:
-        name:
-          - pynvim
-          - neovim
-          - stegcracker
-          - magic-wormhole
-          - aclpwn
-          - stegoveritas
-          - keystone-engine
-          - unicorn
-          - capstone
-          - ropper
-        extra_args: --user
-        executable: pip3
-
-    - pip:
-        name:
-          - pwntools
-          - scapy
-          - google_images_download
-        extra_args: --user
-        executable: pip2
-
-    - gem:
-        state: present
-        name: "{{ item }}"
-        user_install: yes
-      with_items:
-        - evil-winrm
-        - zsteg
-
-    # Install custom software
-    - name: Build GO tools
-      shell: "{{ item }}"
-      with_items:
-        - go get -u github.com/tomnomnom/httprobe
-        - go get github.com/michenriksen/aquatone
-        - go get github.com/003random/getJS
-        - go get github.com/astaxie/bat
-        - go get github.com/ffuf/ffuf
-        - go get github.com/haccer/subjack
-        - go get github.com/tomnomnom/meg
-        - go get github.com/tomnomnom/waybackurls
-        - go get github.com/hakluke/hakrawler
-        - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
-        - rm -rf /home/{{ username.stdout }}/go
-
-    - name: Install radare plugins
-      shell: "{{ item }}"
-      with_items:
-          - r2pm init
-          - r2pm install r2dec
-
-    - name: Install findomain
-      get_url:
-        url: https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
-        dest: /home/{{ username.stdout }}/.bin/findomain
-
-    - name: Download Stegsolve
-      get_url:
-        url: http://www.caesum.com/handbook/Stegsolve.jar
-        dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
-
-    - name: Standalone commands
-      shell: "{{ item }}"
-      with_items:
-        - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
-        # - stegoveritas_install_deps
