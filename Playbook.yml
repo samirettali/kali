@@ -518,6 +518,7 @@
         - git clone https://github.com/whid-injector/WHID
         - git clone https://github.com/samirettali/ctf-scripts
         - git clone https://github.com/samirettali/web-recon
+        - git clone https://github.com/trailofbits/onesixtyone
 
          # Windows
         - git clone https://github.com/SecureAuthCorp/impacket
