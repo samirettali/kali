@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "kalilinux/rolling"
+  config.vm.box = "debian/testing64"
   config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
 
   # SMB ports
@@ -15,13 +15,15 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 9000, host: 9000
   config.vm.network "forwarded_port", guest: 9001, host: 9001
   config.vm.network "forwarded_port", guest: 9002, host: 9002
+
+  # SSH settings
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
   config.vm.provider "virtualbox" do |vb|
 
     # Change the virtual machine name
-    vb.name = "Kali"
+    vb.name = "CTF"
 
     # Don't display the VirtualBox GUI when booting the machine
     vb.gui = false

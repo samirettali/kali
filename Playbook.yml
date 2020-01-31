@@ -1,5 +1,5 @@
 ---
-- name: Kali Linux CTF provisioning
+- name: CTF VM provisioning
   hosts: all
 
   vars_prompt:
@@ -54,6 +54,39 @@
     - name: Wait for any possibly running unattended upgrade to finish
       become: yes
       raw: systemd-run --property="After=apt-daily.service apt-daily-upgrade.service" --wait /bin/true
+
+    - name: Update repositories
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Install gnupg
+      become: yes
+      apt:
+        name: gnupg
+
+    - name: Add kali repositories and key
+      become: yes
+      shell: "{{ item }}"
+      with_items:
+        - echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list
+        - wget 'https://archive.kali.org/archive-key.asc'
+        - apt-key add archive-key.asc
+        - rm archive-key.asc
+
+    - name: Update repositories
+      become: yes
+      apt:
+        update_cache: yes
+
+    - name: Set packages priorities
+      become: yes
+      copy:
+        content: |
+                 Package: *
+                 Pin: release a=kali-rolling
+                 Pin-Priority: 50
+        dest: /etc/apt/preferences.d/kali.pref
 
     - name: Update repositories
       become: yes
@@ -119,7 +152,7 @@
         - checksec
 
         # Bruteforce
-        # - bkhive
+        - samdump2
         - crackmapexec
         - crunch
         - fcrackzip
@@ -201,7 +234,8 @@
         - nikto
 
         # Dependencies
-        - libzip-dev            # for radare decompiler plugin
+        - libzip-dev            # radare decompiler plugin
+        - python-argcomplete    # golismero
         - python-dnspython
 
     # Docker installation
