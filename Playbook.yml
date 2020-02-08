@@ -158,6 +158,7 @@
         - fcrackzip
         - hydra
         - john
+        - cewl
         - wordlists
 
         # Exploiting
