@@ -23,8 +23,6 @@
       local_action: command whoami
       register: username
 
-    - debug: var=username
-
     # - name: Change user password
     #   become: yes
     #   user:
@@ -60,39 +58,6 @@
       apt:
         update_cache: yes
 
-    - name: Install gnupg
-      become: yes
-      apt:
-        name: gnupg
-
-    - name: Add kali repositories and key
-      become: yes
-      shell: "{{ item }}"
-      with_items:
-        - echo 'deb https://http.kali.org/kali kali-rolling main non-free contrib' > /etc/apt/sources.list.d/kali.list
-        - wget 'https://archive.kali.org/archive-key.asc'
-        - apt-key add archive-key.asc
-        - rm archive-key.asc
-
-    - name: Update repositories
-      become: yes
-      apt:
-        update_cache: yes
-
-    - name: Set packages priorities
-      become: yes
-      copy:
-        content: |
-                 Package: *
-                 Pin: release a=kali-rolling
-                 Pin-Priority: 50
-        dest: /etc/apt/preferences.d/kali.pref
-
-    - name: Update repositories
-      become: yes
-      apt:
-        update_cache: yes
-
     - name: Upgrade packages
       become: yes
       apt:
@@ -118,6 +83,7 @@
         - dhex
         - entr
         - fd-find
+        - flake8
         - fzf
         - git
         - golang
@@ -152,13 +118,13 @@
         - checksec
 
         # Bruteforce
-        - samdump2
+        - cewl
         - crackmapexec
         - crunch
         - fcrackzip
         - hydra
         - john
-        - cewl
+        - samdump2
         - wordlists
 
         # Exploiting
@@ -167,34 +133,34 @@
 
         # Forensics
         - audacity
-        - sonic-visualiser
         - binwalk
         - exiftool
         - foremost
         - libguestfs-tools
-        - qsstv
-        - volatility
         - pngcheck
+        - qsstv
+        - sonic-visualiser
         - steghide
+        - volatility
         - zbar-tools
 
         # Fuzzing and discovery
         - dirbuster
         - gobuster
-        - wfuzz
         - sublist3r
+        - wfuzz
 
         # Information gathering
         - dnsutils
         - whois
 
         # Web tools
-        - eyewitness
+        - amass
         - burpsuite
+        - eyewitness
+        - httprint
         - sqlmap
         - whatweb
-        - amass
-        - httprint
 
         # Miscellaneous
         - gridsite-clients      # url encoding/decoding
@@ -218,11 +184,11 @@
         - wireshark
 
         # Reversing
+        - dex2jar
         - gdb
+        - ltrace
         - radare2
         - strace
-        - ltrace
-        - dex2jar
 
         # Samba
         - cifs-utils
@@ -236,12 +202,14 @@
 
         # Dependencies
         - libzip-dev            # radare decompiler plugin
-        - python-argcomplete    # golismero
+        # - python-argcomplete    # golismero
         - python-dnspython
 
     # Docker installation
     - name: Add Docker's GPG key
       become: yes
+      args:
+        warn: false
       shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
     - name: Add Docker's repository
@@ -348,25 +316,25 @@
     # Install additional software from other package managers
     - pip:
         name:
-          - pynvim
-          - neovim
-          - stegcracker
-          - magic-wormhole
           - aclpwn
-          - stegoveritas
-          - keystone-engine
-          - unicorn
           - capstone
+          - keystone-engine
+          - magic-wormhole
+          - neovim
+          - pynvim
           - ropper
+          - stegcracker
+          - stegoveritas
+          - unicorn
           - https://github.com/guelfoweb/knock/archive/knock4.zip
         extra_args: --user
         executable: pip3
 
     - pip:
         name:
+          - google_images_download
           - pwntools
           - scapy
-          - google_images_download
         extra_args: --user
         executable: pip2
 
@@ -380,19 +348,20 @@
 
     # Install custom software
     - name: Build GO tools
+      args:
+        warn: false
       shell: "{{ item }}"
       with_items:
+        - go get -u github.com/003random/getJS
+        - go get -u github.com/astaxie/bat
+        - go get -u github.com/ffuf/ffuf
+        - go get -u github.com/haccer/subjack
+        - go get -u github.com/hakluke/hakrawler
+        - go get -u github.com/michenriksen/aquatone
         - go get -u github.com/tomnomnom/httprobe
-        - go get github.com/michenriksen/aquatone
-        - go get github.com/003random/getJS
-        - go get github.com/astaxie/bat
-        - go get github.com/ffuf/ffuf
-        - go get github.com/haccer/subjack
-        - go get github.com/tomnomnom/meg
-        - go get github.com/tomnomnom/waybackurls
-        - go get github.com/hakluke/hakrawler
+        - go get -u github.com/tomnomnom/meg
+        - go get -u github.com/tomnomnom/waybackurls
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
-        - rm -rf /home/{{ username.stdout }}/go
 
     - name: Install radare plugins
       shell: "{{ item }}"
@@ -411,6 +380,8 @@
         dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
 
     - name: Standalone commands
+      args:
+        warn: false
       shell: "{{ item }}"
       with_items:
         - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
@@ -421,18 +392,18 @@
       args:
         chdir: /home/{{ username.stdout }}/Wordlists
       with_items:
-        - git clone https://github.com/1N3/IntruderPayloads
-        - git clone https://github.com/danielmiessler/RobotsDisallowed.git
-        - git clone https://github.com/danielmiessler/SecLists.git
-        - git clone https://github.com/dustyfresh/dictionaries
-        - git clone https://github.com/dwyl/english-words
-        - git clone https://github.com/foospidy/payloads.git
-        - git clone https://github.com/fuzzdb-project/fuzzdb.git
-        - git clone https://github.com/jeanphorn/wordlist/
-        - git clone https://github.com/minimaxir/big-list-of-naughty-strings.git
-        - git clone https://github.com/napolux/paroleitaliane
-        - git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
-        - git clone https://github.com/xmendez/wfuzz.git
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/1N3/IntruderPayloads
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/danielmiessler/RobotsDisallowed
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/danielmiessler/SecLists
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/dustyfresh/dictionaries
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/dwyl/english-words
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/foospidy/payloads
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/fuzzdb-project/fuzzdb
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/jeanphorn/wordlist/
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/minimaxir/big-list-of-naughty-strings
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/napolux/paroleitaliane
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/swisskyrepo/PayloadsAllTheThings
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/xmendez/wfuzz
 
     - name: Download rockyou
       get_url:
@@ -444,17 +415,17 @@
       args:
         chdir: /home/{{ username.stdout }}/Resources
       with_items:
-        - git clone https://github.com/zardus/ctf-tools
-        - git clone https://github.com/apsdehal/awesome-ctf
-        - git clone https://github.com/JohnHammond/ctf-katana
-        - git clone https://github.com/DominicBreuker/stego-toolkit
-        - git clone https://github.com/enaqx/awesome-pentest
-        - git clone https://github.com/jivoi/pentest
-        - git clone https://github.com/vitalysim/Awesome-Hacking-Resources
-        - git clone https://github.com/lanjelot/ctfs
-        - git clone https://github.com/trimstray/the-book-of-secret-knowledge
-        - git clone https://github.com/EdOverflow/can-i-take-over-xyz
-        - git clone https://github.com/sehno/Bug-bounty
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/DominicBreuker/stego-toolkit
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/EdOverflow/can-i-take-over-xyz
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/JohnHammond/ctf-katana
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/apsdehal/awesome-ctf
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/enaqx/awesome-pentest
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/jivoi/pentest
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/lanjelot/ctfs
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sehno/Bug-bounty
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/trimstray/the-book-of-secret-knowledge
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/vitalysim/Awesome-Hacking-Resources
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/zardus/ctf-tools
 
     - name: Clone tools repositories
       shell: "{{ item }}"
@@ -462,100 +433,100 @@
         chdir: /home/{{ username.stdout }}/Tools
       with_items:
         # Cracking
-        - git clone https://github.com/rebootuser/Hashmash
-        - git clone https://github.com/bwall/HashPump
-        - git clone https://github.com/frdmn/findmyhash
-        - git clone https://github.com/Ganapati/RsaCtfTool
-        - git clone https://github.com/Sjord/jwtcrack
-        - git clone https://github.com/psypanda/hashID
-        - git clone https://github.com/Boran/lusas
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Boran/lusas
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Ganapati/RsaCtfTool
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Sjord/jwtcrack
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/bwall/HashPump
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/frdmn/findmyhash
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/psypanda/hashID
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/rebootuser/Hashmash
 
         # Enumeration
-        - git clone https://github.com/0x646e78/linux-credential-harvester
-        - git clone https://github.com/AonCyberLabs/Windows-Exploit-Suggester
-        - git clone https://github.com/PowerShellMafia/PowerSploit
-        - git clone https://github.com/WazeHell/PE-Linux
-        - git clone https://github.com/carlospolop/linux-privilege-escalation-awsome-script
-        - git clone https://github.com/jondonas/linux-exploit-suggester-2
-        - git clone https://github.com/mzet-/linux-exploit-suggester
-        - git clone https://github.com/pentestmonkey/unix-privesc-check
-        - git clone https://github.com/rebootuser/LinEnum
-        - git clone https://github.com/sleventyeleven/linuxprivchecker
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/0x646e78/linux-credential-harvester
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/AonCyberLabs/Windows-Exploit-Suggester
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/PowerShellMafia/PowerSploit
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/WazeHell/PE-Linux
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/carlospolop/linux-privilege-escalation-awsome-script
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/jondonas/linux-exploit-suggester-2
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/mzet-/linux-exploit-suggester
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/pentestmonkey/unix-privesc-check
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/rebootuser/LinEnum
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sleventyeleven/linuxprivchecker
         
         # Recognition   
-        - git clone https://github.com/nahamsec/lazyrecon
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/nahamsec/lazyrecon
 
         # Exploitation
-        - git clone https://github.com/commixproject/commix
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/commixproject/commix
 
         # Post exploitation
-        - git clone https://github.com/mossberg/poet
-        - git clone https://github.com/1N3/PrivEsc
-        - git clone https://github.com/0x00-0x00/ShellPop
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/0x00-0x00/ShellPop
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/1N3/PrivEsc
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/mossberg/poet
 
         # File exfiltration
-        - git clone https://github.com/Arno0x/DNSExfiltrator
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Arno0x/DNSExfiltrator
 
         # Git
-        - git clone https://github.com/dxa4481/truffleHog
-        - git clone https://github.com/michenriksen/gitrob
-        - git clone https://github.com/Ebryx/GitDump
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Ebryx/GitDump
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/dxa4481/truffleHog
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/michenriksen/gitrob
 
         # Process monitoring
-        - git clone https://github.com/DominicBreuker/pspy
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/DominicBreuker/pspy
 
         # RAT
-        - git clone https://github.com/n1nj4sec/pupy
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/n1nj4sec/pupy
 
         # Information gathering
-        - git clone https://github.com/s0md3v/Striker
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/s0md3v/Striker
 
         # PHP revershe shells
-        - git clone https://github.com/flozz/p0wny-shell
-        - git clone https://github.com/pentestmonkey/php-reverse-shell
-        - git clone https://github.com/epinna/weevely3
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/epinna/weevely3
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/flozz/p0wny-shell
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/pentestmonkey/php-reverse-shell
         
         # DNS
-        - git clone https://github.com/Crypt0s/FakeDns
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Crypt0s/FakeDns
 
         # Discovery
-        - git clone https://github.com/maurosoria/dirsearch
-        - git clone https://github.com/s0md3v/Arjun
-        - git clone https://github.com/subfinder/subfinder
-        - git clone https://github.com/GerbenJavado/LinkFinder
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/GerbenJavado/LinkFinder
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/maurosoria/dirsearch
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/s0md3v/Arjun
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/subfinder/subfinder
 
         # Wireless
-        - git clone https://github.com/FluxionNetwork/fluxion
-        - git clone https://github.com/derv82/wifite2
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/FluxionNetwork/fluxion
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/derv82/wifite2
 
         # OSINT
-        - git clone https://github.com/martinvigo/email2phonenumber
-        - git clone https://github.com/thelinuxchoice/userrecon
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/martinvigo/email2phonenumber
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/thelinuxchoice/userrecon
 
         # Web
-        - git clone https://github.com/maaaaz/webscreenshot
-        - git clone https://github.com/ticarpi/jwt_tool
-        - git clone https://github.com/blechschmidt/massdns
-        - git clone https://github.com/andresriancho/w3af.git
-        - git clone https://github.com/arthaud/git-dumper
-        - git clone https://github.com/mhaskar/RCEScanner
-        - git clone https://github.com/D35m0nd142/LFISuite
-        - git clone https://github.com/J3wker/anti-CSRF_Token-Bruteforce
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/D35m0nd142/LFISuite
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/J3wker/anti-CSRF_Token-Bruteforce
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/andresriancho/w3af
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/arthaud/git-dumper
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/blechschmidt/massdns
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/maaaaz/webscreenshot
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/mhaskar/RCEScanner
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ticarpi/jwt_tool
 
         # Data exfiltration 
-        - git clone https://github.com/sensepost/DET
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sensepost/DET
 
         # Misc
-        - git clone https://github.com/andrew-d/static-binaries
-        - git clone https://github.com/j3ssie/Osmedeus
-        - git clone https://github.com/mpowa705/Simple-Backdoor
-        - git clone https://github.com/lockedbyte/cryptovenom
-        - git clone https://github.com/whid-injector/WHID
-        - git clone https://github.com/samirettali/ctf-scripts
-        - git clone https://github.com/samirettali/web-recon
-        - git clone https://github.com/trailofbits/onesixtyone
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/andrew-d/static-binaries
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/j3ssie/Osmedeus
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/lockedbyte/cryptovenom
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/mpowa705/Simple-Backdoor
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/samirettali/ctf-scripts
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/samirettali/web-recon
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/trailofbits/onesixtyone
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/whid-injector/WHID
 
          # Windows
-        - git clone https://github.com/SecureAuthCorp/impacket
-        - git clone https://github.com/samratashok/nishang
-        - git clone https://github.com/Dhayalanb/windows-php-reverse-shell
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Dhayalanb/windows-php-reverse-shell
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/SecureAuthCorp/impacket
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/samratashok/nishang
