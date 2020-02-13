@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "debian/testing64"
+  config.vm.box = "kalilinux/rolling"
   config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
 
   # SMB ports
@@ -12,9 +12,6 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 1337, host: 1337
   config.vm.network "forwarded_port", guest: 1338, host: 1338
   config.vm.network "forwarded_port", guest: 1339, host: 1339
-  config.vm.network "forwarded_port", guest: 9000, host: 9000
-  config.vm.network "forwarded_port", guest: 9001, host: 9001
-  config.vm.network "forwarded_port", guest: 9002, host: 9002
 
   # SSH settings
   config.ssh.forward_agent = true
@@ -35,17 +32,17 @@ Vagrant.configure("2") do |config|
     vb.cpus = 8
 
     # Set graphics card type:
-    vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxsvga"]
+    # vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxsvga"]
 
     # Set the video memory to 128Mb:
-    vb.customize ["modifyvm", :id, "--vram", "128"]
+    # vb.customize ["modifyvm", :id, "--vram", "128"]
 
     # Enable 3D acceleration:
-    vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
+    # vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
 
     # Integration with desktop
-    vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-    vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
+    # vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+    # vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
   end
 
   config.vm.provision "ansible_local" do |ansible|
