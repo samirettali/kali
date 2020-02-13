@@ -318,6 +318,7 @@
         name:
           - aclpwn
           - capstone
+          - jedi
           - keystone-engine
           - magic-wormhole
           - neovim
