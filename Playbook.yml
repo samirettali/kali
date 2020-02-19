@@ -65,7 +65,7 @@
 
     - name: Fix for exim4
       become: yes
-      shell: echo 'kali' > /etc/mailname
+      shell: echo $(hostname) > /etc/mailname
 
     - name: Install packages
       become: yes
