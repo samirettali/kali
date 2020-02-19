@@ -375,6 +375,7 @@
 
     - name: Install kalitorify
       shell: "{{ item }}"
+      become: yes
       with_items:
         - cd kalitorofy
         - make install
