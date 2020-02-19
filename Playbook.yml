@@ -302,16 +302,11 @@
         - /home/{{ username.stdout }}/Tools
         - /home/{{ username.stdout }}/.bin
 
-    # FZF
-    # - name: Install fzf
-    #   shell: "{{ item }}"
-    #   with_items:
-    #       - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-    #       - ~/.fzf/install
-
-    # Vim plugins
-    # - name: Download vim plugins
-    #   shell: nvim +PlugUpdate +PlugUpgrade +UpdateRemotePlugins +exit +exit +exit
+    - name: Install fzf
+      shell: "{{ item }}"
+      with_items:
+          - git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+          - ~/.fzf/install
 
     # Install additional software from other package managers
     - pip:
@@ -386,7 +381,7 @@
       shell: "{{ item }}"
       with_items:
         - wget -q -O- https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
-        # - stegoveritas_install_deps
+        - stegoveritas_install_deps
 
     - name: Clone wordlists repositores
       shell: "{{ item }}"
