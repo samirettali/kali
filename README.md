@@ -1,6 +1,5 @@
-# My VM for CTFs
-This is my VM for CTFs, it is based on Debian Sid and uses Kali's repos for some
-tools.
+# My Kali setup for CTFs
+This is my Kali Linux setup for CTFs.
 
 It uses Vagrant to create the virtual machine on Virtualbox and Ansible to
 install and configure the software and the tools.
@@ -41,7 +40,7 @@ To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository. After the automated setup
 process you just run `vagrant ssh` to connect to the virtual machine.
 
----
+k--
 
 #### Browser extensions
 I use Google Chrome, with these extensions:
