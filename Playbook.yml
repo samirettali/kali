@@ -371,7 +371,7 @@
         dest: /home/{{ username.stdout }}/.bin/findomain
 
     - name: Download kalitorify
-      shell: git clone git clone https://github.com/brainfucksec/kalitorify.git
+      shell: git clone https://github.com/brainfucksec/kalitorify.git
 
     - name: Install kalitorify
       shell: "{{ item }}"
