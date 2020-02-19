@@ -4,8 +4,8 @@ This is my Kali Linux setup for CTFs.
 It uses Vagrant to create the virtual machine on Virtualbox and Ansible to
 install and configure the software and the tools.
 
-In the `Vagrantfile` there are the settings for the VM, I've assigned 8 cores
-, 8 gigabytes of RAM and I forwarded some ports.
+In the `Vagrantfile` there are the settings for the VM, I've assigned 8 cores,
+8 gigabytes of RAM and I forwarded some ports.
 
 You can read the `Playbook.yml` file that contains all the tools that will be
 installed. Some of them are from the official repositories, some are compiled
