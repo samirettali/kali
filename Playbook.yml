@@ -526,3 +526,20 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Dhayalanb/windows-php-reverse-shell
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/SecureAuthCorp/impacket
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/samratashok/nishang
+
+    - name: Copy wordlists in common location
+      shell: "{{ item }}"
+      become: yes
+      with_items:
+          - mkdir -p /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/rockyou.txt /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Discovery/Web-Content/raft* /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Usernames/top-usernames-shortlist.txt /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Passwords/probable* /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Passwords/Common-Credentials/best1050.txt /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Passwords/Common-Credentials/100k-most-used-passwords-NCSC.txt /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Passwords/Common-Credentials/10k-most-common.txt /usr/share/wordlists
+          - cp /home/vagrant/Wordlists/SecLists/Fuzzing/big-list-of-naughty-strings.txt /usr/share/wordlists
+          - cat /usr/share/wordlists/raft-small-*-lower* > /usr/share/wordlists/raft-small.txt 
+          - cat /usr/share/wordlists/raft-medium-*-lower* > /usr/share/wordlists/raft-medium.txt 
+          - cat /usr/share/wordlists/raft-large-*-lower* > /usr/share/wordlists/raft-large.txt 
