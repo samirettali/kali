@@ -370,6 +370,16 @@
         url: https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux
         dest: /home/{{ username.stdout }}/.bin/findomain
 
+    - name: Download kalitorify
+      shell: git clone git clone https://github.com/brainfucksec/kalitorify.git
+
+    - name: Install kalitorify
+      shell: "{{ item }}"
+      with_items:
+        - cd kalitorofy
+        - make install
+        - rm -rf kalitorify
+
     - name: Download Stegsolve
       get_url:
         url: http://www.caesum.com/handbook/Stegsolve.jar
