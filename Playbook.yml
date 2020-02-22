@@ -509,6 +509,7 @@
         # OSINT
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/martinvigo/email2phonenumber
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/thelinuxchoice/userrecon
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sherlock-project/sherlock
 
         # Web
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/D35m0nd142/LFISuite
