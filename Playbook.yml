@@ -101,6 +101,7 @@
         - python3-pip
         - ranger
         - ruby
+        - sqlite3
         - tmux
         - tree
         - wget
