@@ -124,6 +124,7 @@
         - fcrackzip
         - hydra
         - john
+        - hashcat
         - samdump2
         - wordlists
 
@@ -206,40 +207,40 @@
         - python-dnspython
 
     # Docker installation
-    - name: Add Docker's GPG key
-      become: yes
-      args:
-        warn: false
-      shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    # - name: Add Docker's GPG key
+    #   become: yes
+    #   args:
+    #     warn: false
+    #   shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
-    - name: Add Docker's repository
-      become: yes
-      shell: echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
+    # - name: Add Docker's repository
+    #   become: yes
+    #   shell: echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
 
-    - name: Update repositories
-      become: yes
-      apt:
-        update_cache: yes
+    # - name: Update repositories
+    #   become: yes
+    #   apt:
+    #     update_cache: yes
 
-    - name: Install Docker
-      become: yes
-      apt:
-        name: "{{ packages }}"
-      vars:
-        packages:
-        - docker-ce
-        - docker-compose
+    # - name: Install Docker
+    #   become: yes
+    #   apt:
+    #     name: "{{ packages }}"
+    #   vars:
+    #     packages:
+    #     - docker-ce
+    #     - docker-compose
 
-    - name: Enable Docker
-      become: yes
-      systemd:
-        name: docker
-        state: started
-        enabled: yes
+    # - name: Enable Docker
+    #   become: yes
+    #   systemd:
+    #     name: docker
+    #     state: started
+    #     enabled: yes
 
-    - name: Add user to Docker group
-      become: yes
-      shell: usermod -a -G docker {{ username.stdout }}
+    # - name: Add user to Docker group
+    #   become: yes
+    #   shell: usermod -a -G docker {{ username.stdout }}
 
     # Configure services for metasploit
     - name: Enable apache
@@ -460,6 +461,9 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/rebootuser/LinEnum
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sleventyeleven/linuxprivchecker
         
+        # Bruteforce
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ztgrace/changeme
+
         # Recognition   
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/nahamsec/lazyrecon
 
