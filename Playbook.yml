@@ -143,6 +143,7 @@
         - qsstv
         - sonic-visualiser
         - steghide
+        - python3-pyinstaller
         - volatility
         - zbar-tools
 
@@ -381,6 +382,7 @@
       with_items:
         - cd kalitorofy
         - make install
+        - cd ..
         - rm -rf kalitorify
 
     - name: Download Stegsolve
@@ -470,6 +472,7 @@
 
         # Exploitation
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/commixproject/commix
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/gaul/awesome-ld-preload
 
         # Post exploitation
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/0x00-0x00/ShellPop
