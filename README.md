@@ -40,7 +40,7 @@ To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository. After the automated setup
 process you just run `vagrant ssh` to connect to the virtual machine.
 
-k--
+---
 
 #### Browser extensions
 I use Google Chrome, with these extensions:
@@ -120,6 +120,7 @@ These are the equivalent for Mozilla Firefox:
 * [CyberChef](https://gchq.github.io/CyberChef)
 * [ShellStorm](http://shell-storm.org/shellcode)
 * [Virustotal](https://www.virustotal.com/gui/home)
+* [OSINT Framework](https://osintframework.com/)
 
 #### Resources:
 * [GTFOBins](https://gtfobins.github.io/)
