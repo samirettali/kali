@@ -87,10 +87,11 @@ These are the equivalent for Mozilla Firefox:
 * [curl-to-Go](https://mholt.github.io/curl-to-go)
 * [curlbuilder](https://curlbuilder.com)
 
-#### Exploits
+#### Exploitation
 * [Sploitus](https://sploitus.com)
 * [cve-mitre](https://cve.mitre.org)
 * [exploit-db](https://www.exploit-db.com)
+* [onegadget.me](https://onegadget.me/)
 
 #### Cracking
 * [CrackStation](https://crackstation.net)
