@@ -504,6 +504,7 @@
         
         # DNS
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Crypt0s/FakeDns
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/elceef/dnstwist
 
         # Discovery
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/GerbenJavado/LinkFinder
