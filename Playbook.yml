@@ -143,6 +143,7 @@
         - qsstv
         - sonic-visualiser
         - steghide
+        - python-oletools
         - python3-pyinstaller
         - volatility
         - zbar-tools
