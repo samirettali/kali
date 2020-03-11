@@ -38,7 +38,7 @@ To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository. After the automated setup
 process you just run `vagrant ssh` to connect to the virtual machine.
 
-#### Browser extensions
+# Browser extensions
 I use Google Chrome, with these extensions:
 
 * [Web Developer](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): Toolbar with various web tools
@@ -60,7 +60,7 @@ These are the equivalent for Mozilla Firefox:
 * [Wappalizer](https://addons.mozilla.org/it/firefox/addon/wappalyzer/): Analyze web applications
 * [Enhanced Image Viewer](https://addons.mozilla.org/it/firefox/addon/sblask-enhanced-image-viewer/)
 
-## Online tools
+# Online tools
 
 #### Cryptography
 * [Boxentrix](https://www.boxentriq.com/code-breaking)
