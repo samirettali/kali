@@ -33,14 +33,10 @@ $ brew cask install vagrant virtualbox xquartz
 
 Or download the packages from the websites.
 
----
-
 ## Usage
 To download and build the virtual machine you just have to run the command
 `vagrant up` inside this repository. After the automated setup
 process you just run `vagrant ssh` to connect to the virtual machine.
-
----
 
 #### Browser extensions
 I use Google Chrome, with these extensions:
