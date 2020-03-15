@@ -417,6 +417,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/napolux/paroleitaliane
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/swisskyrepo/PayloadsAllTheThings
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/xmendez/wfuzz
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/first20hours/google-10000-english
 
     - name: Download rockyou
       get_url:
@@ -486,6 +487,7 @@
 
         # Git
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Ebryx/GitDump
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/internetwache/GitTools
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/dxa4481/truffleHog
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/michenriksen/gitrob
 
