@@ -1,7 +1,10 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "kalilinux/rolling"
-  config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
+  config.vm.box_version = "2019.4.0"
+  config.vm.box_check_update = false
+
+  config.vm.network "private_network", ip: "10.0.0.2"
 
   # SMB ports
   config.vm.network "forwarded_port", guest: 135, host: 135
@@ -18,7 +21,6 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_x11 = true
 
   config.vm.provider "virtualbox" do |vb|
-
     # Change the virtual machine name
     vb.name = "CTF"
 
@@ -30,19 +32,6 @@ Vagrant.configure("2") do |config|
 
     # Customize the amount of cpus on the VM:
     vb.cpus = 8
-
-    # Set graphics card type:
-    # vb.customize ["modifyvm", :id, "--graphicscontroller", "vboxsvga"]
-
-    # Set the video memory to 128Mb:
-    # vb.customize ["modifyvm", :id, "--vram", "128"]
-
-    # Enable 3D acceleration:
-    # vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-
-    # Integration with desktop
-    # vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
-    # vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
   end
 
   config.vm.provision "ansible_local" do |ansible|
