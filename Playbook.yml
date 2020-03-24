@@ -473,6 +473,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/pentestmonkey/unix-privesc-check
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/rebootuser/LinEnum
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sleventyeleven/linuxprivchecker
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/NotSoSecure/docker_fetch
         
         # Bruteforce
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ztgrace/changeme
