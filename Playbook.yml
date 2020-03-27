@@ -369,7 +369,6 @@
         - go get -u github.com/tomnomnom/assetfinder
         - go get -u github.com/tomnomnom/meg
         - go get -u github.com/tomnomnom/waybackurls
-        - go get -u lukechampine.com/jsteg
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
 
     - name: Install radare plugins
@@ -399,6 +398,11 @@
       get_url:
         url: http://www.caesum.com/handbook/Stegsolve.jar
         dest: /home/{{ username.stdout }}/.bin/stegsolve.jar
+
+    - name: Download Jsteg
+      get_url:
+        url: https://github.com/lukechampine/jsteg/releases/download/v0.1.0/jsteg-linux-amd64
+        dest: /home/{{ username.stdout }}/.bin/jsteg
 
     - name: Standalone commands
       args:
