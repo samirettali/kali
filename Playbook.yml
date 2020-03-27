@@ -430,6 +430,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/swisskyrepo/PayloadsAllTheThings
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/xmendez/wfuzz
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/first20hours/google-10000-english
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/NotSoSecure/password_cracking_rules
 
     - name: Download rockyou
       get_url:
