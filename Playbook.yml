@@ -567,6 +567,9 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/trailofbits/onesixtyone
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/whid-injector/WHID
 
+        # Steganography
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/evyatarmeged/stegextract
+
          # Windows
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Dhayalanb/windows-php-reverse-shell
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/SecureAuthCorp/impacket
