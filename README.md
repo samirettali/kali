@@ -105,7 +105,6 @@ These are the equivalent for Mozilla Firefox:
 
 #### Web stuff
 * [CachedView](https://cachedview.com)
-* [Unicode steganography ](https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder)
 * [guballa](https://www.guballa.de/substitution-solver)
 * [jwt.io](https://jwt.io)
 
@@ -126,6 +125,10 @@ These are the equivalent for Mozilla Firefox:
 * [List of magic numbers](https://en.wikipedia.org/wiki/List_of_file_signatures)
 * [Reverse shells cheatsheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
+
+#### Steganography:
+* [Unicode steganography ](https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder)
+* [Unicode zero-width steganography](https://330k.github.io/misc_tools/unicode_steganography.html)
 
 # Windows tools
 These are the tools that I use on my Windows 10 VM (it's separate from this
