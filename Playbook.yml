@@ -433,6 +433,8 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/NotSoSecure/password_cracking_rules
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/imsky/wordlists
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/xaviershay/mnemonicker-wordlist
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/umpirsky/country-list
 
     - name: Download rockyou
       get_url:
