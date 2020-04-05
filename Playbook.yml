@@ -171,6 +171,7 @@
         - hexedit
         - jq
         - rlwrap
+        - fldigi                # radio decoding
 
         # Networking
         - aircrack-ng
