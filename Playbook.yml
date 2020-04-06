@@ -442,6 +442,11 @@
         url: https://github.com/brannondorsey/naive-hashcat/releases/download/data/rockyou.txt
         dest: /home/{{ username.stdout }}/Wordlists/rockyou.txt
 
+    - name: Download crackstation
+      get_url:
+        url: https://crackstation.net/files/crackstation-human-only.txt.gz
+        dest: /home/{{ username.stdout }}/Wordlists/crackstation-human-only.txt
+
     - name: Clone resources repositories
       shell: "{{ item }}"
       args:
