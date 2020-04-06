@@ -123,9 +123,10 @@
         - crackmapexec
         - crunch
         - fcrackzip
+        - hashcat
         - hydra
         - john
-        - hashcat
+        - pack
         - samdump2
         - wordlists
 
