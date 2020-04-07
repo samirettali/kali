@@ -491,6 +491,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/rebootuser/LinEnum
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/sleventyeleven/linuxprivchecker
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/NotSoSecure/docker_fetch
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/Tib3rius/AutoRecon
         
         # Bruteforce
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ztgrace/changeme
