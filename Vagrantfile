@@ -4,7 +4,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_version = "2019.4.0"
   config.vm.box_check_update = false
 
-  config.vm.network "private_network", ip: "10.0.0.2"
+  config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
 
   # SMB ports
   config.vm.network "forwarded_port", guest: 135, host: 135
@@ -37,5 +37,4 @@ Vagrant.configure("2") do |config|
   config.vm.provision "ansible_local" do |ansible|
     ansible.playbook = "Playbook.yml"
   end
-
 end
