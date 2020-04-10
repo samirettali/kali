@@ -516,6 +516,8 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/internetwache/GitTools
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/dxa4481/truffleHog
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/michenriksen/gitrob
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/anshumanbh/git-all-secrets
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/auth0/repo-supervisor
 
         # Process monitoring
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/DominicBreuker/pspy
