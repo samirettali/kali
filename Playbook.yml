@@ -562,6 +562,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/arthaud/git-dumper
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/blechschmidt/massdns
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/mhaskar/RCEScanner
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/codingo/crithit
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ticarpi/jwt_tool
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/andreafortuna/MITMInjector
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/thelinuxchoice/saycheese
