@@ -371,6 +371,7 @@
         - go get -u github.com/tomnomnom/assetfinder
         - go get -u github.com/tomnomnom/meg
         - go get -u github.com/tomnomnom/waybackurls
+        - go get -u github.com/tomnomnom/unfurl
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
 
     - name: Install radare plugins
