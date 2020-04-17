@@ -586,6 +586,7 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/whid-injector/WHID
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/nahamsec/JSParser
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/gleitz/npiet
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/BRDumps/extract-hashes
 
         # Steganography
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/evyatarmeged/stegextract
