@@ -596,6 +596,9 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/SecureAuthCorp/impacket
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/samratashok/nishang
 
+        # Reversing
+        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/ThisIsLibra/AndroidProjectCreator
+
     - name: Copy wordlists in common location
       shell: "{{ item }}"
       become: yes
