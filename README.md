@@ -146,6 +146,7 @@ project, it's just for having a reference)
 * [hashcalc](https://www.slavasoft.com/hashcalc/)
 * [putty](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 * [Malzilla](http://malzilla.sourceforge.net/)
+* [NBTExplorer](https://github.com/jaquadro/NBTExplorer)
 
 #### Forensics
 * [Regshot](https://sourceforge.net/projects/regshot/)
