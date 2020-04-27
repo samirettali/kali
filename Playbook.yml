@@ -407,6 +407,11 @@
         url: https://github.com/lukechampine/jsteg/releases/download/v0.1.0/jsteg-linux-amd64
         dest: /home/{{ username.stdout }}/.bin/jsteg
 
+    - name: Download diit
+      get_url:
+        url: http://downloads.sourceforge.net/sourceforge/diit/diit-1.5.jar
+        dest: /home/{{ username.stdout }}/.bin/diit
+
     - name: Standalone commands
       args:
         warn: false
