@@ -546,7 +546,6 @@
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/darkoperator/dnsrecon
 
         # Discovery
-        - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/GerbenJavado/LinkFinder
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/maurosoria/dirsearch
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/s0md3v/Arjun
         - /home/{{ username.stdout }}/.bin/clone-or-pull https://github.com/subfinder/subfinder
