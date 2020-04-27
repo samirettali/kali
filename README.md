@@ -107,6 +107,7 @@ These are the equivalent for Mozilla Firefox:
 * [CachedView](https://cachedview.com)
 * [guballa](https://www.guballa.de/substitution-solver)
 * [jwt.io](https://jwt.io)
+* [csp-evaluator](https://csp-evaluator.withgoogle.com/)
 
 #### CTF related
 * [CTF Search](https://ctf.courgettes.club)
