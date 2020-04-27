@@ -20,6 +20,9 @@ Vagrant.configure("2") do |config|
   config.ssh.forward_agent = true
   config.ssh.forward_x11 = true
 
+  # Set disk size, vagrant-disksize plugin is needed
+  config.disksize.size = '100GB'
+
   config.vm.provider "virtualbox" do |vb|
     # Change the virtual machine name
     vb.name = "CTF"
