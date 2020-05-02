@@ -1,8 +1,6 @@
 Vagrant.configure("2") do |config|
 
   config.vm.box = "kalilinux/rolling"
-  config.vm.box_version = "2019.4.0"
-  config.vm.box_check_update = false
 
   config.vm.network "public_network", type: "dhcp", bridge: "en0: Wi-Fi (Wireless)"
 
@@ -31,10 +29,10 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize the amount of memory on the VM:
-    vb.memory = "8192"
+    vb.memory = "4096"
 
     # Customize the amount of cpus on the VM:
-    vb.cpus = 8
+    vb.cpus = 4
   end
 
   config.vm.provision "ansible_local" do |ansible|

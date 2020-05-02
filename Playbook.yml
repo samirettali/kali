@@ -2,52 +2,10 @@
 - name: CTF VM provisioning
   hosts: all
 
-  vars_prompt:
-    # - name: hostname
-    #   prompt: "Hostname for this machine"
-
-    # - name: user_password
-    #   prompt: "User password for this machine"
-    #   private: yes
-    #   encrypt: "sha512_crypt"
-    #   confirm: yes
-
-    # - name: password
-    #   prompt: "Root password for this machine"
-    #   private: yes
-    #   encrypt: "sha512_crypt"
-    #   confirm: yes
-
   tasks:
     - name: Get current username
       local_action: command whoami
       register: username
-
-    # - name: Change user password
-    #   become: yes
-    #   user:
-    #     name: "{{ username.stdout }}"
-    #     password: "{{ user_password }}"
-
-    # - name: Change root password
-    #   become: yes
-    #   user:
-    #     name: root
-    #     password: "{{ password }}"
-
-    # - name: Disable automatic repositories update
-    #   become: yes
-    #   replace:
-    #     path: /etc/apt/apt.conf.d/20auto-upgrades
-    #     regexp: 'APT::Periodic::Update-Package-Lists "1";'
-    #     replace: 'APT::Periodic::Update-Package-Lists "0";'
-
-    # - name: Disable automatic software update
-    #   become: yes
-    #   replace:
-    #     path: /etc/apt/apt.conf.d/20auto-upgrades
-    #     regexp: 'APT::Periodic::Unattended-Upgrade "1";'
-    #     replace: 'APT::Periodic::Unattended-Upgrade "0";'
 
     - name: Wait for any possibly running unattended upgrade to finish
       become: yes
@@ -62,10 +20,6 @@
       become: yes
       apt:
         upgrade: dist
-
-    - name: Fix for exim4
-      become: yes
-      shell: echo $(hostname) > /etc/mailname
 
     - name: Install packages
       become: yes
@@ -209,44 +163,43 @@
 
         # Dependencies
         - libzip-dev            # radare decompiler plugin
-        # - python-argcomplete    # golismero
         - python-dnspython
 
     # Docker installation
-    # - name: Add Docker's GPG key
-    #   become: yes
-    #   args:
-    #     warn: false
-    #   shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
+    - name: Add Docker's GPG key
+      become: yes
+      args:
+        warn: false
+      shell: curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 
-    # - name: Add Docker's repository
-    #   become: yes
-    #   shell: echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
+    - name: Add Docker's repository
+      become: yes
+      shell: echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
 
-    # - name: Update repositories
-    #   become: yes
-    #   apt:
-    #     update_cache: yes
+    - name: Update repositories
+      become: yes
+      apt:
+        update_cache: yes
 
-    # - name: Install Docker
-    #   become: yes
-    #   apt:
-    #     name: "{{ packages }}"
-    #   vars:
-    #     packages:
-    #     - docker-ce
-    #     - docker-compose
+    - name: Install Docker
+      become: yes
+      apt:
+        name: "{{ packages }}"
+      vars:
+        packages:
+        - docker-ce
+        - docker-compose
 
-    # - name: Enable Docker
-    #   become: yes
-    #   systemd:
-    #     name: docker
-    #     state: started
-    #     enabled: yes
+    - name: Enable Docker
+      become: yes
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
 
-    # - name: Add user to Docker group
-    #   become: yes
-    #   shell: usermod -a -G docker {{ username.stdout }}
+    - name: Add user to Docker group
+      become: yes
+      shell: usermod -a -G docker {{ username.stdout }}
 
     # Configure services for metasploit
     - name: Enable apache
@@ -372,6 +325,7 @@
         - go get -u github.com/tomnomnom/meg
         - go get -u github.com/tomnomnom/waybackurls
         - go get -u github.com/tomnomnom/unfurl
+        - go get -u github.com/tomnomnom/hacks/html-tool
         - cp /home/{{ username.stdout }}/go/bin/* /home/{{ username.stdout }}/.bin
 
     - name: Install radare plugins
