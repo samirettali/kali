@@ -1,43 +1,19 @@
 # My Kali setup for CTFs
 This is my Kali Linux setup for CTFs.
-
-It uses Vagrant to create the virtual machine on Virtualbox and Ansible to
-install and configure the software and the tools.
-
-In the `Vagrantfile` there are the settings for the VM, I've assigned 8 cores,
-8 gigabytes of RAM and I forwarded some ports.
-
-You can read the `Playbook.yml` file that contains all the tools that will be
-installed. Some of them are from the official repositories, some are compiled
-from Go sources and the others are from online Git repositories
-
-At the end of the setup there will be three folders in the home folder called
-`Tools`, `Wordlists` and `Resources`.
-
-## Requirements
-
-* [Vagrant](https://www.vagrantup.com)
-* [Virtualbox](https://www.virtualbox.org)
-* [XQuartz](https://www.xquartz.org): required on Mac OS to run graphical tools
-in a SSH session
-
-#### Ubuntu or Debian based:
-```
-$ sudo apt install vagrant virtualbox
-```
-
-#### Mac OS:
-```
-$ brew cask install vagrant virtualbox xquartz
-```
-
-Or download the packages from the websites.
+The old VM setup that I used is in the `vagrant` branch.
 
 ## Usage
-To download and build the virtual machine you just have to run the command
-`vagrant up` inside this repository. After the automated setup
-process you just run `vagrant ssh` to connect to the virtual machine.
+Build the image with:
+```
+$ docker build -t kali-ctf -f Dockerfile --build-arg USER=samir --build-arg PASSWD=samir
+```
 
+Run it:
+```
+$ docker run --rm -it kali-ctf bash
+```
+
+# Notes
 # Browser extensions
 I use Google Chrome, with these extensions:
 
