@@ -4,7 +4,12 @@ This is my Kali Linux setup for CTFs.
 The old VM setup that I used is in the `vagrant` branch.
 
 ## Usage
-Build the image with:
+You can pull the latest build from Docker hub with:
+```
+$ docker pull samirettali/kali-ctf
+```
+
+Or you can clone the repository and build the image with:
 ```
 $ docker build -t kali-ctf .
 ```
