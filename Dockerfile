@@ -12,9 +12,8 @@ RUN apt-get install --no-install-recommends -y \
     moreutils python3 python3-pip sudo tmux tree vim wget
 
 # Development tools
-# TODO: ruby or ruby-dev?
 RUN apt-get install --no-install-recommends -y \
-    golang default-jdk-headless php-cli ruby
+    golang default-jdk-headless php-cli ruby-dev
 
 # Reversing
 RUN apt-get install --no-install-recommends -y \
