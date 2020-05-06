@@ -6,7 +6,12 @@ The old VM setup that I used is in the `vagrant` branch.
 ## Usage
 Build the image with:
 ```
-$ docker build -t kali-ctf -f Dockerfile --build-arg USER=samir --build-arg PASSWD=samir
+$ docker build -t kali-ctf .
+```
+
+Default credentials are `user:password`, but you can specify them with:
+```
+$ docker build -t kali-ctf --build-arg USER=foo --build-arg PASSWD=bar .
 ```
 
 Run it:
