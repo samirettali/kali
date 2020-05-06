@@ -8,8 +8,8 @@ RUN apt-get update && apt-get upgrade -y
 
 # Base tools
 RUN apt-get install --no-install-recommends -y \
-    ack build-essential curl dos2unix entr fd-find fzf git hexedit jq man \
-    moreutils python3 python3-pip sudo tmux tree vim wget
+    ack build-essential curl dos2unix entr fd-find file fzf git hexedit jq \
+    man moreutils python3 python3-pip sudo tmux tree vim wget
 
 # Development tools
 RUN apt-get install --no-install-recommends -y \
