@@ -1,7 +1,7 @@
 FROM kalilinux/kali-bleeding-edge
 
 ARG USER=user
-ARG PASSWD=passwd
+ARG PASSWD=password
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && apt-get upgrade -y
