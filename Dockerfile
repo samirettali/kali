@@ -72,11 +72,6 @@ RUN useradd -m ${USER} && \
 
 USER $USER
 
-# Make directories for vim
-RUN mkdir -p /home/${USER}/.vim/tmp && \
-    mkdir -p /home/${USER}/.vim/undo && \
-    mkdir -p /home/${USER}/.vim/backup
-
 # Install gef
 RUN curl -Ls https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
