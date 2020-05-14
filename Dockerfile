@@ -14,7 +14,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Development tools
 RUN apt-get install --no-install-recommends -y \
-    golang default-jdk-headless php-cli ruby-dev
+    build-essentials default-jdk-headless golang php-cli python3-dev ruby-dev
 
 # Reversing
 RUN apt-get install --no-install-recommends -y \
@@ -45,7 +45,7 @@ RUN apt-get install --no-install-recommends -y \
     cifs-utils crackmapexec ldap-utils samdump2 smbclient smbmap
 
 # Python tools
-RUN pip3 install aclpwn oletools stegcracker stegoveritas
+RUN pip3 install aclpwn oletools pwntools stegcracker stegoveritas
 
 # Ruby tools
 RUN gem install evil-winrm zsteg
