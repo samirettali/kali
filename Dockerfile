@@ -8,13 +8,13 @@ RUN apt-get update && apt-get upgrade -y
 
 # Base tools
 RUN apt-get install --no-install-recommends -y \
-    ack build-essential curl dnsutils dos2unix entr fd-find file fzf git \
+    ack curl dnsutils dos2unix entr fd-find file fzf git \
     hexedit jq less man moreutils openssh-client python3 python3-pip sudo tmux \
     tree vim wget
 
 # Development tools
 RUN apt-get install --no-install-recommends -y \
-    build-essentials default-jdk-headless golang php-cli python3-dev ruby-dev
+    build-essential default-jdk-headless golang php-cli python3-dev ruby-dev
 
 # Reversing
 RUN apt-get install --no-install-recommends -y \
