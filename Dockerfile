@@ -77,6 +77,6 @@ USER $USER
 RUN curl -Ls https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
 # Install dotfiles
-RUN curl -Ls http://bit.do/fhgwP | sh
+RUN curl -Ls http://bit.do/samirminimaldotfiles | bash
 
 WORKDIR /home/${USER}
