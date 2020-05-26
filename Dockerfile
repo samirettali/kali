@@ -45,7 +45,7 @@ RUN apt-get install --no-install-recommends -y \
     cifs-utils crackmapexec ldap-utils samdump2 smbclient smbmap
 
 # Python tools
-RUN pip3 install aclpwn oletools pwntools stegcracker stegoveritas
+RUN pip3 install aclpwn gsan oletools pwntools stegcracker stegoveritas
 
 # Ruby tools
 RUN gem install evil-winrm zsteg
