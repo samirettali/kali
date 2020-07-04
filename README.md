@@ -113,6 +113,7 @@ These are the equivalent for Mozilla Firefox:
 * [ShellStorm](http://shell-storm.org/shellcode)
 * [Virustotal](https://www.virustotal.com/gui/home)
 * [OSINT Framework](https://osintframework.com/)
+* [Diffchecker](https://www.diffchecker.com/)
 
 #### Resources:
 * [GTFOBins](https://gtfobins.github.io/)
