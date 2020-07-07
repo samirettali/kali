@@ -34,7 +34,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Networking
 RUN apt-get install --no-install-recommends -y \
-    hydra iputils-ping ncat nmap tshark whois
+    hydra iputils-ping ncat nmap socat tshark whois
 
 # Misc
 RUN apt-get install --no-install-recommends -y \
