@@ -54,7 +54,8 @@ RUN gem install evil-winrm zsteg
 RUN go get github.com/ffuf/ffuf \
            github.com/hakluke/hakrawler \
            github.com/lc/gau \
-           github.com/tomnomnom/hacks/html-tool && \
+           github.com/tomnomnom/hacks/html-tool \
+           github.com/IAmStoxe/urlgrab && \
     mv /root/go/bin/* /bin
 
 
