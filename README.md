@@ -126,6 +126,7 @@ These are the equivalent for Mozilla Firefox:
 #### Steganography:
 * [Unicode steganography ](https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder)
 * [Unicode zero-width steganography](https://330k.github.io/misc_tools/unicode_steganography.html)
+* [Translate audio to raw image](https://rawpixels.net/)
 
 # Windows tools
 These are the tools that I use on my Windows 10 VM (it's separate from this
