@@ -114,6 +114,7 @@ These are the equivalent for Mozilla Firefox:
 * [Virustotal](https://www.virustotal.com/gui/home)
 * [OSINT Framework](https://osintframework.com/)
 * [Diffchecker](https://www.diffchecker.com/)
+* [OCR](https://www.onlineocr.net/it/)
 
 #### Resources:
 * [GTFOBins](https://gtfobins.github.io/)
