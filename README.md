@@ -45,6 +45,7 @@ I use Google Chrome, with these extensions:
 * [User-Agent Switcher for Chrome](https://chrome.google.com/webstore/detail/user-agent-switcher-for-c/djflhoibgkdhkhhcedjiklpkjnoahfmg): Switch between user agents
 * [Wappalizer](https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg): Analyze web applications
 * [Enhanced Image Viewer](https://chrome.google.com/webstore/detail/enhanced-image-viewer/gefiaaeadjbmhjndnhedfccdjjlgjhho)
+* [JSON Formatter](https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en)
 
 These are the equivalent for Mozilla Firefox:
 * [Web Developer](https://addons.mozilla.org/it/firefox/addon/web-developer/): Toolbar with various web tools
