@@ -78,6 +78,6 @@ USER $USER
 RUN curl -Ls https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
 # Install dotfiles
-RUN curl -Ls http://bit.do/samirminimaldotfiles | bash
+RUN curl -Ls http://bit.do/samirdotfiles | bash
 
 WORKDIR /home/${USER}
