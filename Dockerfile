@@ -22,7 +22,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Forensics
 RUN apt-get install --no-install-recommends -y \
-    binwalk exiftool foremost pngcheck steghide volatility
+    binwalk exiftool foremost pngcheck steghide unar volatility
 
 # Exploiting
 RUN apt-get install --no-install-recommends -y \
