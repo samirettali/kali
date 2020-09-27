@@ -52,11 +52,12 @@ RUN pip3 install aclpwn angr ciphey gsan oletools pwntools stegcracker \
 RUN gem install evil-winrm zsteg
 
 # Go tools
+# TODO switch back to original urlgrab repo as soon as the PR gets merged
 RUN go get github.com/ffuf/ffuf \
            github.com/hakluke/hakrawler \
            github.com/lc/gau \
            github.com/tomnomnom/hacks/html-tool \
-           github.com/IAmStoxe/urlgrab && \
+           github.com/hahwul/urlgrab
     mv /root/go/bin/* /bin
 
 
