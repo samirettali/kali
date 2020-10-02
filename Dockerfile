@@ -70,6 +70,7 @@ RUN curl -s https://github.com/lukechampine/jsteg/releases/download/v0.3.0/jsteg
 # User creation
 RUN useradd -m ${USER} && \
     usermod -aG sudo ${USER} && \
+    sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
     echo "${USER}:${PASSWD}" | chpasswd && \
     chsh -s /bin/bash ${USER} && \
     chown -R ${USER}:${USER} /home/${USER}
