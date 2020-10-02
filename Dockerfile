@@ -57,7 +57,7 @@ RUN go get github.com/ffuf/ffuf \
            github.com/hakluke/hakrawler \
            github.com/lc/gau \
            github.com/tomnomnom/hacks/html-tool \
-           github.com/hahwul/urlgrab
+           github.com/hahwul/urlgrab && \
     mv /root/go/bin/* /bin
 
 
