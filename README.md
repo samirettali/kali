@@ -55,6 +55,9 @@ These are the equivalent for Mozilla Firefox:
 * [Wappalizer](https://addons.mozilla.org/it/firefox/addon/wappalyzer/): Analyze web applications
 * [BuiltWith](https://addons.mozilla.org/it/firefox/addon/builtwith/): Similar to Wappalizer
 * [Enhanced Image Viewer](https://addons.mozilla.org/it/firefox/addon/sblask-enhanced-image-viewer/)
+* [DotGit](https://addons.mozilla.org/it/firefox/addon/dotgit/)
+* [Hack Tools](https://addons.mozilla.org/it/firefox/addon/hacktools/)
+* [PwnFox](https://addons.mozilla.org/it/firefox/addon/pwnfox/)
 
 # Online tools
 
