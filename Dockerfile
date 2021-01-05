@@ -45,7 +45,7 @@ RUN apt-get install --no-install-recommends -y \
     cifs-utils crackmapexec ldap-utils samdump2 smbclient smbmap
 
 # Python tools
-RUN pip3 install aclpwn angr ciphey dbr gsan oletools pwntools stegcracker \
+RUN pip3 install aclpwn angr ciphey gsan oletools pwntools stegcracker \
     stegoveritas uncompyle6
 
 # Ruby tools
