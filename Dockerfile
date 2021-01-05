@@ -22,7 +22,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Forensics
 RUN apt-get install --no-install-recommends -y \
-    binwalk exiftool foremost pngcheck steghide unar volatility
+    binwalk exiftool foremost pngcheck steghide unar
 
 # Exploiting
 RUN apt-get install --no-install-recommends -y \
@@ -46,7 +46,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Python tools
 RUN pip3 install aclpwn angr ciphey dbr gsan oletools pwntools stegcracker \
-    stegoveritas
+    stegoveritas uncompyle6
 
 # Ruby tools
 RUN gem install evil-winrm zsteg
