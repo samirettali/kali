@@ -45,7 +45,7 @@ RUN apt-get install --no-install-recommends -y \
     cifs-utils crackmapexec ldap-utils samdump2 smbclient smbmap
 
 # Python tools
-RUN pip3 install aclpwn angr ciphey gsan oletools pwntools stegcracker \
+RUN pip3 install aclpwn angr ciphey oletools pwntools stegcracker \
     stegoveritas uncompyle6
 
 # Ruby tools
@@ -59,7 +59,6 @@ RUN go get github.com/ffuf/ffuf \
            github.com/tomnomnom/hacks/html-tool \
            github.com/hahwul/urlgrab && \
     mv /root/go/bin/* /bin
-
 
 # RUN service postgresql start
 # RUN msfdb init
