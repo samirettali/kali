@@ -10,8 +10,8 @@ RUN apt-get update && apt-get upgrade -y
 # Base tools
 RUN apt-get install --no-install-recommends -y \
     ack awscli curl dnsutils dos2unix entr fd-find file fzf git hexedit jq \
-    less man moreutils openssh-client python3 python3-pip tmux tree neovim \
-    watch wget
+    less man moreutils ncdu openssh-client python3 python3-pip tmux tree
+    neovim watch wget
 
 # Development tools
 RUN apt-get install --no-install-recommends -y \
