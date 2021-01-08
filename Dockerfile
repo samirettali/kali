@@ -154,7 +154,7 @@ RUN GO111MODULE=on go get -v github.com/ffuf/ffuf \
     github.com/tomnomnom/hacks/tok \
     github.com/tomnomnom/hacks/ettu \
     github.com/tomnomnom/hacks/filter-resolved \
-    github.com/tomnomnom/hacks/html-tool \
+    github.com/tomnomnom/hacks/html-tool
 RUN mv /root/go/bin/* /usr/local/bin && rm -rf /root/go
 
 # Install ngrok
