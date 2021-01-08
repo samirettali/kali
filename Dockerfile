@@ -59,46 +59,6 @@ RUN gem install XSpear
 RUN pip3 install shodan
 RUN apt-get install --no-install-recommends -y whois
 
-RUN apt-get install --no-install-recommends -y libpcap-dev
-# Go tools
-# github.com/hahwul/urlgrab
-RUN GO111MODULE=on go get -v github.com/ffuf/ffuf
-    github.com/hakluke/hakrawler \
-    github.com/lc/gau \
-    github.com/tillson/git-hound \
-    github.com/asciimoo/wuzz \
-    github.com/haccer/subjack \
-    github.com/003random/getJS \
-    github.com/milindpurswani/whoxyrm \
-    github.com/jaeles-project/jaeles \
-    github.com/jaeles-project/gospider \
-    github.com/dwisiswant0/crlfuzz/cmd/crlfuzz \
-    github.com/Static-Flow/ParameterMiner/cmd/parameterMiner \
-    github.com/projectdiscovery/nuclei/v2/cmd/nuclei \
-    github.com/projectdiscovery/naabu/v2/cmd/naabu \
-    github.com/projectdiscovery/httpx/cmd/httpx \
-    github.com/projectdiscovery/proxify/cmd/proxify \
-    github.com/projectdiscovery/chaos-client/cmd/chaos \
-    github.com/projectdiscovery/subfinder/v2/cmd/subfinder \
-    github.com/projectdiscovery/shuffledns/cmd/shuffledns \
-    github.com/projectdiscovery/dnsx/cmd/dnsx \
-    github.com/projectdiscovery/mapcidr/cmd/mapcidr \
-    github.com/dwisiswant0/unew \
-    github.com/tomnomnom/assetfinder \
-    github.com/tomnomnom/gf \
-    github.com/tomnomnom/meg \
-    github.com/tomnomnom/httprobe \
-    github.com/tomnomnom/unfurl \
-    github.com/tomnomnom/anew \
-    github.com/tomnomnom/waybackurls \
-    github.com/tomnomnom/qsreplace \
-    github.com/tomnomnom/hacks/kxss \
-    github.com/tomnomnom/hacks/tok \
-    github.com/tomnomnom/hacks/ettu \
-    github.com/tomnomnom/hacks/filter-resolved \
-    github.com/tomnomnom/hacks/html-tool \
-RUN mv /root/go/bin/* /usr/local/bin && rm -rf /root/go
-
 RUN mkdir -p /usr/share/wordlists
 
 # RUN service postgresql start
@@ -158,6 +118,44 @@ RUN apt-get install -y --no-install-recommends gcc make libpcap-dev && \
         mv bin/masscan /usr/local/bin && \
         cd .. && \
         rm -rf masscan
+
+# Go tools
+RUN GO111MODULE=on go get -v github.com/ffuf/ffuf
+    github.com/hakluke/hakrawler \
+    github.com/lc/gau \
+    github.com/tillson/git-hound \
+    github.com/asciimoo/wuzz \
+    github.com/haccer/subjack \
+    github.com/003random/getJS \
+    github.com/milindpurswani/whoxyrm \
+    github.com/jaeles-project/jaeles \
+    github.com/jaeles-project/gospider \
+    github.com/dwisiswant0/crlfuzz/cmd/crlfuzz \
+    github.com/Static-Flow/ParameterMiner/cmd/parameterMiner \
+    github.com/projectdiscovery/nuclei/v2/cmd/nuclei \
+    github.com/projectdiscovery/naabu/v2/cmd/naabu \
+    github.com/projectdiscovery/httpx/cmd/httpx \
+    github.com/projectdiscovery/proxify/cmd/proxify \
+    github.com/projectdiscovery/chaos-client/cmd/chaos \
+    github.com/projectdiscovery/subfinder/v2/cmd/subfinder \
+    github.com/projectdiscovery/shuffledns/cmd/shuffledns \
+    github.com/projectdiscovery/dnsx/cmd/dnsx \
+    github.com/projectdiscovery/mapcidr/cmd/mapcidr \
+    github.com/dwisiswant0/unew \
+    github.com/tomnomnom/assetfinder \
+    github.com/tomnomnom/gf \
+    github.com/tomnomnom/meg \
+    github.com/tomnomnom/httprobe \
+    github.com/tomnomnom/unfurl \
+    github.com/tomnomnom/anew \
+    github.com/tomnomnom/waybackurls \
+    github.com/tomnomnom/qsreplace \
+    github.com/tomnomnom/hacks/kxss \
+    github.com/tomnomnom/hacks/tok \
+    github.com/tomnomnom/hacks/ettu \
+    github.com/tomnomnom/hacks/filter-resolved \
+    github.com/tomnomnom/hacks/html-tool \
+RUN mv /root/go/bin/* /usr/local/bin && rm -rf /root/go
 
 # Install ngrok
 RUN curl -s https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip | \
