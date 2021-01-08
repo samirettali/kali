@@ -120,7 +120,7 @@ RUN apt-get install -y --no-install-recommends gcc make libpcap-dev && \
         rm -rf masscan
 
 # Go tools
-RUN GO111MODULE=on go get -v github.com/ffuf/ffuf
+RUN GO111MODULE=on go get -v github.com/ffuf/ffuf \
     github.com/hakluke/hakrawler \
     github.com/lc/gau \
     github.com/tillson/git-hound \
