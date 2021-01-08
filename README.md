@@ -1,33 +1,19 @@
-# My Kali setup for CTFs
-This is my Kali Linux setup for CTFs.
+# Kali docker
+This is my Kali Linux setup for Bug Bounty and CTFs.
 
-The old VM setup that I used is in the `vagrant` branch.
-
-I ditched the VM setup because I found myself always using the VM via SSH, so I
-figured I could switch to docker and use graphical tools from my machine.
-
-```
-brew cask install audacity
-brew cask install burp-suite
-brew cask install hex-fiend
-brew cask install wireshark
-brew cask install beyond-compare
-```
+I used to use a VM with Vagrant, you can find it in the `vagrant` branch.
+I've moved to Docker because I've always found myself using Kali via SSH, so I
+figured I could switch and only use graphical tools on my machine.
 
 ## Usage
-You can pull the latest build from Docker hub with:
+You can pull the latest build from Docker Hub with:
 ```
-$ docker pull samirettali/kali-ctf
+$ docker pull samirettali/kali
 ```
 
 Or you can clone the repository and build the image with:
 ```
-$ docker build -t kali-ctf .
-```
-
-Default credentials are `user:password`, but you can specify them with:
-```
-$ docker build -t kali-ctf --build-arg USER=foo --build-arg PASSWD=bar .
+$ docker build -t kali .
 ```
 
 Run it:
@@ -36,7 +22,15 @@ $ docker run --rm -it kali-ctf bash
 ```
 
 # Notes
-# Browser extensions
+## GUI tools on my machine
+* [Burp suite](https://portswigger.net/burp): needs no introduction
+* [Wireshark](https://www.wireshark.org/): same as above
+* [Audacity](https://www.audacityteam.org/): for audio stuff and signals
+* [Hex fiend](https://ridiculousfish.com/hexfiend/): MacOS hex editor
+* [Beyound compare](https://www.scootersoftware.com/): really powerful file
+* comparison
+
+## Browser extensions
 I use Google Chrome, with these extensions:
 
 * [Web Developer](https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm): Toolbar with various web tools
@@ -59,9 +53,9 @@ These are the equivalent for Mozilla Firefox:
 * [Hack Tools](https://addons.mozilla.org/it/firefox/addon/hacktools/)
 * [PwnFox](https://addons.mozilla.org/it/firefox/addon/pwnfox/)
 
-# Online tools
+## Online tools
 
-#### Cryptography
+### Cryptography
 * [Boxentrix](https://www.boxentriq.com/code-breaking)
 * [Cipher tools](http://rumkin.com/tools/cipher)
 * [Cryptii](https://cryptii.com)
@@ -69,32 +63,32 @@ These are the equivalent for Mozilla Firefox:
 * [dcode.fr](https://www.dcode.fr/tools-list)
 * [factordb.com](http://factordb.com)
 
-#### Regexes
+### Regexes
 * [regex101](https://regex101.com)
 * [Debuggex](https://www.debuggex.com)
 
-#### Execute code
+### Execute code
 * [tio.run](https://tio.run)
 * [.NETFiddle](https://dotnetfiddle.net)
 
-#### Command tools
+### Command tools
 * [crontab.guru](https://crontab.guru)
 * [curl-to-Go](https://mholt.github.io/curl-to-go)
 * [curlbuilder](https://curlbuilder.com)
 
-#### Exploitation
+### Exploitation
 * [Sploitus](https://sploitus.com)
 * [cve-mitre](https://cve.mitre.org)
 * [exploit-db](https://www.exploit-db.com)
 * [onegadget.me](https://onegadget.me/)
 
-#### Cracking
+### Cracking
 * [CrackStation](https://crackstation.net)
 * [HashKiller](https://hashkiller.co.uk)
 * [OnlineHashCrack](https://www.onlinehashcrack.com)
 * [Quipquip](https://quipqiup.com)
 
-#### Endpoint creation
+### Endpoint creation
 * [Beeceptor](https://beeceptor.com)
 * [Hookbin](https://hookbin.com)
 * [Requestbin](https://requestbin.com/)
@@ -102,17 +96,17 @@ These are the equivalent for Mozilla Firefox:
 * [dnsbin](http://dnsbin.zhack.ca)
 * [pinbin](http://pingb.in)
 
-#### Web stuff
+### Web stuff
 * [CachedView](https://cachedview.com)
 * [guballa](https://www.guballa.de/substitution-solver)
 * [jwt.io](https://jwt.io)
 * [csp-evaluator](https://csp-evaluator.withgoogle.com/)
 
-#### CTF related
+### CTF related
 * [CTF Search](https://ctf.courgettes.club)
 * [IPPSEC](https://ippsec.rocks)
 
-#### Misc
+### Misc
 * [CyberChef](https://gchq.github.io/CyberChef)
 * [ShellStorm](http://shell-storm.org/shellcode)
 * [Virustotal](https://www.virustotal.com/gui/home)
@@ -120,7 +114,7 @@ These are the equivalent for Mozilla Firefox:
 * [Diffchecker](https://www.diffchecker.com/)
 * [OCR](https://www.onlineocr.net/it/)
 
-#### Resources:
+### Resources:
 * [GTFOBins](https://gtfobins.github.io/)
 * [LOLBAS](https://lolbas-project.github.io/)
 * [Identify a cipher](http://practicalcryptography.com/cryptanalysis/text-characterisation/identifying-unknown-ciphers/)
@@ -128,16 +122,16 @@ These are the equivalent for Mozilla Firefox:
 * [Reverse shells cheatsheet](http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet)
 * [System calls](http://shell-storm.org/shellcode/files/syscalls.html)
 
-#### Steganography:
+### Steganography:
 * [Unicode steganography ](https://www.irongeek.com/i.php?page=security/unicode-steganography-homoglyph-encoder)
 * [Unicode zero-width steganography](https://330k.github.io/misc_tools/unicode_steganography.html)
 * [Translate audio to raw image](https://rawpixels.net/)
 
-# Windows tools
+## Windows tools
 These are the tools that I use on my Windows 10 VM (it's separate from this
 project, it's just for having a reference)
 
-#### Misc
+### Misc
 * [7zip](https://www.7-zip.org/)
 * [Chrome](https://www.google.com/intl/chrome/)
 * [Cygwin](https://www.cygwin.com/)
@@ -151,17 +145,17 @@ project, it's just for having a reference)
 * [Malzilla](http://malzilla.sourceforge.net/)
 * [NBTExplorer](https://github.com/jaquadro/NBTExplorer)
 
-#### Forensics
+### Forensics
 * [Regshot](https://sourceforge.net/projects/regshot/)
 
-#### Process analysis
+### Process analysis
 * [Procdump](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump)
 * [Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 * [Process hacker](https://processhacker.sourceforge.io/)
 * [nodeJS](https://nodejs.org/)
 * [API monitor](https://www.rohitab.com/apimonitor)
 
-#### Network
+### Network
 * [Burp suite](https://portswigger.net/burp)
 * [Fiddler](https://www.telerik.com/fiddler)
 * [Network monitor](https://www.microsoft.com/en-us/download/details.aspx?id=4865)
@@ -169,7 +163,7 @@ project, it's just for having a reference)
 * [DNS query sniffer](https://www.nirsoft.net/utils/dns_query_sniffer.html)
 * [TCP log viewer](https://www.nirsoft.net/utils/tcp_log_view.html)
 
-#### Reversing
+### Reversing
 * [Ghidra](https://ghidra-sre.org/)
 * [IDA](https://www.hex-rays.com/products/ida/support/download_freeware.shtml)
 * [PE-Bear](https://hshrzd.wordpress.com/pe-bear/)
