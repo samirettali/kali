@@ -54,51 +54,50 @@ RUN apt-get install --no-install-recommends -y sqlite3 zbar-tools
 RUN apt-get install --no-install-recommends -y \
     cifs-utils crackmapexec ldap-utils samdump2 smbclient smbmap
 
-
 # Web enumeration
 RUN gem install XSpear
-RUN pip3 install gsan shodan
+RUN pip3 install shodan
 RUN apt-get install --no-install-recommends -y whois
 
-# # Create link to Go executable
-# RUN ln -s /usr/lib/go-1.15/bin/go /bin/go
-
+RUN apt-get install --no-install-recommends -y libpcap-dev
 # Go tools
-RUN GO111MODULE=on go get -u github.com/ffuf/ffuf \
-           github.com/hakluke/hakrawler \
-           github.com/lc/gau \
-           github.com/tillson/git-hound \
-           github.com/asciimoo/wuzz \
-           github.com/haccer/subjack \
-           github.com/003random/getJS \
-           github.com/milindpurswani/whoxyrm \
-           github.com/jaeles-project/jaeles \
-           github.com/jaeles-project/gospider@8002688 \
-           github.com/IAmStoxe/urlgrab \
-           dw1.io/crlfuzz/cmd/crlfuzz \
-           github.com/Static-Flow/ParameterMiner/cmd/parameterMiner \
-           github.com/projectdiscovery/nuclei/v2/cmd/nuclei \
-           github.com/projectdiscovery/httpx/cmd/httpx \
-           github.com/projectdiscovery/chaos-client/cmd/chaos \
-           github.com/projectdiscovery/subfinder/cmd/subfinder \
-           github.com/projectdiscovery/shuffledns/cmd/shuffledns \
-           github.com/projectdiscovery/dnsx/cmd/dnsx \
-           github.com/projectdiscovery/mapcidr/cmd/mapcidr \
-           github.com/dwisiswant0/unew \
-           github.com/tomnomnom/assetfinder \
-           github.com/tomnomnom/gf \
-           github.com/tomnomnom/meg \
-           github.com/tomnomnom/httprobe \
-           github.com/tomnomnom/unfurl \
-           github.com/tomnomnom/anew \
-           github.com/tomnomnom/waybackurls \
-           github.com/tomnomnom/qsreplace \
-           github.com/tomnomnom/hacks/kxss \
-           github.com/tomnomnom/hacks/tok \
-           github.com/tomnomnom/hacks/ettu \
-           github.com/tomnomnom/hacks/filter-resolved \
-           github.com/tomnomnom/hacks/html-tool && \
-    mv /root/go/bin/* /usr/local/bin
+# github.com/hahwul/urlgrab
+RUN GO111MODULE=on go get -v github.com/ffuf/ffuf
+    github.com/hakluke/hakrawler \
+    github.com/lc/gau \
+    github.com/tillson/git-hound \
+    github.com/asciimoo/wuzz \
+    github.com/haccer/subjack \
+    github.com/003random/getJS \
+    github.com/milindpurswani/whoxyrm \
+    github.com/jaeles-project/jaeles \
+    github.com/jaeles-project/gospider \
+    github.com/dwisiswant0/crlfuzz/cmd/crlfuzz \
+    github.com/Static-Flow/ParameterMiner/cmd/parameterMiner \
+    github.com/projectdiscovery/nuclei/v2/cmd/nuclei \
+    github.com/projectdiscovery/naabu/v2/cmd/naabu \
+    github.com/projectdiscovery/httpx/cmd/httpx \
+    github.com/projectdiscovery/proxify/cmd/proxify \
+    github.com/projectdiscovery/chaos-client/cmd/chaos \
+    github.com/projectdiscovery/subfinder/v2/cmd/subfinder \
+    github.com/projectdiscovery/shuffledns/cmd/shuffledns \
+    github.com/projectdiscovery/dnsx/cmd/dnsx \
+    github.com/projectdiscovery/mapcidr/cmd/mapcidr \
+    github.com/dwisiswant0/unew \
+    github.com/tomnomnom/assetfinder \
+    github.com/tomnomnom/gf \
+    github.com/tomnomnom/meg \
+    github.com/tomnomnom/httprobe \
+    github.com/tomnomnom/unfurl \
+    github.com/tomnomnom/anew \
+    github.com/tomnomnom/waybackurls \
+    github.com/tomnomnom/qsreplace \
+    github.com/tomnomnom/hacks/kxss \
+    github.com/tomnomnom/hacks/tok \
+    github.com/tomnomnom/hacks/ettu \
+    github.com/tomnomnom/hacks/filter-resolved \
+    github.com/tomnomnom/hacks/html-tool \
+RUN mv /root/go/bin/* /usr/local/bin && rm -rf /root/go
 
 RUN mkdir -p /usr/share/wordlists
 
@@ -182,31 +181,21 @@ RUN git clone https://github.com/devanshbatham/ParamSpider && \
 # Install surge to host static websites
 RUN npm install -global surge
 
-# # User creation
-# RUN useradd -m ${USER} && \
-#     usermod -aG sudo ${USER} && \
-#     sed -i /etc/sudoers -re 's/^%sudo.*/%sudo ALL=(ALL:ALL) NOPASSWD: ALL/g' && \
-#     echo "${USER}:${PASSWD}" | chpasswd && \
-#     chsh -s /bin/bash ${USER} && \
-#     chown -R ${USER}:${USER} /home/${USER}
-
-# USER $USER
-
 # Get gf's patterns
-RUN cd /home/${USER} && \
+RUN cd /root && \
         git clone https://github.com/tomnomnom/gf && \
-        mkdir -p /home/${USER}/.gf && \
-        mv gf/examples/*.json /home/${USER}/.gf && \
+        mkdir -p /root/.gf && \
+        mv gf/examples/*.json /root/.gf && \
         rm -rf gf
 
-RUN cd /home/${USER} && \
+RUN cd /root && \
         git clone https://github.com/1ndianl33t/Gf-Patterns && \
-        mkdir -p /home/${USER}/.gf && \
-        mv Gf-Patterns/*.json /home/${USER}/.gf && \
+        mkdir -p /root/.gf && \
+        mv Gf-Patterns/*.json /root/.gf && \
         rm -rf Gf-Patterns
 
 # Get jaeles' signatures
-RUN cd /home/${USER} && \
+RUN cd /root && \
         git clone --depth=1 https://github.com/jaeles-project/jaeles-signatures && \
         jaeles config -a reload --signDir jaeles-signatures && \
         rm -rf jaeles-signatures
@@ -214,7 +203,4 @@ RUN cd /home/${USER} && \
 # Install gef
 RUN curl -Ls https://github.com/hugsy/gef/raw/master/scripts/gef.sh | sh
 
-# Install dotfiles
-RUN curl -Ls http://bit.do/samirdotfiles | bash
-
-WORKDIR /home/${USER}
+WORKDIR /root
