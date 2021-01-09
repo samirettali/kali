@@ -135,6 +135,10 @@ RUN git clone https://github.com/devanshbatham/FavFreak && \
     cd .. && \
     rm -rf FavFreak
 
+# Git tools
+RUN go get github.com/michenriksen/gitrob \
+           github.com/tillson/git-hound
+
 # Rust tools
 cargo install feroxbuster
 
@@ -142,7 +146,6 @@ cargo install feroxbuster
 RUN GO111MODULE=on go get -v github.com/ffuf/ffuf \
     github.com/hakluke/hakrawler \
     github.com/lc/gau \
-    github.com/tillson/git-hound \
     github.com/asciimoo/wuzz \
     github.com/haccer/subjack \
     github.com/003random/getJS \
