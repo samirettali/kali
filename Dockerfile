@@ -15,7 +15,7 @@ RUN apt-get install --no-install-recommends -y \
 
 # Development tools
 RUN apt-get install --no-install-recommends -y \
-    build-essential default-jdk-headless golang php-cli python3-dev ruby-dev nodejs npm
+    build-essential default-jdk-headless golang php-cli python3-dev ruby-dev nodejs npm cargo
 
 # Reversing
 RUN apt-get install --no-install-recommends -y \
@@ -110,6 +110,13 @@ RUN git clone https://github.com/blechschmidt/massdns && \
         cd .. && \
         rm -rf massdns
 
+# Install dnsvalidator
+RUN git clone https://github.com/vortexau/dnsvalidator  && \
+        cd dnsvalidator && \
+        python3 setup.py install && \
+        cd .. && \
+        rm -rf dnsvalidator
+
 # Install masscan
 RUN apt-get install -y --no-install-recommends gcc make libpcap-dev && \
         git clone https://github.com/robertdavidgraham/masscan && \
@@ -118,6 +125,9 @@ RUN apt-get install -y --no-install-recommends gcc make libpcap-dev && \
         mv bin/masscan /usr/local/bin && \
         cd .. && \
         rm -rf masscan
+
+# Rust tools
+cargo install feroxbuster
 
 # Go tools
 RUN GO111MODULE=on go get -v github.com/ffuf/ffuf \
