@@ -103,6 +103,7 @@ git clone https://github.com/Arno0x/DNSExfiltrator
 git clone https://github.com/Ebryx/GitDump
 git clone https://github.com/internetwache/GitTools
 git clone https://github.com/dxa4481/truffleHog
+git clone https://github.com/BishopFox/GitGot
 
 # Process monitoring
 git clone https://github.com/DominicBreuker/pspy
