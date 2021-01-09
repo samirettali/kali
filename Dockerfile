@@ -126,6 +126,15 @@ RUN apt-get install -y --no-install-recommends gcc make libpcap-dev && \
         cd .. && \
         rm -rf masscan
 
+RUN mkdir -p /usr/bin
+
+RUN git clone https://github.com/devanshbatham/FavFreak && \
+    cd FavFreak && \
+    pip3 install -r requirements.txt && \
+    mv favfreak.py /usr/bin/favfreak && \
+    cd .. && \
+    rm -rf FavFreak
+
 # Rust tools
 cargo install feroxbuster
 
