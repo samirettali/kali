@@ -25,10 +25,20 @@ $ docker run --rm -it kali-ctf bash
 ## GUI tools on my machine
 * [Burp suite](https://portswigger.net/burp): needs no introduction
 * [Wireshark](https://www.wireshark.org/): same as above
-* [Audacity](https://www.audacityteam.org/): for audio stuff and signals
+* [GraphQL Playground](https://github.com/graphql/graphql-playground): Testing
+    GraphQL APIs
+* [Audacity](https://www.audacityteam.org/): Audio and signal analysis
 * [Hex fiend](https://ridiculousfish.com/hexfiend/): MacOS hex editor
 * [Beyound compare](https://www.scootersoftware.com/): really powerful file
-* comparison
+  comparison
+* [Recaf](https://github.com/Col-E/Recaf): Java bytecode editor
+* [Sonic visualizer](https://www.sonicvisualiser.org/): Visualize and analyse
+    audio
+* [FLDigi](http://www.w1hkj.com/): Signal decoding
+
+# Burp extensions
+[Golgen nuggets](https://github.com/GainSec/GoldenNuggets-1): Generates
+wordlists using domain traffic
 
 ## Browser extensions
 I use Google Chrome, with these extensions:
