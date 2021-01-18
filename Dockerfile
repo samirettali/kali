@@ -18,6 +18,9 @@ RUN go get github.com/projectdiscovery/httpx/cmd/httpx
 RUN go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei
 # RUN go get -u github.com/projectdiscovery/naabu/v2/cmd/naabu
 RUN go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@dev
+RUN go get github.com/tomnomnom/meg
+RUN go get github.com/tomnomnom/qsreplace
+RUN go get github.com/tomnomnom/unfurl
 RUN go get github.com/tomnomnom/waybackurls
 RUN go get github.com/lc/gau
 RUN go get github.com/tomnomnom/hacks/tok
@@ -44,6 +47,7 @@ RUN apt-get install -y --no-install-recommends neovim
 RUN apt-get install -y --no-install-recommends git
 RUN apt-get install -y --no-install-recommends tree
 RUN apt-get install -y --no-install-recommends tmux
+RUN apt-get install -y --no-install-recommends sqlmap
 RUN apt-get install -y --no-install-recommends stow
 RUN apt-get install -y --no-install-recommends zsh
 RUN apt-get install -y --no-install-recommends moreutils
@@ -53,6 +57,7 @@ RUN apt-get install -y --no-install-recommends fd-find
 # RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
 # RUN apt-get install -y --no-install-recommends ./chrome.deb
 
+RUN pip install myjwt
 RUN pip install shodan
 
 RUN curl -s https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux -o /usr/bin/findomain && chmod +x /usr/bin/findomain
