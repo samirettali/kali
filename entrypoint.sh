@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-if [[ -f "${HOME}/.lock" ]]; 
+if [[ -f "${HOME}/.lock" ]]; then
 	echo "Finish the setup before"
 	exit
 fi
