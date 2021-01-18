@@ -1,0 +1,18 @@
+[submodule "burp-plugins/BurpSuite_403Bypasser"]
+	path = burp-plugins/BurpSuite_403Bypasser
+	url = https://github.com/sting8k/BurpSuite_403Bypasser
+[submodule "burp-plugins/burp-exporter"]
+	path = burp-plugins/burp-exporter
+	url = https://github.com/artssec/burp-exporter
+[submodule "burp-plugins/reflector"]
+	path = burp-plugins/reflector
+	url = https://github.com/elkokc/reflector
+[submodule "burp-plugins/ssrf-king"]
+	path = burp-plugins/ssrf-king
+	url = https://github.com/ethicalhackingplayground/ssrf-king
+[submodule "burp-plugins/GoldenNuggets-1"]
+	path = burp-plugins/GoldenNuggets-1
+	url = https://github.com/GainSec/GoldenNuggets-1
+[submodule "burp-plugins/PwnFox"]
+	path = burp-plugins/PwnFox
+	url = https://github.com/B-i-t-K/PwnFox
