@@ -27,6 +27,27 @@ If you prefer, you can clone the repository and build the image yourself.
 
 When you start a container for the first time you will be prompted if you want to download some wordlists and install my dotfiles, I did it so that I don't have to do it manually each time I update the container and so that if someone else wants to use it he can use it without having my configurations installed.
 
+## A little note about running
+I have a function in my shell config called `kali` that handles the container execution:
+
+* If there's a stopped instance it starts it and connects to it
+* If there's a running instance it connects to it
+* If there's no instance it creates one
+
+```bash
+if [[ $(docker container inspect -f '{{.State.Status}}' kali) == 'exited' ]]; then
+    docker start -a kali
+elif [[ $(docker container inspect -f '{{.State.Status}}' kali) == 'running' ]]; then
+    docker exec -it kali ./entrypoint.sh
+elif [[ -z $(docker ps --filter 'name=kali' --format '{{.Names}}') ]]; then
+    docker run -it --name kali samirettali/kali
+else
+    echo "Container is probably starting, wait..."
+fi
+```
+
+Also, you probably want to map some ports and mount some folders to be able to easily move files.
+
 ## Notes
 
 There are some graphical tools that I use on my machine:
