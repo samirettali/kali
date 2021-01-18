@@ -34,7 +34,7 @@ RUN apt-get install --no-install-recommends -y hashcat
 RUN apt-get install --no-install-recommends -y hydra
 
 # Windows stuff
-RUN pi3 install aclpwn
+RUN pip3 install aclpwn
 RUN gem install evil-winrm
 RUN apt-get install --no-install-recommends -y cifs-utils
 RUN apt-get install --no-install-recommends -y crackmapexec
