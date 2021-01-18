@@ -46,6 +46,7 @@ else
 fi
 ```
 
+This way I don't have to think about the state of the container and which command to run.
 Also, you probably want to map some ports and mount some folders to be able to easily move files.
 
 ## Notes
