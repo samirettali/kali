@@ -1,11 +1,11 @@
-# Kali docker
+# Kali
 This is my Kali Linux setup for Bug Bounty and CTFs.
 
 I used to use a VM with Vagrant, you can find it in the `vagrant` branch. I've moved to Docker because I've always found myself using Kali via SSH, so I figured I could switch and only use graphical tools on my machine.
 
 There are two versions:
 * A small base image that I use daily, mainly for web testing
-* A CTF image that extends the base image, adding tools for things like steganograpy or forensics
+* A CTF image that extends the base image, adding tools for things like steganography and forensics
 
 ## Usage
 You can always pull the latest build from Docker Hub with:
