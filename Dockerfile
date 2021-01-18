@@ -2,7 +2,7 @@ FROM samirettali/kali
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get install --no-install-recommends ruby
+RUN apt-get install --no-install-recommends -y ruby
 
 # Reversing and binary exploitation
 RUN pip3 install oletools
