@@ -44,8 +44,8 @@ RUN apt-get install --no-install-recommends -y smbclient
 RUN apt-get install --no-install-recommends -y smbmap
 
 # Steganography
-RUN pip3 intall stegcracker
-RUN pip3 intall stegoveritas
+RUN pip3 install stegcracker
+RUN pip3 install stegoveritas
 RUN apt-get install -y steghide
 
 # RUN service postgresql start
