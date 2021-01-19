@@ -66,6 +66,9 @@ There are some graphical tools that I use on my machine:
     audio
 * [FLDigi](http://www.w1hkj.com/): Signal decoding
 
+## TODO
+[ ] Clean out `repos.sh` and merge it with `download-wordlists.sh`
+
 <!-- ## Online tool -->
 
 <!-- ### Cryptography -->
