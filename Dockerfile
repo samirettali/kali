@@ -55,6 +55,7 @@ RUN apt-get install -y --no-install-recommends rlwrap
 RUN apt-get install -y --no-install-recommends moreutils
 RUN apt-get install -y --no-install-recommends fzf
 RUN apt-get install -y --no-install-recommends fd-find
+RUN apt-get install -y --no-install-recommends man
 
 # RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
 # RUN apt-get install -y --no-install-recommends ./chrome.deb
