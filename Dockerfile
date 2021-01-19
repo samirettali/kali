@@ -50,6 +50,8 @@ RUN apt-get install -y --no-install-recommends tmux
 RUN apt-get install -y --no-install-recommends sqlmap
 RUN apt-get install -y --no-install-recommends stow
 RUN apt-get install -y --no-install-recommends zsh
+RUN apt-get install -y --no-install-recommends ncat
+RUN apt-get install -y --no-install-recommends rlwrap
 RUN apt-get install -y --no-install-recommends moreutils
 RUN apt-get install -y --no-install-recommends fzf
 RUN apt-get install -y --no-install-recommends fd-find
