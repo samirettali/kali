@@ -28,6 +28,7 @@ RUN go get github.com/tomnomnom/hacks/tok
 RUN go get github.com/ffuf/ffuf
 RUN go get github.com/OWASP/Amass/v3/...
 RUN go get -u github.com/jaeles-project/gospider
+RUN go get -u github.com/tomnomnom/gf
 
 FROM kalilinux/kali-bleeding-edge
 
