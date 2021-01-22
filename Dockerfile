@@ -1,6 +1,7 @@
 FROM golang:alpine as builder
 
 RUN apk add --no-cache git
+RUN apk add --no-cache libpcap-dev # Needed for naabu
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
