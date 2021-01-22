@@ -21,7 +21,9 @@ RUN go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@dev
 RUN go get github.com/tomnomnom/meg
 RUN go get github.com/tomnomnom/qsreplace
 RUN go get github.com/tomnomnom/unfurl
+RUN go get github.com/tomnomnom/hacks/kxss
 RUN go get github.com/tomnomnom/waybackurls
+RUN go get github.com/tomnomnom/assetfinder
 RUN go get github.com/lc/gau
 RUN go get github.com/tomnomnom/hacks/tok
 # RUN go get github.com/michenriksen/aquatone
@@ -33,6 +35,7 @@ RUN go get -u github.com/tomnomnom/gf
 FROM kalilinux/kali-bleeding-edge
 
 COPY --from=builder /go/bin/* /usr/bin/
+COPY --from=builder /root/go/src/github.com/tomnomnom/gf/examples /root/.gf
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -60,6 +63,11 @@ RUN apt-get install -y --no-install-recommends fd-find
 RUN apt-get install -y --no-install-recommends man
 RUN apt-get install -y --no-install-recommends openssh-client
 RUN apt-get install -y --no-install-recommends iputils-ping
+RUN apt-get install -y --no-install-recommends less
+
+
+RUN git clone https://github.com/1ndianl33t/Gf-Patterns
+RUN mv Gf-Patterns/*.json /root/.gf
 
 # RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
 # RUN apt-get install -y --no-install-recommends ./chrome.deb
@@ -67,7 +75,14 @@ RUN apt-get install -y --no-install-recommends iputils-ping
 RUN pip install myjwt
 RUN pip install shodan
 
-RUN curl -s https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux -o /usr/bin/findomain && chmod +x /usr/bin/findomain
+RUN curl -Ls https://github.com/Edu4rdSHL/findomain/releases/latest/download/findomain-linux -o /usr/bin/findomain && chmod +x /usr/bin/findomain
+
+# Install LinkFinder
+RUN git clone https://github.com/GerbenJavado/LinkFinder.git
+RUN cd LinkFinder
+RUN pip3 install -r requirements.txt
+RUN python setup.py install
+
 
 RUN touch ~/.hushlogin
 
