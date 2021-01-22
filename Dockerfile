@@ -35,7 +35,7 @@ RUN go get -u github.com/tomnomnom/gf
 FROM kalilinux/kali-bleeding-edge
 
 COPY --from=builder /go/bin/* /usr/bin/
-COPY --from=builder /root/go/src/github.com/tomnomnom/gf/examples /root/.gf
+COPY --from=builder /go/src/github.com/tomnomnom/gf/examples /root/.gf
 
 ENV DEBIAN_FRONTEND noninteractive
 
