@@ -35,7 +35,6 @@ RUN go get -u github.com/tomnomnom/gf
 FROM kalilinux/kali-bleeding-edge
 
 COPY --from=builder /go/bin/* /usr/bin/
-COPY --from=builder /go/src/github.com/tomnomnom/gf/examples /root/.gf
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -66,6 +65,11 @@ RUN apt-get install -y --no-install-recommends iputils-ping
 RUN apt-get install -y --no-install-recommends less
 
 
+# Install gf patterns
+RUN git clone https://github.com/tomnomnom/gf
+RUN cp -r gf/examples /root/.gf
+RUN rm -rf gf
+
 RUN git clone https://github.com/1ndianl33t/Gf-Patterns
 RUN mv Gf-Patterns/*.json /root/.gf
 
@@ -82,7 +86,6 @@ RUN git clone https://github.com/GerbenJavado/LinkFinder.git
 RUN cd LinkFinder
 RUN pip3 install -r requirements.txt
 RUN python setup.py install
-
 
 RUN touch ~/.hushlogin
 
