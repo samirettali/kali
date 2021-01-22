@@ -83,9 +83,7 @@ RUN curl -Ls https://github.com/Edu4rdSHL/findomain/releases/latest/download/fin
 
 # Install LinkFinder
 RUN git clone https://github.com/GerbenJavado/LinkFinder.git
-RUN cd LinkFinder
-RUN pip3 install -r requirements.txt
-RUN python setup.py install
+RUN cd LinkFinder && pip3 install -r requirements.txt && python setup.py install
 
 RUN touch ~/.hushlogin
 
