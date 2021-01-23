@@ -2,6 +2,8 @@ FROM golang:alpine as builder
 
 RUN apk add --no-cache git
 RUN apk add --no-cache libpcap-dev # Needed for naabu
+RUN apk add --no-cache build-base
+RUN apk add --no-cache gcc
 
 ENV GO111MODULE=on \
     CGO_ENABLED=0 \
@@ -17,7 +19,6 @@ RUN go get github.com/tomnomnom/hacks/concurl
 RUN go get github.com/tomnomnom/gron
 RUN go get github.com/projectdiscovery/httpx/cmd/httpx
 RUN go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei
-RUN go get -u github.com/projectdiscovery/naabu/v2/cmd/naabu
 RUN go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@dev
 RUN go get github.com/tomnomnom/meg
 RUN go get github.com/tomnomnom/qsreplace
@@ -27,15 +28,28 @@ RUN go get github.com/tomnomnom/waybackurls
 RUN go get github.com/tomnomnom/assetfinder
 RUN go get github.com/lc/gau
 RUN go get github.com/tomnomnom/hacks/tok
-RUN go get github.com/michenriksen/aquatone
 RUN go get github.com/ffuf/ffuf
 RUN go get github.com/OWASP/Amass/v3/...
 RUN go get -u github.com/jaeles-project/gospider
 RUN go get -u github.com/tomnomnom/gf
 
+ENV GO111MODULE=on \
+    CGO_ENABLED=1 \
+    GOOS=linux \
+    GOARCH=amd64
+RUN go get github.com/projectdiscovery/naabu/v2/cmd/naabu
+
+ENV GO111MODULE=off \
+    CGO_ENABLED=0 \
+    GOOS=linux \
+    GOARCH=amd64
+RUN go get github.com/michenriksen/aquatone
+
 FROM kalilinux/kali-bleeding-edge
 
 COPY --from=builder /go/bin/* /usr/bin/
+# COPY --from=naabu-builder /go/bin/* /usr/bin/
+# COPY --from=aquatone-builder /go/bin/* /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
