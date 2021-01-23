@@ -48,8 +48,6 @@ RUN go get github.com/michenriksen/aquatone
 FROM kalilinux/kali-bleeding-edge
 
 COPY --from=builder /go/bin/* /usr/bin/
-# COPY --from=naabu-builder /go/bin/* /usr/bin/
-# COPY --from=aquatone-builder /go/bin/* /usr/bin/
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -88,8 +86,8 @@ RUN rm -rf gf
 RUN git clone https://github.com/1ndianl33t/Gf-Patterns
 RUN mv Gf-Patterns/*.json /root/.gf
 
-# RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
-# RUN apt-get install -y --no-install-recommends ./chrome.deb
+RUN curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o chrome.deb
+RUN apt-get install -y --no-install-recommends ./chrome.deb
 
 RUN pip install myjwt
 RUN pip install shodan
