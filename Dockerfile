@@ -32,6 +32,7 @@ RUN go get github.com/ffuf/ffuf
 RUN go get github.com/OWASP/Amass/v3/...
 RUN go get -u github.com/jaeles-project/gospider
 RUN go get -u github.com/tomnomnom/gf
+RUN go get github.com/ericchiang/pup
 
 ENV GO111MODULE=on \
     CGO_ENABLED=1 \
@@ -76,7 +77,8 @@ RUN apt-get install -y --no-install-recommends man
 RUN apt-get install -y --no-install-recommends openssh-client
 RUN apt-get install -y --no-install-recommends iputils-ping
 RUN apt-get install -y --no-install-recommends less
-
+RUN apt-get install -y --no-install-recommends build-essential
+RUN apt-get install -y --no-install-recommends python3-dev
 
 # Install gf patterns
 RUN git clone https://github.com/tomnomnom/gf
