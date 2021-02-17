@@ -20,6 +20,7 @@ RUN go get github.com/tomnomnom/gron
 RUN go get github.com/projectdiscovery/httpx/cmd/httpx
 RUN go get github.com/projectdiscovery/nuclei/v2/cmd/nuclei
 RUN go get github.com/projectdiscovery/subfinder/v2/cmd/subfinder@dev
+RUN go get -v github.com/projectdiscovery/notify/cmd/notify
 RUN go get github.com/tomnomnom/meg
 RUN go get github.com/tomnomnom/qsreplace
 RUN go get github.com/tomnomnom/unfurl
