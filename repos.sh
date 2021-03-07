@@ -90,6 +90,7 @@ git clone https://github.com/nahamsec/lazyrecon
 # Exploitation
 git clone https://github.com/commixproject/commix
 git clone https://github.com/gaul/awesome-ld-preload
+git clone https://github.com/liamg/traitor
 
 # Post exploitation
 git clone https://github.com/0x00-0x00/ShellPop
